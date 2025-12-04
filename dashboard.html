@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard - Agora AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A65FF',
+                        'primary-dark': '#0052CC',
+                        'gray-light': '#F0F2F5',
+                        'gray-dark': '#333333',
+                        'gray-medium': '#666666',
+                        'sidebar-bg': '#1a202c',
+                        'sidebar-link': '#a0aec0',
+                        'sidebar-link-hover': '#ffffff',
+                        'sidebar-link-active': '#4a5568'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-light">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-sidebar-bg text-sidebar-link flex-shrink-0">
+            <div class="p-6 text-white text-2xl font-bold">
+                <a href="index.html">Agora AI</a>
+            </div>
+            <nav class="mt-8">
+                <a href="#" class="flex items-center px-6 py-3 bg-sidebar-link-active text-sidebar-link-hover">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
+                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h4a2 2 0 002-2V7a2 2 0 00-2-2h-4a2 2 0 00-2 2z"></path></svg>
+                    <span>Jobs</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
+                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197M15 21a6 6 0 006-5.197M3 21a6 6 0 016-5.197"></path></svg>
+                    <span>Candidates</span>
+                </a>
+                 <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    <span>Interviews</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-dark">Applications: Senior Frontend Developer</h1>
+                <div class="flex items-center">
+                    <span class="mr-4">Welcome, Tony Stark</span>
+                    <button class="bg-primary text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-primary-dark">Log Out</button>
+                </div>
+            </header>
+
+            <!-- Candidate Table -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-light p-6">
+                <div class="bg-white rounded-lg shadow-md">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidate</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Match %</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applied</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Candidate 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Peter Parker</div>
+                                            <div class="text-sm text-gray-500">peter.parker@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">92%</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">AI Interview Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Dec 1, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-primary hover:text-primary-dark">View Profile</a>
+                                </td>
+                            </tr>
+                             <!-- Candidate 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Bruce Wayne</div>
+                                            <div class="text-sm text-gray-500">bruce.wayne@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">85%</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Reviewing</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 28, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-primary hover:text-primary-dark">View Profile</a>
+                                </td>
+                            </tr>
+                            <!-- More candidates... -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
