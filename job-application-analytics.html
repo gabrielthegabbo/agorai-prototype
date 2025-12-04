@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Analytics - Agorai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#0EA5E9',
+                        accent: '#10B981',
+                        surface: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-surface text-slate-800 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="glass-panel fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/images/logo.png" alt="Agorai Logo"
+                    class="h-10 w-auto transition-transform group-hover:scale-105">
+                <span class="font-heading font-bold text-2xl tracking-tight text-primary">Agorai<span
+                        class="text-secondary">.</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="dashboard.html"
+                    class="text-sm font-medium text-slate-600 hover:text-secondary transition">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Job Application Analytics -->
+    <main class="pt-32 pb-24 bg-gradient-to-b from-surface to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-heading font-bold text-slate-900 mb-8">Job Application Analytics</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Applications by Status</h2>
+                    <canvas id="applicationsByStatusChart"></canvas>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Applications per Day</h2>
+                    <canvas id="applicationsPerDayChart"></canvas>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Top 5 Job Postings</h2>
+                    <canvas id="topJobPostingsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Applications by Status Chart
+        const applicationsByStatusCtx = document.getElementById('applicationsByStatusChart').getContext('2d');
+        new Chart(applicationsByStatusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pending', 'AI Interview', 'Final Interview', 'Offered', 'Rejected'],
+                datasets: [{
+                    label: 'Applications by Status',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Applications per Day Chart
+        const applicationsPerDayCtx = document.getElementById('applicationsPerDayChart').getContext('2d');
+        new Chart(applicationsPerDayCtx, {
+            type: 'line',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [{
+                    label: 'Applications per Day',
+                    data: [12, 19, 3, 5, 2, 3, 7],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            }
+        });
+
+        // Top 5 Job Postings Chart
+        const topJobPostingsCtx = document.getElementById('topJobPostingsChart').getContext('2d');
+        new Chart(topJobPostingsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Frontend Developer', 'Backend Developer', 'UI/UX Designer', 'Product Manager', 'Data Scientist'],
+                datasets: [{
+                    label: 'Number of Applications',
+                    data: [65, 59, 80, 81, 56],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+            }
+        });
+    </script>
+</body>
+</html>
