@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dark {
+            --bg-color: #1a202c;
+            --text-color: #a0aec0;
+            --card-bg-color: #2d3748;
+        }
+        body {
+            background-color: var(--bg-color, #f7fafc);
+            color: var(--text-color, #1a202c);
+        }
+        .card {
+            background-color: var(--card-bg-color, white);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+    <div class="flex h-screen bg-gray-200 dark:bg-gray-800">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 dark:bg-gray-900 text-white p-4">
+            <div class="flex items-center mb-8">
+                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704e" alt="Profile Picture" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                    <h2 class="text-xl font-bold">Jane Doe</h2>
+                    <p class="text-gray-400">Recruiter</p>
+                </div>
+            </div>
+            <ul>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-users mr-2"></i>Candidates</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-briefcase mr-2"></i>Jobs</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-envelope mr-2"></i>Messages</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-calendar-alt mr-2"></i>Calendar</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-chart-bar mr-2"></i>Reports</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-building mr-2"></i>Company Profile</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-file-invoice-dollar mr-2"></i>Billing</a></li>
+                <li class="mb-2"><a href="#" class="flex items-center hover:text-gray-300"><i class="fas fa-cog mr-2"></i>Settings</a></li>
+            </ul>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-8 w-full">Post a New Job</button>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="bg-white dark:bg-gray-800 p-4 flex justify-between items-center shadow">
+                <div class="relative">
+                    <input type="text" placeholder="Search..." class="border rounded-full py-2 px-4 pl-10 dark:bg-gray-700 dark:text-white">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <div class="flex items-center">
+                    <button id="darkModeToggle" class="mr-4"><i class="fas fa-moon text-2xl text-gray-600 dark:text-gray-300"></i></button>
+                    <i class="fas fa-bell text-2xl text-gray-600 dark:text-gray-300 mr-4"></i>
+                    <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full">Log Out</button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-8">
+                <h1 class="text-3xl font-bold mb-4 dark:text-white">Welcome, Jane Doe!</h1>
+                
+                <!-- Top Candidates -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-4 dark:text-white">Top Candidates</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Candidate 1 -->
+                        <div class="card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Candidate Photo" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="text-lg font-bold dark:text-white">John Doe</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Senior Frontend Developer</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-green-200 text-green-800 px-2 py-1 rounded-full text-sm">95% Match</span>
+                                <div>
+                                    <button class="text-blue-500 hover:underline mr-2">View Profile</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">Schedule Interview</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Candidate 2 -->
+                        <div class="card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704f" alt="Candidate Photo" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="text-lg font-bold dark:text-white">Jane Smith</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Full Stack Engineer</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-sm">88% Match</span>
+                                <div>
+                                    <button class="text-blue-500 hover:underline mr-2">View Profile</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">Schedule Interview</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Candidate 3 -->
+                        <div class="card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704g" alt="Candidate Photo" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="text-lg font-bold dark:text-white">Peter Jones</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">DevOps Engineer</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded-full text-sm">82% Match</span>
+                                <div>
+                                    <button class="text-blue-500 hover:underline mr-2">View Profile</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">Schedule Interview</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold mb-4 dark:text-white">Recent Activities</h2>
+                    <div class="card bg-white dark:bg-gray-800 p-4 rounded-lg shadow max-h-48 overflow-y-auto">
+                        <ul>
+                            <li class="flex items-center mb-2"><i class="fas fa-plus-circle text-green-500 mr-2"></i>You posted a new job: Software Engineer</li>
+                            <li class="flex items-center mb-2"><i class="fas fa-user-check text-blue-500 mr-2"></i>You hired John Doe for the Frontend Developer position.</li>
+                            <li class="flex items-center"><i class="fas fa-file-alt text-yellow-500 mr-2"></i>You have 5 new applications for the Backend Developer position.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const icon = darkModeToggle.querySelector('i');
+            if (html.classList.contains('dark')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+    </script>
+</body>
+</html>
