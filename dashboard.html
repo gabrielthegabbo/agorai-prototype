@@ -1,132 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recruiter Dashboard - Agora AI</title>
+    <title>Agorai | Recruiter Dashboard</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0A65FF',
-                        'primary-dark': '#0052CC',
-                        'gray-light': '#F0F2F5',
-                        'gray-dark': '#333333',
-                        'gray-medium': '#666666',
-                        'sidebar-bg': '#1a202c',
-                        'sidebar-link': '#a0aec0',
-                        'sidebar-link-hover': '#ffffff',
-                        'sidebar-link-active': '#4a5568'
+                        primary: '#0F172A',
+                        secondary: '#0EA5E9',
+                        accent: '#10B981',
+                        surface: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-gray-light">
 
-    <div class="flex h-screen">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-sidebar-bg text-sidebar-link flex-shrink-0">
-            <div class="p-6 text-white text-2xl font-bold">
-                <a href="index.html">Agora AI</a>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col z-20">
+        <div class="h-16 flex items-center px-6 border-b border-slate-100">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Agorai Logo" class="h-8 w-auto">
+                <span class="font-heading font-bold text-xl tracking-tight text-primary">Agorai<span
+                        class="text-secondary">.</span></span>
+            </a>
+        </div>
+
+        <div class="p-6">
+            <button
+                class="w-full bg-secondary text-white py-2 px-4 rounded-lg shadow-md hover:bg-sky-600 transition flex items-center justify-center gap-2">
+                <i class="fas fa-plus"></i> New Job Post
+            </button>
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-secondary bg-secondary/10 rounded-lg font-medium">
+                <i class="fas fa-th-large w-5"></i> Dashboard
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg font-medium transition">
+                <i class="fas fa-users w-5"></i> Candidates
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg font-medium transition">
+                <i class="fas fa-briefcase w-5"></i> Jobs
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg font-medium transition">
+                <i class="fas fa-calendar-alt w-5"></i> Schedule
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg font-medium transition">
+                <i class="fas fa-chart-bar w-5"></i> Analytics
+            </a>
+            <a href="index.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg font-medium transition mt-8">
+                <i class="fas fa-sign-out-alt w-5"></i> Logout
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Recruiter&background=0F172A&color=fff"
+                    class="w-10 h-10 rounded-full">
+                <div>
+                    <div class="text-sm font-bold text-slate-800">HR Manager</div>
+                    <div class="text-xs text-slate-500">Pro Plan</div>
+                </div>
             </div>
-            <nav class="mt-8">
-                <a href="#" class="flex items-center px-6 py-3 bg-sidebar-link-active text-sidebar-link-hover">
-                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
-                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h4a2 2 0 002-2V7a2 2 0 00-2-2h-4a2 2 0 00-2 2z"></path></svg>
-                    <span>Jobs</span>
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
-                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197M15 21a6 6 0 006-5.197M3 21a6 6 0 016-5.197"></path></svg>
-                    <span>Candidates</span>
-                </a>
-                 <a href="#" class="flex items-center px-6 py-3 hover:bg-sidebar-link-active hover:text-sidebar-link-hover">
-                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                    <span>Interviews</span>
-                </a>
-            </nav>
-        </aside>
+        </div>
+    </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Top Bar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-gray-dark">Applications: Senior Frontend Developer</h1>
-                <div class="flex items-center">
-                    <span class="mr-4">Welcome, Tony Stark</span>
-                    <button class="bg-primary text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-primary-dark">Log Out</button>
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Mobile Header -->
+        <header class="md:hidden bg-white border-b border-slate-200 h-16 flex items-center justify-between px-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Agorai Logo" class="h-8 w-auto">
+                <span class="font-heading font-bold text-xl text-primary">Agorai.</span>
+            </a>
+            <button class="text-slate-600"><i class="fas fa-bars"></i></button>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-4 md:p-8">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 font-heading">Dashboard</h1>
+                    <p class="text-slate-500 text-sm">Welcome back! Here's what's happening today.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-400 hover:text-slate-600"><i class="fas fa-bell"></i></button>
+                    <button class="p-2 text-slate-400 hover:text-slate-600"><i class="fas fa-cog"></i></button>
                 </div>
             </header>
 
-            <!-- Candidate Table -->
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-light p-6">
-                <div class="bg-white rounded-lg shadow-md">
-                    <table class="min-w-full">
-                        <thead class="bg-gray-100">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="text-xs font-medium text-slate-500 uppercase">Active Candidates</div>
+                            <div class="text-2xl font-bold text-slate-900 mt-1">124</div>
+                        </div>
+                        <div class="p-2 bg-green-100 rounded-lg text-green-600"><i class="fas fa-user-check"></i></div>
+                    </div>
+                    <div class="mt-4 text-xs text-green-600 flex items-center gap-1">
+                        <i class="fas fa-arrow-up"></i> 12% from last week
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="text-xs font-medium text-slate-500 uppercase">Interviews Pending</div>
+                            <div class="text-2xl font-bold text-slate-900 mt-1">18</div>
+                        </div>
+                        <div class="p-2 bg-orange-100 rounded-lg text-orange-600"><i class="fas fa-video"></i></div>
+                    </div>
+                    <div class="mt-4 text-xs text-slate-400">
+                        AI conducting 3 right now
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="text-xs font-medium text-slate-500 uppercase">Time Saved</div>
+                            <div class="text-2xl font-bold text-slate-900 mt-1">42 Hrs</div>
+                        </div>
+                        <div class="p-2 bg-secondary/10 rounded-lg text-secondary"><i class="fas fa-clock"></i></div>
+                    </div>
+                    <div class="mt-4 text-xs text-secondary font-medium">
+                        ~₱12,500 cost equivalent
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Candidates Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+                    <h3 class="font-bold text-slate-800">Recent Applications</h3>
+                    <button class="text-sm text-secondary font-medium hover:underline">View All</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-600">
+                        <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidate</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Match %</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applied</th>
-                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                <th class="px-6 py-3 font-medium">Candidate</th>
+                                <th class="px-6 py-3 font-medium">Applied For</th>
+                                <th class="px-6 py-3 font-medium">Match Score</th>
+                                <th class="px-6 py-3 font-medium">Status</th>
+                                <th class="px-6 py-3 font-medium">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <!-- Candidate 1 -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Peter Parker</div>
-                                            <div class="text-sm text-gray-500">peter.parker@example.com</div>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Maria"
+                                        class="w-8 h-8 rounded-full bg-slate-200">
+                                    <span class="font-medium text-slate-900">Maria Santos</span>
+                                </td>
+                                <td class="px-6 py-4">Customer Support</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-16 h-2 bg-slate-200 rounded-full overflow-hidden">
+                                            <div class="h-full bg-green-500 w-[92%]"></div>
                                         </div>
+                                        <span class="text-xs font-bold text-slate-700">92%</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">92%</div>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">AI
+                                        Interviewed</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">AI Interview Pending</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Dec 1, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" class="text-primary hover:text-primary-dark">View Profile</a>
+                                <td class="px-6 py-4">
+                                    <button class="text-secondary hover:text-primary font-medium">Review</button>
                                 </td>
                             </tr>
-                             <!-- Candidate 2 -->
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Bruce Wayne</div>
-                                            <div class="text-sm text-gray-500">bruce.wayne@example.com</div>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Juan"
+                                        class="w-8 h-8 rounded-full bg-slate-200">
+                                    <span class="font-medium text-slate-900">Juan Dela Cruz</span>
+                                </td>
+                                <td class="px-6 py-4">Sales Representative</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-16 h-2 bg-slate-200 rounded-full overflow-hidden">
+                                            <div class="h-full bg-yellow-400 w-[78%]"></div>
                                         </div>
+                                        <span class="text-xs font-bold text-slate-700">78%</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">85%</div>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">Pending</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Reviewing</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 28, 2025</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" class="text-primary hover:text-primary-dark">View Profile</a>
+                                <td class="px-6 py-4">
+                                    <button class="text-secondary hover:text-primary font-medium">Review</button>
                                 </td>
                             </tr>
-                            <!-- More candidates... -->
                         </tbody>
                     </table>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
-
 </body>
+
 </html>

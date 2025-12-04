@@ -1,126 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Board - Agora AI</title>
+    <title>Agorai | Find Jobs</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0A65FF',
-                        'primary-dark': '#0052CC',
-                        'gray-light': '#F0F2F5',
-                        'gray-dark': '#333333',
-                        'gray-medium': '#666666'
+                        primary: '#0F172A',
+                        secondary: '#0EA5E9',
+                        accent: '#10B981',
+                        surface: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
 </head>
-<body class="bg-gray-light text-gray-dark">
 
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">Agora AI</a>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="index.html#features" class="text-gray-medium hover:text-primary">Features</a>
-                <a href="job-board.html" class="text-primary font-semibold">Job Board</a>
-                <a href="#pricing" class="text-gray-medium hover:text-primary">Pricing</a>
-                <a href="#contact" class="text-gray-medium hover:text-primary">Contact</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                 <a href="#" class="hidden md:block text-gray-medium hover:text-primary">Login</a>
-                 <a href="#" class="bg-primary text-white rounded-full px-6 py-2 font-semibold hover:bg-primary-dark transition duration-300">Get a Demo</a>
-            </div>
-        </nav>
-    </header>
+<body class="bg-surface text-slate-800 font-sans antialiased">
 
-    <!-- Job Board Main Content -->
-    <main class="py-12">
-        <div class="container mx-auto px-6">
-            <h1 class="text-4xl font-bold text-center text-gray-dark mb-8">Find Your Next Opportunity</h1>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-panel shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center cursor-pointer gap-2">
+                    <img src="assets/images/logo.png" alt="Agorai Logo" class="h-8 w-auto">
+                    <span class="font-heading font-bold text-xl tracking-tight text-primary">Agorai<span
+                            class="text-secondary">.</span></span>
+                </a>
 
-            <!-- Search and Filter Bar -->
-            <div class="bg-white p-4 rounded-lg shadow-md mb-8 flex flex-col md:flex-row gap-4">
-                <input type="text" placeholder="Job title, keywords, or company" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                <input type="text" placeholder="Location (e.g., 'New York')" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                <button class="bg-primary text-white rounded-md px-8 py-3 font-semibold hover:bg-primary-dark transition duration-300">Search</button>
-            </div>
-
-            <!-- Job Listings -->
-            <div class="bg-white rounded-lg shadow-md">
-                <!-- Job Item 1 -->
-                <div class="p-6 border-b border-gray-200 hover:bg-gray-50">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-dark hover:text-primary"><a href="job-application.html">Senior Frontend Developer</a></h2>
-                            <p class="text-gray-medium">Stark Industries</p>
-                            <p class="text-sm text-gray-500">New York, NY (Remote)</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-primary">$120,000 - $150,000</p>
-                            <p class="text-sm text-gray-500">Full-time</p>
-                        </div>
-                    </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-sm font-medium text-slate-600 hover:text-secondary transition">Home</a>
+                    <a href="job-board.html" class="text-sm font-medium text-secondary font-bold transition">Find
+                        Jobs</a>
+                    <a href="dashboard.html"
+                        class="text-sm font-medium text-slate-600 hover:text-secondary transition">Recruiter
+                        Dashboard</a>
                 </div>
-                <!-- Job Item 2 -->
-                <div class="p-6 border-b border-gray-200 hover:bg-gray-50">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-dark hover:text-primary"><a href="job-application.html">UX/UI Designer</a></h2>
-                            <p class="text-gray-medium">Wayne Enterprises</p>
-                            <p class="text-sm text-gray-500">Gotham City (Hybrid)</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-primary">$90,000 - $110,000</p>
-                            <p class="text-sm text-gray-500">Full-time</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-12 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-heading font-bold text-slate-900">Find Your Next Role</h2>
+                <div class="mt-6 max-w-2xl mx-auto relative">
+                    <input type="text" placeholder="Job title, keywords, or company..."
+                        class="w-full pl-12 pr-4 py-3 rounded-full border border-slate-300 focus:border-secondary focus:ring focus:ring-secondary/20 shadow-sm transition outline-none">
+                    <i class="fas fa-search absolute left-5 top-4 text-slate-400"></i>
+                    <button
+                        class="absolute right-2 top-2 bg-primary text-white px-6 py-1.5 rounded-full text-sm font-medium hover:bg-slate-800 transition">Search</button>
                 </div>
-                <!-- Job Item 3 -->
-                <div class="p-6 border-b border-gray-200 hover:bg-gray-50">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-dark hover:text-primary"><a href="job-application.html">AI Research Scientist</a></h2>
-                            <p class="text-gray-medium">Cyberdyne Systems</p>
-                            <p class="text-sm text-gray-500">Sunnyvale, CA</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-primary">$160,000 - $200,000</p>
-                            <p class="text-sm text-gray-500">Full-time</p>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Job Item 4 -->
-                 <div class="p-6 hover:bg-gray-50">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-dark hover:text-primary"><a href="job-application.html">Product Manager</a></h2>
-                            <p class="text-gray-medium">Oscorp</p>
-                            <p class="text-sm text-gray-500">New York, NY</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-semibold text-primary">$130,000 - $160,000</p>
-                            <p class="text-sm text-gray-500">Full-time</p>
-                        </div>
-                    </div>
+                <div class="mt-4 flex justify-center gap-2 text-sm text-slate-500">
+                    <span>Popular:</span>
+                    <button class="hover:text-secondary underline">Call Center Agent</button>
+                    <button class="hover:text-secondary underline">Virtual Assistant</button>
+                    <button class="hover:text-secondary underline">IT Support</button>
                 </div>
             </div>
 
+            <!-- Job List -->
+            <div class="space-y-4">
+                <!-- Job Card 1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition group">
+                    <div class="flex justify-between items-start">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 font-bold text-xl">
+                                T
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 group-hover:text-secondary transition">
+                                    Technical Support Representative</h3>
+                                <p class="text-slate-500 text-sm">TechFlow Solutions • Makati City (Hybrid)</p>
+                                <div class="mt-2 flex gap-2">
+                                    <span
+                                        class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs font-medium">Taglish
+                                        Friendly</span>
+                                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">₱25k
+                                        - ₱35k</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="job-application.html"
+                            class="bg-white border border-secondary text-secondary hover:bg-secondary hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                            Apply Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition group">
+                    <div class="flex justify-between items-start">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold text-xl">
+                                B
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 group-hover:text-secondary transition">BPO
+                                    Team Leader</h3>
+                                <p class="text-slate-500 text-sm">BPO Connect • Quezon City</p>
+                                <div class="mt-2 flex gap-2">
+                                    <span
+                                        class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs font-medium">Night
+                                        Shift</span>
+                                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">₱45k
+                                        - ₱60k</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="job-application.html"
+                            class="bg-white border border-secondary text-secondary hover:bg-secondary hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                            Apply Now
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-dark text-white py-10 mt-12">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Agora AI. All rights reserved.</p>
-        </div>
-    </footer>
-
 </body>
+
 </html>

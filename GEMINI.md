@@ -1,24 +1,24 @@
 ## Goal
-1. create a landing page for AI powered hiring automation platform
-2. create a dashboard for AI powered hiring automation platform
-3. create a chatbot for AI powered hiring automation platform
-4. create a job board for AI powered hiring automation platform
-5. create a job application for AI powered hiring automation platform
-6. create a job interview for AI powered hiring automation platform
-7. create a job posting for AI powered hiring automation platform
-8. create a job description for AI powered hiring automation platform
-9. create a job title for AI powered hiring automation platform
-10. create a job location for AI powered hiring automation platform
-11. create a job salary for AI powered hiring automation platform
-12. create a job benefits for AI powered hiring automation platform
-13. create a job requirements for AI powered hiring automation platform
-14. create a job responsibilities for AI powered hiring automation platform
-15. create a job qualifications for AI powered hiring automation platform
-16. create a job application form for AI powered hiring automation platform
-17. create a job application process for AI powered hiring automation platform
-18. create a job application status for AI powered hiring automation platform
-19. create a job application history for AI powered hiring automation platform
-20. create a job application analytics for AI powered hiring automation platform
+1. Create a landing page for AI powered hiring automation platform (Completed)
+2. Create a dashboard for AI powered hiring automation platform (Completed)
+3. Create a chatbot for AI powered hiring automation platform (Completed)
+4. Create a job board for AI powered hiring automation platform (Completed)
+5. Create a job application for AI powered hiring automation platform (Completed)
+6. Create a job interview for AI powered hiring automation platform (Completed)
+7. Create a job posting for AI powered hiring automation platform
+8. Create a job description for AI powered hiring automation platform
+9. Create a job title for AI powered hiring automation platform
+10. Create a job location for AI powered hiring automation platform
+11. Create a job salary for AI powered hiring automation platform
+12. Create a job benefits for AI powered hiring automation platform
+13. Create a job requirements for AI powered hiring automation platform
+14. Create a job responsibilities for AI powered hiring automation platform
+15. Create a job qualifications for AI powered hiring automation platform
+16. Create a job application form for AI powered hiring automation platform
+17. Create a job application process for AI powered hiring automation platform
+18. Create a job application status for AI powered hiring automation platform
+19. Create a job application history for AI powered hiring automation platform
+20. Create a job application analytics for AI powered hiring automation platform
 
 ## Features
 1. AI video interview
@@ -53,3 +53,4 @@
 
 ## Prompt history
 1. read the @GEMINI.md and do the task also create a promt history and improve the documentation like Goal,to-do, Prompt history, etc. at @GEMINI.md
+2. @[agorai-prototype/index.html] revise this landing page depends on the design of the other html files provided and add this logo for the Agorai  and just adjust it to make to make it simple and became good placement.
