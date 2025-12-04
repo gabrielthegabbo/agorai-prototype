@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply - Senior Frontend Developer - Agora AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A65FF',
+                        'primary-dark': '#0052CC',
+                        'gray-light': '#F0F2F5',
+                        'gray-dark': '#333333',
+                        'gray-medium': '#666666'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-light text-gray-dark">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">Agora AI</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html#features" class="text-gray-medium hover:text-primary">Features</a>
+                <a href="job-board.html" class="text-gray-medium hover:text-primary">Job Board</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="#" class="hidden md:block text-gray-medium hover:text-primary">Candidate Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Job Application Main Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <!-- Job Header -->
+                <div class="p-8 bg-primary text-white">
+                    <h1 class="text-4xl font-bold">Senior Frontend Developer</h1>
+                    <p class="text-xl mt-1">Stark Industries | New York, NY (Remote)</p>
+                </div>
+
+                <!-- Job Details and Application Form -->
+                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Left Column: Job Description -->
+                    <div class="md:col-span-2">
+                        <h2 class="text-2xl font-bold text-gray-dark mb-4">Job Description</h2>
+                        <p class="text-gray-medium mb-4">
+                            Stark Industries is seeking a highly skilled Senior Frontend Developer to join our innovative team. You will be responsible for developing and implementing user interface components using React.js concepts and workflows. You will also be responsible for profiling and improving front-end performance and documenting our front-end codebase.
+                        </p>
+                        <h3 class="text-xl font-bold text-gray-dark mb-2">Responsibilities</h3>
+                        <ul class="list-disc list-inside text-gray-medium mb-4">
+                            <li>Developing new user-facing features using React.js</li>
+                            <li>Building reusable components and front-end libraries for future use</li>
+                            <li>Translating designs and wireframes into high-quality code</li>
+                            <li>Optimizing components for maximum performance across a vast array of web-capable devices and browsers</li>
+                        </ul>
+                        <h3 class="text-xl font-bold text-gray-dark mb-2">Qualifications</h3>
+                        <ul class="list-disc list-inside text-gray-medium">
+                            <li>Strong proficiency in JavaScript, including DOM manipulation and the JavaScript object model</li>
+                            <li>Thorough understanding of React.js and its core principles</li>
+                            <li>Experience with popular React.js workflows (such as Flux or Redux)</li>
+                            <li>Familiarity with RESTful APIs</li>
+                            <li>Experience with common front-end development tools such as Babel, Webpack, NPM, etc.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Column: Application Form -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-dark mb-4">Apply Now</h2>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-medium">Full Name</label>
+                                <input type="text" id="name" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-medium">Email</label>
+                                <input type="email" id="email" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label for="resume" class="block text-sm font-medium text-gray-medium">Upload Resume</label>
+                                <input type="file" id="resume" class="mt-1 p-1 w-full border border-gray-300 rounded-md text-sm text-gray-medium file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-dark">
+                                <p class="text-xs text-gray-500 mt-1">PDF, DOC, DOCX (Max 5MB)</p>
+                            </div>
+                             <div>
+                                <label for="cover-letter" class="block text-sm font-medium text-gray-medium">Cover Letter (Optional)</label>
+                                <textarea id="cover-letter" rows="4" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white rounded-md px-8 py-3 font-semibold hover:bg-primary-dark transition duration-300">Submit Application</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-dark text-white py-10 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Agora AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

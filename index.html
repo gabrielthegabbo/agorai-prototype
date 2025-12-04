@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agora AI - AI Powered Hiring Automation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A65FF',
+                        'primary-dark': '#0052CC',
+                        'gray-light': '#F0F2F5',
+                        'gray-dark': '#333333',
+                        'gray-medium': '#666666'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-dark">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">Agora AI</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-gray-medium hover:text-primary">Features</a>
+                <a href="job-board.html" class="text-gray-medium hover:text-primary">Job Board</a>
+                <a href="#how-it-works" class="text-gray-medium hover:text-primary">How It Works</a>
+                <a href="#pricing" class="text-gray-medium hover:text-primary">Pricing</a>
+                <a href="#contact" class="text-gray-medium hover:text-primary">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="dashboard.html" class="hidden md:block text-gray-medium hover:text-primary">Recruiter Login</a>
+                 <a href="#" class="bg-primary text-white rounded-full px-6 py-2 font-semibold hover:bg-primary-dark transition duration-300">Get a Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="pt-20 pb-24 bg-gray-light">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-dark mb-4">Hire Smarter, Not Harder</h1>
+            <p class="text-xl text-gray-medium mb-10 max-w-3xl mx-auto">Leverage the power of AI to automate your hiring pipeline, from smart sourcing to automated interviews. Find the perfect candidate, faster.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="bg-primary text-white rounded-full px-8 py-3 font-bold text-lg hover:bg-primary-dark transition duration-300">Request a Demo</a>
+                <a href="job-board.html" class="bg-white text-primary border border-primary rounded-full px-8 py-3 font-bold text-lg hover:bg-gray-100 transition duration-300">View Openings</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-dark mb-12">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-bold text-gray-dark mb-3">AI Video Interviews</h3>
+                    <p class="text-gray-medium">Conduct and analyze video interviews at scale. Our AI provides insights on candidate performance and soft skills.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-bold text-gray-dark mb-3">Intelligent Resume Parsing</h3>
+                    <p class="text-gray-medium">Automatically parse and understand resumes, extracting key information and matching candidates to job requirements.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-bold text-gray-dark mb-3">Automated Job Postings</h3>
+                    <p class="text-gray-medium">Our AI helps you craft the perfect job description and posts it to multiple job boards with a single click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-light">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-dark mb-12">Streamline Your Process in 3 Steps</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
+                <!-- Step 1 -->
+                <div class="text-center max-w-xs">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 class="text-2xl font-bold mb-2">Create Job</h3>
+                    <p class="text-gray-medium">Define your job requirements and let our AI generate an optimized job description.</p>
+                </div>
+                 <!-- Step 2 -->
+                <div class="text-center max-w-xs">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 class="text-2xl font-bold mb-2">Engage AI</h3>
+                    <p class="text-gray-medium">AI sifts through resumes, conducts initial interviews, and shortlists top candidates.</p>
+                </div>
+                 <!-- Step 3 -->
+                <div class="text-center max-w-xs">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 class="text-2xl font-bold mb-2">Hire Best-Fit</h3>
+                    <p class="text-gray-medium">Focus your time on the most qualified candidates and make data-driven hiring decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-dark text-white py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Agora AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="fixed bottom-5 right-5">
+        <button id="chatbot-toggle" class="bg-primary text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </button>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden fixed bottom-24 right-5 w-96 bg-white rounded-lg shadow-xl border border-gray-200 flex flex-col">
+        <div class="p-4 bg-primary text-white rounded-t-lg flex justify-between items-center">
+            <h3 class="text-lg font-semibold">Agora AI Assistant</h3>
+            <button id="chat-close" class="text-white">&times;</button>
+        </div>
+        <div class="p-4 h-80 overflow-y-auto">
+            <!-- Mock Chat Messages -->
+            <div class="mb-4">
+                <div class="bg-gray-light p-3 rounded-lg max-w-xs">
+                    <p class="text-sm">Welcome to Agora AI! How can I help you today?</p>
+                </div>
+            </div>
+            <div class="mb-4 flex justify-end">
+                <div class="bg-primary text-white p-3 rounded-lg max-w-xs">
+                    <p class="text-sm">I'm interested in learning about your features.</p>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="bg-gray-light p-3 rounded-lg max-w-xs">
+                    <p class="text-sm">Great! We have AI-powered video interviews, resume parsing, and automated job postings. You can read more on our features section!</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-200">
+            <input type="text" placeholder="Type your message..." class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+        </div>
+    </div>
+
+    <script>
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatClose = document.getElementById('chat-close');
+
+        chatbotToggle.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
