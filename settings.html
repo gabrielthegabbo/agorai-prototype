@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agorai | Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#0EA5E9",
+              surface: "#F8FAFC",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Color Blind Mode Styles */
+      body.colorblind-mode {
+        --cb-primary: #0066cc;
+        --cb-secondary: #ff9900;
+        --cb-success: #0099cc;
+      }
+      body.colorblind-mode .bg-primary,
+      body.colorblind-mode .text-primary,
+      body.colorblind-mode .border-primary {
+        background-color: var(--cb-primary) !important;
+        color: white !important;
+      }
+      body.colorblind-mode .text-primary {
+        color: var(--cb-primary) !important;
+        background-color: transparent !important;
+      }
+      #colorBlindToggle.active {
+        background-color: #0066cc !important;
+        color: white !important;
+      }
+
+      /* Toggle Switch Styles */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #cbd5e1;
+        transition: 0.3s;
+        border-radius: 24px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+      }
+
+      input:checked + .toggle-slider {
+        background-color: #4f46e5;
+      }
+
+      input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+      }
+
+      /* Dark Mode Styles */
+      .dark {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+
+      .dark .bg-white {
+        background-color: #1e293b !important;
+      }
+
+      .dark .bg-slate-50 {
+        background-color: #0f172a !important;
+      }
+
+      .dark .text-slate-800 {
+        color: #e2e8f0 !important;
+      }
+
+      .dark .text-slate-700 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark .text-slate-600 {
+        color: #94a3b8 !important;
+      }
+
+      .dark .text-slate-500 {
+        color: #64748b !important;
+      }
+
+      .dark .text-slate-400 {
+        color: #475569 !important;
+      }
+
+      .dark .border-slate-100 {
+        border-color: #334155 !important;
+      }
+
+      .dark .border-slate-200 {
+        border-color: #475569 !important;
+      }
+
+      .dark .bg-slate-100 {
+        background-color: #1e293b !important;
+      }
+
+      .dark input:not([type="checkbox"]):not([type="radio"]),
+      .dark select,
+      .dark textarea {
+        background-color: #1e293b !important;
+        color: #e2e8f0 !important;
+        border-color: #475569 !important;
+      }
+
+      .dark .hover\:bg-slate-50:hover {
+        background-color: #1e293b !important;
+      }
+
+      .dark .hover\:bg-slate-100:hover {
+        background-color: #334155 !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200"
+  >
+    <!-- Left Sidebar -->
+    <aside
+      class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex"
+    >
+      <div class="h-20 flex items-center px-8">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8" />
+          <span class="font-heading font-bold text-xl text-slate-800"
+            >Agorai</span
+          >
+        </a>
+      </div>
+      <nav class="flex-1 px-4 space-y-2 py-4">
+        <a
+          href="dashboard-jobseeker.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-th-large w-5"></i> Dashboard
+        </a>
+        <a
+          href="findjobs.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-search w-5"></i> Find Jobs
+        </a>
+        <a
+          href="myapplication.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-file-alt w-5"></i> My Applications
+        </a>
+        <a
+          href="interview.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-video w-5"></i> Interviews
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden relative">
+      <!-- Header -->
+      <header
+        class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10"
+      >
+        <h1 class="text-2xl font-bold text-slate-800 font-heading">Settings</h1>
+        <div class="flex items-center gap-4">
+          <button
+            id="colorBlindToggle"
+            onclick="toggleColorBlindMode()"
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+            title="Toggle Color Blind Mode"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+          <div
+            class="relative flex items-center gap-3 pl-4 border-l border-slate-200"
+          >
+            <button
+              id="profileDropdown"
+              onclick="toggleProfileDropdown()"
+              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer"
+            >
+              <img
+                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                class="w-9 h-9 rounded-full border-2 border-white shadow-sm"
+              />
+              <div class="hidden md:block text-left">
+                <div class="text-sm font-bold text-slate-800">John Doe</div>
+                <div class="text-xs text-slate-500">Software Engineer</div>
+              </div>
+              <i
+                class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"
+              ></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="profileDropdownMenu"
+              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50"
+            >
+              <a
+                href="profile.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-user text-primary w-5"></i>
+                <span class="font-medium">Profile</span>
+              </a>
+              <a
+                href="settings.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-cog text-primary w-5"></i>
+                <span class="font-medium">Settings</span>
+              </a>
+              <div class="border-t border-slate-100 my-2"></div>
+              <a
+                href="index.html"
+                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+              >
+                <i class="fas fa-sign-out-alt w-5"></i>
+                <span class="font-medium">Logout</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1 overflow-y-auto p-8">
+        <div class="max-w-4xl mx-auto space-y-6">
+          <!-- Appearance Settings -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="p-6 border-b border-slate-100">
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-palette text-primary"></i>
+                Appearance
+              </h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Customize how Agorai looks on your device
+              </p>
+            </div>
+            <div class="p-6 space-y-6">
+              <!-- Dark Mode -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Dark Mode</h4>
+                  <p class="text-sm text-slate-500">
+                    Use dark theme across the application
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="darkModeToggle"
+                    onchange="toggleDarkMode()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Color Blind Mode -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Color Blind Mode</h4>
+                  <p class="text-sm text-slate-500">
+                    Optimized colors for color vision deficiency
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="colorBlindModeToggle"
+                    onchange="toggleColorBlindModeFromSettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Font Size -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <h4 class="font-bold text-slate-800">Font Size</h4>
+                  <span
+                    class="text-sm text-primary font-medium"
+                    id="fontSizeValue"
+                    >Medium</span
+                  >
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="2"
+                  value="1"
+                  id="fontSizeSlider"
+                  onchange="changeFontSize(this.value)"
+                  class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                />
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>Small</span>
+                  <span>Medium</span>
+                  <span>Large</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Settings -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="p-6 border-b border-slate-100">
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-bell text-primary"></i>
+                Notifications
+              </h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Manage your notification preferences
+              </p>
+            </div>
+            <div class="p-6 space-y-6">
+              <!-- Email Notifications -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Email Notifications</h4>
+                  <p class="text-sm text-slate-500">
+                    Receive job alerts and updates via email
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="emailNotifications"
+                    checked
+                    onchange="saveNotificationSettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Push Notifications -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Push Notifications</h4>
+                  <p class="text-sm text-slate-500">
+                    Get instant notifications on new opportunities
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="pushNotifications"
+                    checked
+                    onchange="saveNotificationSettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Application Updates -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Application Updates</h4>
+                  <p class="text-sm text-slate-500">
+                    Notifications about your application status
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="applicationUpdates"
+                    checked
+                    onchange="saveNotificationSettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Interview Reminders -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Interview Reminders</h4>
+                  <p class="text-sm text-slate-500">
+                    Reminders for upcoming interviews
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="interviewReminders"
+                    checked
+                    onchange="saveNotificationSettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy Settings -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="p-6 border-b border-slate-100">
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-shield-alt text-primary"></i>
+                Privacy & Security
+              </h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Control your privacy and security settings
+              </p>
+            </div>
+            <div class="p-6 space-y-6">
+              <!-- Profile Visibility -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Public Profile</h4>
+                  <p class="text-sm text-slate-500">
+                    Allow employers to view your profile
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="publicProfile"
+                    checked
+                    onchange="savePrivacySettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Show Activity Status -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">Activity Status</h4>
+                  <p class="text-sm text-slate-500">
+                    Show when you're active on Agorai
+                  </p>
+                </div>
+                <label class="toggle-switch">
+                  <input
+                    type="checkbox"
+                    id="activityStatus"
+                    checked
+                    onchange="savePrivacySettings()"
+                  />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Two-Factor Authentication -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-slate-800">
+                    Two-Factor Authentication
+                  </h4>
+                  <p class="text-sm text-slate-500">
+                    Add an extra layer of security to your account
+                  </p>
+                </div>
+                <button
+                  onclick="enable2FA()"
+                  class="px-4 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors"
+                >
+                  Enable
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Management -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="p-6 border-b border-slate-100">
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-user-cog text-primary"></i>
+                Account Management
+              </h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Manage your account settings
+              </p>
+            </div>
+            <div class="p-6 space-y-4">
+              <!-- Change Password -->
+              <button
+                onclick="changePassword()"
+                class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-left"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500"
+                  >
+                    <i class="fas fa-key"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800">Change Password</h4>
+                    <p class="text-sm text-slate-500">
+                      Update your password regularly
+                    </p>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right text-slate-400"></i>
+              </button>
+
+              <!-- Export Data -->
+              <button
+                onclick="exportData()"
+                class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors text-left"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-500"
+                  >
+                    <i class="fas fa-download"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800">Export Your Data</h4>
+                    <p class="text-sm text-slate-500">
+                      Download a copy of your data
+                    </p>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right text-slate-400"></i>
+              </button>
+
+              <!-- Delete Account -->
+              <button
+                onclick="deleteAccount()"
+                class="w-full flex items-center justify-between p-4 rounded-xl border border-red-200 hover:bg-red-50 transition-colors text-left"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-red-600">Delete Account</h4>
+                    <p class="text-sm text-slate-500">
+                      Permanently delete your account and data
+                    </p>
+                  </div>
+                </div>
+                <i class="fas fa-chevron-right text-red-400"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Save Settings Button -->
+          <div class="flex justify-end gap-3">
+            <button
+              onclick="resetSettings()"
+              class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-colors"
+            >
+              Reset to Default
+            </button>
+            <button
+              onclick="saveAllSettings()"
+              class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+            >
+              <i class="fas fa-save mr-2"></i>Save All Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Dark Mode Functions
+      function toggleDarkMode() {
+        const isDarkMode = document.getElementById("darkModeToggle").checked;
+        if (isDarkMode) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("darkMode", "true");
+        } else {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("darkMode", "false");
+        }
+      }
+
+      // Color Blind Mode Functions
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const settingsToggle = document.getElementById("colorBlindModeToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
+
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          if (settingsToggle) settingsToggle.checked = false;
+          localStorage.setItem("colorBlindMode", "false");
+        } else {
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          if (settingsToggle) settingsToggle.checked = true;
+          localStorage.setItem("colorBlindMode", "true");
+        }
+      }
+
+      function toggleColorBlindModeFromSettings() {
+        toggleColorBlindMode();
+      }
+
+      // Font Size Functions
+      function changeFontSize(value) {
+        const sizes = ["small", "medium", "large"];
+        const labels = ["Small", "Medium", "Large"];
+        const sizeValue = sizes[value];
+
+        document.getElementById("fontSizeValue").textContent = labels[value];
+
+        // Apply font size
+        if (sizeValue === "small") {
+          document.documentElement.style.fontSize = "14px";
+        } else if (sizeValue === "medium") {
+          document.documentElement.style.fontSize = "16px";
+        } else {
+          document.documentElement.style.fontSize = "18px";
+        }
+
+        localStorage.setItem("fontSize", sizeValue);
+      }
+
+      // Notification Settings
+      function saveNotificationSettings() {
+        const settings = {
+          email: document.getElementById("emailNotifications").checked,
+          push: document.getElementById("pushNotifications").checked,
+          applications: document.getElementById("applicationUpdates").checked,
+          interviews: document.getElementById("interviewReminders").checked,
+        };
+        localStorage.setItem("notificationSettings", JSON.stringify(settings));
+      }
+
+      // Privacy Settings
+      function savePrivacySettings() {
+        const settings = {
+          publicProfile: document.getElementById("publicProfile").checked,
+          activityStatus: document.getElementById("activityStatus").checked,
+        };
+        localStorage.setItem("privacySettings", JSON.stringify(settings));
+      }
+
+      // Account Management Functions
+      function enable2FA() {
+        alert(
+          "Two-Factor Authentication setup will be initiated. You'll receive a verification code via email."
+        );
+      }
+
+      function changePassword() {
+        const newPassword = prompt("Enter your new password:");
+        if (newPassword) {
+          alert("Password changed successfully! ✓");
+        }
+      }
+
+      function exportData() {
+        alert(
+          "Your data export has been initiated. You'll receive a download link via email shortly."
+        );
+      }
+
+      function deleteAccount() {
+        const confirmation = confirm(
+          "Are you sure you want to delete your account? This action cannot be undone."
+        );
+        if (confirmation) {
+          const doubleCheck = prompt(
+            'Type "DELETE" to confirm account deletion:'
+          );
+          if (doubleCheck === "DELETE") {
+            alert("Account deletion initiated. We're sorry to see you go.");
+            window.location.href = "index.html";
+          }
+        }
+      }
+
+      // Save All Settings
+      function saveAllSettings() {
+        saveNotificationSettings();
+        savePrivacySettings();
+        alert("All settings saved successfully! ✓");
+      }
+
+      // Reset Settings
+      function resetSettings() {
+        if (
+          confirm(
+            "Are you sure you want to reset all settings to default values?"
+          )
+        ) {
+          // Reset Dark Mode
+          document.getElementById("darkModeToggle").checked = false;
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("darkMode", "false");
+
+          // Reset Color Blind Mode
+          document.getElementById("colorBlindModeToggle").checked = false;
+          document.body.classList.remove("colorblind-mode");
+          document
+            .getElementById("colorBlindToggle")
+            .classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
+
+          // Reset Font Size
+          document.getElementById("fontSizeSlider").value = 1;
+          document.getElementById("fontSizeValue").textContent = "Medium";
+          document.documentElement.style.fontSize = "16px";
+          localStorage.setItem("fontSize", "medium");
+
+          // Reset Notifications
+          document.getElementById("emailNotifications").checked = true;
+          document.getElementById("pushNotifications").checked = true;
+          document.getElementById("applicationUpdates").checked = true;
+          document.getElementById("interviewReminders").checked = true;
+
+          // Reset Privacy
+          document.getElementById("publicProfile").checked = true;
+          document.getElementById("activityStatus").checked = true;
+
+          saveAllSettings();
+          alert("All settings have been reset to default! ✓");
+        }
+      }
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        const button = document.getElementById("profileDropdown");
+
+        if (
+          !button.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // Initialize settings on page load
+      window.addEventListener("DOMContentLoaded", function () {
+        // Load Dark Mode
+        const darkMode = localStorage.getItem("darkMode");
+        if (darkMode === "true") {
+          document.getElementById("darkModeToggle").checked = true;
+          document.documentElement.classList.add("dark");
+        }
+
+        // Load Color Blind Mode
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
+          document.getElementById("colorBlindModeToggle").checked = true;
+        }
+
+        // Load Font Size
+        const fontSize = localStorage.getItem("fontSize");
+        if (fontSize) {
+          const sizes = { small: 0, medium: 1, large: 2 };
+          const labels = { small: "Small", medium: "Medium", large: "Large" };
+          document.getElementById("fontSizeSlider").value = sizes[fontSize];
+          document.getElementById("fontSizeValue").textContent =
+            labels[fontSize];
+          changeFontSize(sizes[fontSize]);
+        }
+
+        // Load Notification Settings
+        const notificationSettings = localStorage.getItem(
+          "notificationSettings"
+        );
+        if (notificationSettings) {
+          const settings = JSON.parse(notificationSettings);
+          document.getElementById("emailNotifications").checked =
+            settings.email;
+          document.getElementById("pushNotifications").checked = settings.push;
+          document.getElementById("applicationUpdates").checked =
+            settings.applications;
+          document.getElementById("interviewReminders").checked =
+            settings.interviews;
+        }
+
+        // Load Privacy Settings
+        const privacySettings = localStorage.getItem("privacySettings");
+        if (privacySettings) {
+          const settings = JSON.parse(privacySettings);
+          document.getElementById("publicProfile").checked =
+            settings.publicProfile;
+          document.getElementById("activityStatus").checked =
+            settings.activityStatus;
+        }
+      });
+    </script>
+  </body>
+</html>

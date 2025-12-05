@@ -1,417 +1,1105 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agorai | Job Seeker Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-        rel="stylesheet">
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4F46E5', // Indigo-600
-                        secondary: '#0EA5E9',
-                        success: '#10B981',
-                        warning: '#F59E0B',
-                        danger: '#EF4444',
-                        surface: '#F8FAFC',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5", // Indigo-600
+              secondary: "#0EA5E9",
+              success: "#10B981",
+              warning: "#F59E0B",
+              danger: "#EF4444",
+              surface: "#F8FAFC",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
     </script>
-</head>
+    <style>
+      /* Color Blind Mode Styles */
+      body.colorblind-mode {
+        --cb-primary: #0066cc; /* Dark Blue - Safe for all types */
+        --cb-secondary: #ff9900; /* Orange - Deuteranopia safe */
+        --cb-success: #0099cc; /* Cyan - Safer than green */
+        --cb-warning: #ffd700; /* Gold - High contrast */
+        --cb-danger: #000000; /* Black - Maximum contrast */
+        --cb-info: #6600cc; /* Purple - Distinct */
+      }
 
-<body class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden">
+      /* Override primary colors in colorblind mode */
+      body.colorblind-mode .bg-primary,
+      body.colorblind-mode .text-primary,
+      body.colorblind-mode .border-primary {
+        background-color: var(--cb-primary) !important;
+        color: white !important;
+      }
+
+      body.colorblind-mode .text-primary {
+        color: var(--cb-primary) !important;
+        background-color: transparent !important;
+      }
+
+      body.colorblind-mode .bg-green-50 {
+        background-color: #e6f7ff !important; /* Light blue instead of green */
+      }
+
+      body.colorblind-mode .text-green-600 {
+        color: var(--cb-primary) !important;
+      }
+
+      body.colorblind-mode .border-green-100 {
+        border-color: #b3e0ff !important;
+      }
+
+      body.colorblind-mode .bg-yellow-50 {
+        background-color: #fff4e6 !important;
+      }
+
+      body.colorblind-mode .text-yellow-600 {
+        color: var(--cb-secondary) !important;
+      }
+
+      body.colorblind-mode .border-yellow-100 {
+        border-color: #ffe6b3 !important;
+      }
+
+      body.colorblind-mode .bg-blue-50 {
+        background-color: #f0e6ff !important; /* Purple tint */
+      }
+
+      body.colorblind-mode .text-blue-600 {
+        color: var(--cb-info) !important;
+      }
+
+      body.colorblind-mode .border-blue-100 {
+        border-color: #d9c2ff !important;
+      }
+
+      body.colorblind-mode .bg-red-500 {
+        background-color: var(--cb-danger) !important;
+      }
+
+      /* Chart icon colors in colorblind mode */
+      body.colorblind-mode .text-blue-500 {
+        color: var(--cb-primary) !important;
+      }
+
+      body.colorblind-mode .text-purple-500 {
+        color: var(--cb-info) !important;
+      }
+
+      body.colorblind-mode .text-orange-500 {
+        color: var(--cb-secondary) !important;
+      }
+
+      /* Add pattern indicators for better distinction */
+      body.colorblind-mode .bg-green-50 {
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(0, 102, 204, 0.03) 10px,
+          rgba(0, 102, 204, 0.03) 20px
+        );
+      }
+
+      /* Active toggle button styling */
+      #colorBlindToggle.active {
+        background-color: #0066cc !important;
+        color: white !important;
+      }
+
+      /* Dark Mode Styles */
+      .dark {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+
+      .dark .bg-white {
+        background-color: #1e293b !important;
+      }
+
+      .dark .bg-slate-50 {
+        background-color: #0f172a !important;
+      }
+
+      .dark .text-slate-800 {
+        color: #e2e8f0 !important;
+      }
+
+      .dark .text-slate-700 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark .text-slate-600 {
+        color: #94a3b8 !important;
+      }
+
+      .dark .text-slate-500 {
+        color: #64748b !important;
+      }
+
+      .dark .text-slate-400 {
+        color: #475569 !important;
+      }
+
+      .dark .border-slate-100 {
+        border-color: #334155 !important;
+      }
+
+      .dark .border-slate-200 {
+        border-color: #475569 !important;
+      }
+
+      .dark .bg-slate-100 {
+        background-color: #1e293b !important;
+      }
+
+      .dark input:not([type="checkbox"]):not([type="radio"]),
+      .dark select,
+      .dark textarea {
+        background-color: #1e293b !important;
+        color: #e2e8f0 !important;
+        border-color: #475569 !important;
+      }
+
+      .dark .hover\:bg-slate-50:hover {
+        background-color: #1e293b !important;
+      }
+
+      .dark .hover\:bg-slate-100:hover {
+        background-color: #334155 !important;
+      }
+
+      .dark .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .dark .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200"
+  >
     <!-- Left Sidebar -->
-    <aside class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex">
-        <!-- Logo -->
-        <div class="h-20 flex items-center px-8">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8">
-                <span class="font-heading font-bold text-xl text-slate-800">Agorai</span>
-            </a>
-        </div>
-        <!-- Nav -->
-        <nav class="flex-1 px-4 space-y-2 py-4">
-            <a href="dashboard-jobseeker.html"
-                class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary">
-                <i class="fas fa-th-large w-5"></i> Dashboard
-            </a>
-            <a href="findjobs.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-search w-5"></i> Find Jobs
-            </a>
-            <a href="myapplication.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-file-alt w-5"></i> My Applications
-            </a>
-            <a href="interview.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-video w-5"></i> Interviews
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-bookmark w-5"></i> Saved Jobs
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-envelope w-5"></i> Messages
-            </a>
-        </nav>
+    <aside
+      class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex"
+    >
+      <!-- Logo -->
+      <div class="h-20 flex items-center px-8">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8" />
+          <span class="font-heading font-bold text-xl text-slate-800"
+            >Agorai</span
+          >
+        </a>
+      </div>
+      <!-- Nav -->
+      <nav class="flex-1 px-4 space-y-2 py-4">
+        <a
+          href="dashboard-jobseeker.html"
+          class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary"
+        >
+          <i class="fas fa-th-large w-5"></i> Dashboard
+        </a>
+        <a
+          href="findjobs.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-search w-5"></i> Find Jobs
+        </a>
+        <a
+          href="myapplication.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-file-alt w-5"></i> My Applications
+        </a>
+        <a
+          href="interview.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-video w-5"></i> Interviews
+        </a>
+      </nav>
 
-        <!-- Profile Completeness -->
-        <div class="p-6 border-t border-slate-100">
-            <div class="bg-slate-50 rounded-2xl p-4">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold text-slate-700">Profile Status</span>
-                    <span class="text-xs font-bold text-primary">85%</span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-2">
-                    <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
-                </div>
-                <p class="text-[10px] text-slate-400 mt-2">Complete your profile to get more job matches.</p>
-            </div>
+      <!-- Profile Completeness -->
+      <div class="p-6 border-t border-slate-100">
+        <div class="bg-slate-50 rounded-2xl p-4">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold text-slate-700">Profile Status</span>
+            <span class="text-xs font-bold text-primary">85%</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-2">
+            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-2">
+            Complete your profile to get more job matches.
+          </p>
         </div>
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col overflow-hidden relative">
-        <!-- Header -->
-        <header
-            class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-800 font-heading">Hello, John! 👋</h1>
-                <p class="text-xs text-slate-400">Here are your daily job updates.</p>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="relative hidden md:block">
-                    <input type="text" placeholder="Search for jobs..."
-                        class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all">
-                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                </div>
-                <button
-                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
-                    <i class="fas fa-bell"></i>
-                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-                </button>
-                <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
-                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                        class="w-9 h-9 rounded-full border-2 border-white shadow-sm">
-                    <div class="hidden md:block">
-                        <div class="text-sm font-bold text-slate-800">John Doe</div>
-                        <div class="text-xs text-slate-500">Software Engineer</div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="flex-1 overflow-y-auto p-8">
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <!-- Card 1 -->
-                <div
-                    class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Applications Sent
-                        </div>
-                        <div class="text-3xl font-bold text-slate-800">24</div>
-                    </div>
-                    <div
-                        class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                        <i class="fas fa-paper-plane"></i>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div
-                    class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Interviews</div>
-                        <div class="text-3xl font-bold text-slate-800">3</div>
-                    </div>
-                    <div
-                        class="w-12 h-12 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                        <i class="fas fa-video"></i>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div
-                    class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Profile Views</div>
-                        <div class="text-3xl font-bold text-slate-800">142</div>
-                    </div>
-                    <div
-                        class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Main Column: Recommended Jobs -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg text-slate-800">Recommended for you</h3>
-                        <a href="#" class="text-sm font-medium text-primary hover:underline">View all</a>
-                    </div>
-
-                    <!-- Job Card 1 -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl">
-                                    <i class="fab fa-microsoft text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-lg">Senior Frontend Developer</h4>
-                                    <p class="text-sm text-slate-500">Microsoft • Redmond, WA (Remote)</p>
-                                </div>
-                            </div>
-                            <span
-                                class="bg-green-50 text-green-600 text-xs font-bold px-3 py-1 rounded-full border border-green-100">95%
-                                Match</span>
-                        </div>
-                        <div class="flex gap-2 mb-6">
-                            <span
-                                class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Full-time</span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$120k -
-                                $160k</span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Senior
-                                Level</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-400">Posted 2 days ago</span>
-                            <div class="flex gap-3">
-                                <button
-                                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"><i
-                                        class="far fa-bookmark"></i></button>
-                                <button
-                                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">Apply
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Job Card 2 -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl">
-                                    <i class="fab fa-apple text-slate-800"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-lg">Full Stack Engineer</h4>
-                                    <p class="text-sm text-slate-500">Apple • Cupertino, CA</p>
-                                </div>
-                            </div>
-                            <span
-                                class="bg-yellow-50 text-yellow-600 text-xs font-bold px-3 py-1 rounded-full border border-yellow-100">88%
-                                Match</span>
-                        </div>
-                        <div class="flex gap-2 mb-6">
-                            <span
-                                class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Full-time</span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$140k -
-                                $180k</span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Mid
-                                Level</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-400">Posted 5 hours ago</span>
-                            <div class="flex gap-3">
-                                <button
-                                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"><i
-                                        class="far fa-bookmark"></i></button>
-                                <button
-                                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">Apply
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Job Card 3 -->
-                    <div
-                        class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group">
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl">
-                                    <i class="fab fa-google text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-lg">Product Designer</h4>
-                                    <p class="text-sm text-slate-500">Google • Mountain View, CA</p>
-                                </div>
-                            </div>
-                            <span
-                                class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full border border-blue-100">82%
-                                Match</span>
-                        </div>
-                        <div class="flex gap-2 mb-6">
-                            <span
-                                class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Contract</span>
-                            <span
-                                class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$90/hr</span>
-                            <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Senior
-                                Level</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-400">Posted 1 day ago</span>
-                            <div class="flex gap-3">
-                                <button
-                                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"><i
-                                        class="far fa-bookmark"></i></button>
-                                <button
-                                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">Apply
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Status & Schedule -->
-                <div class="space-y-8">
-                    <!-- Application Status -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                        <h3 class="font-bold text-lg text-slate-800 mb-6">Application Status</h3>
-                        <div class="relative h-48 w-full flex items-center justify-center">
-                            <canvas id="applicationStatusChart"></canvas>
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-slate-800">24</div>
-                                    <div class="text-xs text-slate-400">Total</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6 space-y-3">
-                            <div class="flex justify-between items-center text-sm">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-primary"></div> <span class="text-slate-600">In
-                                        Review</span>
-                                </div>
-                                <span class="font-bold text-slate-800">12</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-cyan-400"></div> <span
-                                        class="text-slate-600">Interview</span>
-                                </div>
-                                <span class="font-bold text-slate-800">3</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-slate-300"></div> <span
-                                        class="text-slate-600">Rejected</span>
-                                </div>
-                                <span class="font-bold text-slate-800">9</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Upcoming Interviews -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="font-bold text-lg text-slate-800">Upcoming</h3>
-                            <button class="text-slate-400 hover:text-primary"><i
-                                    class="far fa-calendar-alt"></i></button>
-                        </div>
-                        <div class="space-y-4">
-                            <!-- Event 1 -->
-                            <div class="flex gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex flex-col items-center justify-center shrink-0">
-                                    <span class="text-xs font-bold">DEC</span>
-                                    <span class="text-sm font-bold">05</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">Technical Interview</h4>
-                                    <p class="text-xs text-slate-500 mb-1">with Google • 10:00 AM</p>
-                                    <span
-                                        class="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold">Zoom
-                                        Meeting</span>
-                                </div>
-                            </div>
-                            <!-- Event 2 -->
-                            <div class="flex gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-slate-100 text-slate-500 flex flex-col items-center justify-center shrink-0">
-                                    <span class="text-xs font-bold">DEC</span>
-                                    <span class="text-sm font-bold">08</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 text-sm">HR Screening</h4>
-                                    <p class="text-xs text-slate-500 mb-1">with Spotify • 2:30 PM</p>
-                                    <span
-                                        class="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold">Google
-                                        Meet</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button
-                            class="w-full mt-6 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-colors">View
-                            Calendar</button>
-                    </div>
-                </div>
-            </div>
+      <!-- Header -->
+      <header
+        class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10"
+      >
+        <div>
+          <h1 class="text-2xl font-bold text-slate-800 font-heading">
+            Hello, John! 👋
+          </h1>
+          <p class="text-xs text-slate-400">Here are your daily job updates.</p>
         </div>
+        <div class="flex items-center gap-4">
+          <div class="relative hidden md:block">
+            <input
+              type="text"
+              placeholder="Search for jobs..."
+              class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all"
+            />
+            <i
+              class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            ></i>
+          </div>
+          <button
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+          >
+            <i class="fas fa-bell"></i>
+            <span
+              class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"
+            ></span>
+          </button>
+          <button
+            id="colorBlindToggle"
+            onclick="toggleColorBlindMode()"
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+            title="Toggle Color Blind Mode"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+          <div
+            class="relative flex items-center gap-3 pl-4 border-l border-slate-200"
+          >
+            <button
+              id="profileDropdown"
+              onclick="toggleProfileDropdown()"
+              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer"
+            >
+              <img
+                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                class="w-9 h-9 rounded-full border-2 border-white shadow-sm"
+              />
+              <div class="hidden md:block text-left">
+                <div class="text-sm font-bold text-slate-800">John Doe</div>
+                <div class="text-xs text-slate-500">Software Engineer</div>
+              </div>
+              <i
+                class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"
+              ></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="profileDropdownMenu"
+              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50"
+            >
+              <a
+                href="profile.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-user text-primary w-5"></i>
+                <span class="font-medium">Profile</span>
+              </a>
+              <a
+                href="settings.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-cog text-primary w-5"></i>
+                <span class="font-medium">Settings</span>
+              </a>
+              <div class="border-t border-slate-100 my-2"></div>
+              <a
+                href="index.html"
+                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+              >
+                <i class="fas fa-sign-out-alt w-5"></i>
+                <span class="font-medium">Logout</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1 overflow-y-auto p-8">
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Card 1 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all"
+          >
+            <div>
+              <div
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+              >
+                Applications Sent
+              </div>
+              <div class="text-3xl font-bold text-slate-800">24</div>
+            </div>
+            <div
+              class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all"
+          >
+            <div>
+              <div
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+              >
+                Interviews
+              </div>
+              <div class="text-3xl font-bold text-slate-800">3</div>
+            </div>
+            <div
+              class="w-12 h-12 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-video"></i>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all"
+          >
+            <div>
+              <div
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+              >
+                Profile Views
+              </div>
+              <div class="text-3xl font-bold text-slate-800">142</div>
+            </div>
+            <div
+              class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-eye"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Main Column: Recommended Jobs -->
+          <div class="lg:col-span-2 space-y-6">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-lg text-slate-800">
+                Recommended for you
+              </h3>
+              <a
+                href="#"
+                class="text-sm font-medium text-primary hover:underline"
+                >View all</a
+              >
+            </div>
+
+            <!-- Job Card 1 -->
+            <div
+              class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="flex gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl"
+                  >
+                    <i class="fab fa-microsoft text-blue-500"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-lg">
+                      Senior Frontend Developer
+                    </h4>
+                    <p class="text-sm text-slate-500">
+                      Microsoft • Redmond, WA (Remote)
+                    </p>
+                  </div>
+                </div>
+                <span
+                  class="bg-green-50 text-green-600 text-xs font-bold px-3 py-1 rounded-full border border-green-100"
+                  >95% Match</span
+                >
+              </div>
+              <div class="flex gap-2 mb-6">
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Full-time</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >$120k - $160k</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Senior Level</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-slate-400">Posted 2 days ago</span>
+                <div class="flex gap-3">
+                  <button
+                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"
+                  >
+                    <i class="far fa-bookmark"></i>
+                  </button>
+                  <button
+                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+                    onclick="openApplyModal('Senior Frontend Developer', 'Microsoft', 'Redmond, WA (Remote)', 'Full-time', '$120k - $160k', 'Develop and maintain user-facing features using modern frontend technologies. Collaborate with design and backend teams to deliver high-quality products. Ensure cross-browser compatibility and optimize for performance.')"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div
+              class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="flex gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl"
+                  >
+                    <i class="fab fa-apple text-slate-800"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-lg">
+                      Full Stack Engineer
+                    </h4>
+                    <p class="text-sm text-slate-500">Apple • Cupertino, CA</p>
+                  </div>
+                </div>
+                <span
+                  class="bg-yellow-50 text-yellow-600 text-xs font-bold px-3 py-1 rounded-full border border-yellow-100"
+                  >88% Match</span
+                >
+              </div>
+              <div class="flex gap-2 mb-6">
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Full-time</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >$140k - $180k</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Mid Level</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-slate-400">Posted 5 hours ago</span>
+                <div class="flex gap-3">
+                  <button
+                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"
+                  >
+                    <i class="far fa-bookmark"></i>
+                  </button>
+                  <button
+                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+                    onclick="openApplyModal('Full Stack Engineer', 'Apple', 'Cupertino, CA', 'Full-time', '$140k - $180k', 'Design, develop, and maintain full-stack applications. Work on both frontend and backend components, ensuring seamless integration and robust performance. Participate in code reviews and contribute to architectural decisions.')"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div
+              class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="flex gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl"
+                  >
+                    <i class="fab fa-google text-red-500"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-lg">
+                      Product Designer
+                    </h4>
+                    <p class="text-sm text-slate-500">
+                      Google • Mountain View, CA
+                    </p>
+                  </div>
+                </div>
+                <span
+                  class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full border border-blue-100"
+                  >82% Match</span
+                >
+              </div>
+              <div class="flex gap-2 mb-6">
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Contract</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >$90/hr</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
+                  >Senior Level</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-slate-400">Posted 1 day ago</span>
+                <div class="flex gap-3">
+                  <button
+                    class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors"
+                  >
+                    <i class="far fa-bookmark"></i>
+                  </button>
+                  <button
+                    class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+                    onclick="openApplyModal('Product Designer', 'Google', 'Mountain View, CA', 'Contract', '$90/hr', 'Lead the design process from concept to launch, creating intuitive and engaging user experiences. Conduct user research, create wireframes, prototypes, and high-fidelity designs. Collaborate with product managers and engineers.')"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Status & Schedule -->
+          <div class="space-y-8">
+            <!-- Application Status -->
+            <div
+              class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+            >
+              <h3 class="font-bold text-lg text-slate-800 mb-6">
+                Application Status
+              </h3>
+              <div
+                class="relative h-48 w-full flex items-center justify-center"
+              >
+                <canvas id="applicationStatusChart"></canvas>
+                <div
+                  class="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-slate-800">24</div>
+                    <div class="text-xs text-slate-400">Total</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 space-y-3">
+                <div class="flex justify-between items-center text-sm">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-primary"></div>
+                    <span class="text-slate-600">In Review</span>
+                  </div>
+                  <span class="font-bold text-slate-800">12</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                    <span class="text-slate-600">Interview</span>
+                  </div>
+                  <span class="font-bold text-slate-800">3</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                    <span class="text-slate-600">Rejected</span>
+                  </div>
+                  <span class="font-bold text-slate-800">9</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upcoming Interviews -->
+            <div
+              class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+            >
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-lg text-slate-800">Upcoming</h3>
+                <button class="text-slate-400 hover:text-primary">
+                  <i class="far fa-calendar-alt"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <!-- Event 1 -->
+                <div class="flex gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex flex-col items-center justify-center shrink-0"
+                  >
+                    <span class="text-xs font-bold">DEC</span>
+                    <span class="text-sm font-bold">05</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-sm">
+                      Technical Interview
+                    </h4>
+                    <p class="text-xs text-slate-500 mb-1">
+                      with Google • 10:00 AM
+                    </p>
+                    <span
+                      class="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold"
+                      >Zoom Meeting</span
+                    >
+                  </div>
+                </div>
+                <!-- Event 2 -->
+                <div class="flex gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-slate-100 text-slate-500 flex flex-col items-center justify-center shrink-0"
+                  >
+                    <span class="text-xs font-bold">DEC</span>
+                    <span class="text-sm font-bold">08</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-sm">
+                      HR Screening
+                    </h4>
+                    <p class="text-xs text-slate-500 mb-1">
+                      with Spotify • 2:30 PM
+                    </p>
+                    <span
+                      class="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold"
+                      >Google Meet</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <button
+                class="w-full mt-6 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-colors"
+              >
+                View Calendar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <script>
-        // Chart.js Implementation
-        const ctx = document.getElementById('applicationStatusChart').getContext('2d');
+    <!-- Apply Job Modal -->
+    <div
+      id="applyJobModal"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+      >
+        <!-- Modal Header -->
+        <div
+          class="flex items-center justify-between p-6 border-b border-slate-100"
+        >
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800 font-heading">
+              Apply for Position
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">
+              Complete your application details
+            </p>
+          </div>
+          <button
+            onclick="closeApplyModal()"
+            class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
 
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['In Review', 'Interview', 'Rejected'],
-                datasets: [{
-                    data: [12, 3, 9],
-                    backgroundColor: [
-                        '#4F46E5', // Primary
-                        '#22D3EE', // Cyan
-                        '#CBD5E1'  // Slate-300
-                    ],
-                    borderWidth: 0,
-                    hoverOffset: 4
-                }]
+        <!-- Modal Body -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <form id="applyJobForm" class="space-y-6">
+            <!-- Role -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-briefcase text-primary mr-2"></i>Role
+              </label>
+              <input
+                type="text"
+                id="jobRole"
+                readonly
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+
+            <!-- Company -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-building text-primary mr-2"></i>Company
+              </label>
+              <input
+                type="text"
+                id="jobCompany"
+                readonly
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+
+            <!-- Location -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-map-marker-alt text-primary mr-2"></i>Location
+              </label>
+              <input
+                type="text"
+                id="jobLocation"
+                readonly
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+
+            <!-- Work Type -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-clock text-primary mr-2"></i>Work Type
+              </label>
+              <input
+                type="text"
+                id="jobWorkType"
+                readonly
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+
+            <!-- Salary -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-dollar-sign text-primary mr-2"></i>Salary Range
+              </label>
+              <input
+                type="text"
+                id="jobSalary"
+                readonly
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              />
+            </div>
+
+            <!-- Job Description -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-align-left text-primary mr-2"></i>Job
+                Description
+              </label>
+              <textarea
+                id="jobDescription"
+                readonly
+                rows="6"
+                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Cover Letter -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-pen text-primary mr-2"></i>Cover Letter
+                <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="coverLetter"
+                rows="5"
+                required
+                placeholder="Tell us why you're a great fit for this role..."
+                class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Resume Upload -->
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-2">
+                <i class="fas fa-file-upload text-primary mr-2"></i>Upload
+                Resume <span class="text-red-500">*</span>
+              </label>
+              <div
+                class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-primary transition-colors cursor-pointer"
+              >
+                <input
+                  type="file"
+                  id="resumeUpload"
+                  accept=".pdf,.doc,.docx"
+                  required
+                  class="hidden"
+                />
+                <label for="resumeUpload" class="cursor-pointer">
+                  <i
+                    class="fas fa-cloud-upload-alt text-4xl text-slate-300 mb-3"
+                  ></i>
+                  <p class="text-sm font-medium text-slate-600">
+                    Click to upload or drag and drop
+                  </p>
+                  <p class="text-xs text-slate-400 mt-1">
+                    PDF, DOC, DOCX (Max 5MB)
+                  </p>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal Footer -->
+        <div
+          class="flex items-center justify-end gap-3 p-6 border-t border-slate-100 bg-slate-50"
+        >
+          <button
+            onclick="closeApplyModal()"
+            type="button"
+            class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-white transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="submitApplication()"
+            type="button"
+            class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+          >
+            <i class="fas fa-paper-plane mr-2"></i>Submit Application
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Dark Mode from localStorage
+      if (localStorage.getItem("darkMode") === "true") {
+        document.documentElement.classList.add("dark");
+      }
+
+      // Color Blind Mode Toggle
+      let chartInstance = null;
+
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
+
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
+        } else {
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          localStorage.setItem("colorBlindMode", "true");
+        }
+
+        // Update chart with new colors
+        updateChartColors();
+      }
+
+      function updateChartColors() {
+        const isColorBlindMode =
+          document.body.classList.contains("colorblind-mode");
+
+        if (chartInstance) {
+          if (isColorBlindMode) {
+            chartInstance.data.datasets[0].backgroundColor = [
+              "#0066CC", // Dark Blue (Primary)
+              "#6600CC", // Purple (Info)
+              "#000000", // Black (Danger/Rejected)
+            ];
+          } else {
+            chartInstance.data.datasets[0].backgroundColor = [
+              "#4F46E5", // Primary (Indigo)
+              "#22D3EE", // Cyan
+              "#CBD5E1", // Slate-300
+            ];
+          }
+          chartInstance.update();
+        }
+      }
+
+      // Initialize color blind mode from localStorage
+      window.addEventListener("DOMContentLoaded", function () {
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
+        }
+      });
+
+      // Chart.js Implementation
+      const ctx = document
+        .getElementById("applicationStatusChart")
+        .getContext("2d");
+
+      chartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["In Review", "Interview", "Rejected"],
+          datasets: [
+            {
+              data: [12, 3, 9],
+              backgroundColor: [
+                "#4F46E5", // Primary
+                "#22D3EE", // Cyan
+                "#CBD5E1", // Slate-300
+              ],
+              borderWidth: 0,
+              hoverOffset: 4,
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '75%',
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        enabled: true
-                    }
-                }
-            }
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "75%",
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+        },
+      });
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        const button = document.getElementById("profileDropdown");
+
+        if (
+          !button.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // Modal Functions
+      function openApplyModal(
+        role,
+        company,
+        location,
+        workType,
+        salary,
+        description
+      ) {
+        document.getElementById("jobRole").value = role;
+        document.getElementById("jobCompany").value = company;
+        document.getElementById("jobLocation").value = location;
+        document.getElementById("jobWorkType").value = workType;
+        document.getElementById("jobSalary").value = salary;
+        document.getElementById("jobDescription").value = description;
+        document.getElementById("applyJobModal").classList.remove("hidden");
+        document.getElementById("applyJobModal").classList.add("flex");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeApplyModal() {
+        document.getElementById("applyJobModal").classList.add("hidden");
+        document.getElementById("applyJobModal").classList.remove("flex");
+        document.body.style.overflow = "auto";
+        document.getElementById("applyJobForm").reset();
+      }
+
+      function submitApplication() {
+        const coverLetter = document.getElementById("coverLetter").value;
+        const resumeUpload = document.getElementById("resumeUpload").files[0];
+
+        if (!coverLetter.trim()) {
+          alert("Please write a cover letter");
+          return;
+        }
+
+        if (!resumeUpload) {
+          alert("Please upload your resume");
+          return;
+        }
+
+        // Prepare application data
+        const applicationData = {
+          role: document.getElementById("jobRole").value,
+          company: document.getElementById("jobCompany").value,
+          location: document.getElementById("jobLocation").value,
+          workType: document.getElementById("jobWorkType").value,
+          salary: document.getElementById("jobSalary").value,
+          coverLetter: coverLetter,
+          resumeName: resumeUpload.name,
+          appliedDate: new Date().toISOString(),
+        };
+
+        // Get existing applications from localStorage
+        let applications = JSON.parse(
+          localStorage.getItem("jobApplications") || "[]"
+        );
+        applications.push(applicationData);
+        localStorage.setItem("jobApplications", JSON.stringify(applications));
+
+        // Show success message
+        alert("Application submitted successfully! 🎉");
+        closeApplyModal();
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("applyJobModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeApplyModal();
+          }
+        });
+
+      // File upload feedback
+      document
+        .getElementById("resumeUpload")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            const label = e.target.nextElementSibling;
+            label.innerHTML = `
+                    <i class="fas fa-check-circle text-4xl text-green-500 mb-3"></i>
+                    <p class="text-sm font-medium text-green-600">${file.name}</p>
+                    <p class="text-xs text-slate-400 mt-1">Click to change file</p>
+                `;
+          }
         });
     </script>
-</body>
-
+  </body>
 </html>

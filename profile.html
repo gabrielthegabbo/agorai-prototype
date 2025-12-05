@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agorai | Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#0EA5E9",
+              surface: "#F8FAFC",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Color Blind Mode Styles */
+      body.colorblind-mode {
+        --cb-primary: #0066cc;
+        --cb-secondary: #ff9900;
+        --cb-success: #0099cc;
+      }
+      body.colorblind-mode .bg-primary,
+      body.colorblind-mode .text-primary,
+      body.colorblind-mode .border-primary {
+        background-color: var(--cb-primary) !important;
+        color: white !important;
+      }
+      body.colorblind-mode .text-primary {
+        color: var(--cb-primary) !important;
+        background-color: transparent !important;
+      }
+      #colorBlindToggle.active {
+        background-color: #0066cc !important;
+        color: white !important;
+      }
+
+      /* Dark Mode Styles */
+      .dark {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+
+      .dark .bg-white {
+        background-color: #1e293b !important;
+      }
+
+      .dark .bg-slate-50 {
+        background-color: #0f172a !important;
+      }
+
+      .dark .text-slate-800 {
+        color: #e2e8f0 !important;
+      }
+
+      .dark .text-slate-700 {
+        color: #cbd5e1 !important;
+      }
+
+      .dark .text-slate-600 {
+        color: #94a3b8 !important;
+      }
+
+      .dark .text-slate-500 {
+        color: #64748b !important;
+      }
+
+      .dark .text-slate-400 {
+        color: #475569 !important;
+      }
+
+      .dark .border-slate-100 {
+        border-color: #334155 !important;
+      }
+
+      .dark .border-slate-200 {
+        border-color: #475569 !important;
+      }
+
+      .dark .bg-slate-100 {
+        background-color: #1e293b !important;
+      }
+
+      .dark input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+      .dark select,
+      .dark textarea {
+        background-color: #1e293b !important;
+        color: #e2e8f0 !important;
+        border-color: #475569 !important;
+      }
+
+      .dark .hover\:bg-slate-50:hover {
+        background-color: #1e293b !important;
+      }
+
+      .dark .hover\:bg-slate-100:hover {
+        background-color: #334155 !important;
+      }
+
+      .dark .bg-gradient-to-r {
+        background: linear-gradient(to right, #1e293b, #334155) !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden"
+  >
+    <!-- Left Sidebar -->
+    <aside
+      class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex"
+    >
+      <div class="h-20 flex items-center px-8">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8" />
+          <span class="font-heading font-bold text-xl text-slate-800"
+            >Agorai</span
+          >
+        </a>
+      </div>
+      <nav class="flex-1 px-4 space-y-2 py-4">
+        <a
+          href="dashboard-jobseeker.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-th-large w-5"></i> Dashboard
+        </a>
+        <a
+          href="findjobs.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-search w-5"></i> Find Jobs
+        </a>
+        <a
+          href="myapplication.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-file-alt w-5"></i> My Applications
+        </a>
+        <a
+          href="interview.html"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
+        >
+          <i class="fas fa-video w-5"></i> Interviews
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden relative">
+      <!-- Header -->
+      <header
+        class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10"
+      >
+        <h1 class="text-2xl font-bold text-slate-800 font-heading">
+          My Profile
+        </h1>
+        <div class="flex items-center gap-4">
+          <button
+            id="colorBlindToggle"
+            onclick="toggleColorBlindMode()"
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+            title="Toggle Color Blind Mode"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+          <div
+            class="relative flex items-center gap-3 pl-4 border-l border-slate-200"
+          >
+            <button
+              id="profileDropdown"
+              onclick="toggleProfileDropdown()"
+              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer"
+            >
+              <img
+                id="headerProfileImage"
+                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                class="w-9 h-9 rounded-full border-2 border-white shadow-sm"
+              />
+              <div class="hidden md:block text-left">
+                <div class="text-sm font-bold text-slate-800" id="headerName">
+                  John Doe
+                </div>
+                <div class="text-xs text-slate-500" id="headerJobTitle">
+                  Software Engineer
+                </div>
+              </div>
+              <i
+                class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"
+              ></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="profileDropdownMenu"
+              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50"
+            >
+              <a
+                href="profile.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-user text-primary w-5"></i>
+                <span class="font-medium">Profile</span>
+              </a>
+              <a
+                href="settings.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <i class="fas fa-cog text-primary w-5"></i>
+                <span class="font-medium">Settings</span>
+              </a>
+              <div class="border-t border-slate-100 my-2"></div>
+              <a
+                href="index.html"
+                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+              >
+                <i class="fas fa-sign-out-alt w-5"></i>
+                <span class="font-medium">Logout</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1 overflow-y-auto p-8">
+        <div class="max-w-5xl mx-auto space-y-6">
+          <!-- Profile Header Card -->
+          <div
+            class="bg-gradient-to-r from-primary to-indigo-600 rounded-2xl p-8 text-white shadow-xl"
+          >
+            <div class="flex items-center gap-6">
+              <div class="relative">
+                <img
+                  id="profileImage"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  class="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+                  alt="Profile Picture"
+                />
+                <button
+                  onclick="document.getElementById('photoUpload').click()"
+                  class="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary shadow-lg hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-camera"></i>
+                </button>
+                <input
+                  type="file"
+                  id="photoUpload"
+                  accept="image/*"
+                  class="hidden"
+                  onchange="handlePhotoUpload(event)"
+                />
+              </div>
+              <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-2" id="displayName">
+                  John Doe
+                </h2>
+                <p class="text-white/90 text-lg mb-3" id="displayJobTitle">
+                  Software Engineer
+                </p>
+                <div class="flex gap-4 text-sm">
+                  <span class="flex items-center gap-2">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="displayLocation">San Francisco, CA</span>
+                  </span>
+                  <span class="flex items-center gap-2">
+                    <i class="fas fa-envelope"></i>
+                    <span id="displayEmail">john.doe@example.com</span>
+                  </span>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="text-4xl font-bold">85%</div>
+                <div class="text-sm text-white/80 mt-1">Complete</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Information -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div
+              class="flex items-center justify-between p-6 border-b border-slate-100"
+            >
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-user-circle text-primary"></i>
+                Personal Information
+              </h3>
+              <button
+                onclick="toggleEditMode('personal')"
+                id="editPersonalBtn"
+                class="text-sm text-primary hover:text-indigo-700 font-medium"
+              >
+                <i class="fas fa-edit mr-1"></i>Edit
+              </button>
+            </div>
+            <div class="p-6">
+              <form
+                id="personalForm"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Full Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    value="John Doe"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Email <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value="john.doe@example.com"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value="+1 (555) 123-4567"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    value="San Francisco, CA"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Bio
+                  </label>
+                  <textarea
+                    id="bio"
+                    rows="4"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                    placeholder="Tell us about yourself..."
+                  >
+Passionate software engineer with 5+ years of experience in web development. Specialized in React, Node.js, and cloud technologies.</textarea
+                  >
+                </div>
+              </form>
+              <div
+                id="personalActions"
+                class="hidden mt-6 flex gap-3 justify-end"
+              >
+                <button
+                  onclick="cancelEdit('personal')"
+                  class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onclick="savePersonalInfo()"
+                  class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+                >
+                  <i class="fas fa-save mr-2"></i>Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Information -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div
+              class="flex items-center justify-between p-6 border-b border-slate-100"
+            >
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-briefcase text-primary"></i>
+                Professional Information
+              </h3>
+              <button
+                onclick="toggleEditMode('professional')"
+                id="editProfessionalBtn"
+                class="text-sm text-primary hover:text-indigo-700 font-medium"
+              >
+                <i class="fas fa-edit mr-1"></i>Edit
+              </button>
+            </div>
+            <div class="p-6">
+              <form
+                id="professionalForm"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Current Job Title
+                  </label>
+                  <input
+                    type="text"
+                    id="jobTitle"
+                    value="Software Engineer"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Years of Experience
+                  </label>
+                  <select
+                    id="experience"
+                    disabled
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  >
+                    <option value="0-1">0-1 years</option>
+                    <option value="1-3">1-3 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="5-10" selected>5-10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    Skills
+                  </label>
+                  <div class="flex flex-wrap gap-2 mb-3" id="skillsList">
+                    <span
+                      class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium"
+                      >React</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium"
+                      >Node.js</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium"
+                      >TypeScript</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium"
+                      >AWS</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    id="skillInput"
+                    disabled
+                    placeholder="Add new skill and press Enter"
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-bold text-slate-700 mb-2">
+                    LinkedIn Profile
+                  </label>
+                  <input
+                    type="url"
+                    id="linkedin"
+                    value="https://linkedin.com/in/johndoe"
+                    disabled
+                    placeholder="https://linkedin.com/in/yourprofile"
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  />
+                </div>
+              </form>
+              <div
+                id="professionalActions"
+                class="hidden mt-6 flex gap-3 justify-end"
+              >
+                <button
+                  onclick="cancelEdit('professional')"
+                  class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onclick="saveProfessionalInfo()"
+                  class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+                >
+                  <i class="fas fa-save mr-2"></i>Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resume/CV Upload -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="p-6 border-b border-slate-100">
+              <h3
+                class="text-xl font-bold text-slate-800 flex items-center gap-2"
+              >
+                <i class="fas fa-file-pdf text-primary"></i>
+                Resume / CV
+              </h3>
+            </div>
+            <div class="p-6">
+              <div
+                class="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center hover:border-primary transition-colors"
+              >
+                <input
+                  type="file"
+                  id="resumeUpload"
+                  accept=".pdf,.doc,.docx"
+                  class="hidden"
+                  onchange="handleResumeUpload(event)"
+                />
+                <div id="resumeUploadArea">
+                  <i
+                    class="fas fa-cloud-upload-alt text-5xl text-slate-300 mb-4"
+                  ></i>
+                  <p class="text-sm font-medium text-slate-600 mb-2">
+                    Click to upload or drag and drop
+                  </p>
+                  <p class="text-xs text-slate-400">PDF, DOC, DOCX (Max 5MB)</p>
+                  <button
+                    onclick="document.getElementById('resumeUpload').click()"
+                    class="mt-4 px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors"
+                  >
+                    Choose File
+                  </button>
+                </div>
+                <div id="resumePreview" class="hidden">
+                  <i
+                    class="fas fa-check-circle text-5xl text-green-500 mb-4"
+                  ></i>
+                  <p
+                    class="text-sm font-bold text-slate-800 mb-2"
+                    id="resumeFileName"
+                  >
+                    resume.pdf
+                  </p>
+                  <p class="text-xs text-slate-500 mb-4">
+                    Uploaded successfully
+                  </p>
+                  <div class="flex gap-3 justify-center">
+                    <button
+                      onclick="viewResume()"
+                      class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-slate-50 transition-colors"
+                    >
+                      <i class="fas fa-eye mr-2"></i>View
+                    </button>
+                    <button
+                      onclick="removeResume()"
+                      class="px-4 py-2 rounded-xl border border-red-200 text-red-600 font-medium text-sm hover:bg-red-50 transition-colors"
+                    >
+                      <i class="fas fa-trash mr-2"></i>Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Initialize Dark Mode from localStorage
+      if (localStorage.getItem("darkMode") === "true") {
+        document.documentElement.classList.add("dark");
+      }
+
+      // Color Blind Mode Toggle
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
+
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
+        } else {
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          localStorage.setItem("colorBlindMode", "true");
+        }
+      }
+
+      // Initialize color blind mode from localStorage
+      window.addEventListener("DOMContentLoaded", function () {
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
+        }
+      });
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        const button = document.getElementById("profileDropdown");
+
+        if (
+          !button.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // Photo Upload
+      function handlePhotoUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById("profileImage").src = e.target.result;
+            document.getElementById("headerProfileImage").src = e.target.result;
+            alert("Profile photo updated successfully!");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      // Resume Upload
+      function handleResumeUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          if (file.size > 5 * 1024 * 1024) {
+            alert("File size exceeds 5MB limit");
+            return;
+          }
+          document.getElementById("resumeFileName").textContent = file.name;
+          document.getElementById("resumeUploadArea").classList.add("hidden");
+          document.getElementById("resumePreview").classList.remove("hidden");
+        }
+      }
+
+      function viewResume() {
+        alert("Opening resume in new tab...");
+      }
+
+      function removeResume() {
+        if (confirm("Are you sure you want to remove your resume?")) {
+          document.getElementById("resumeUpload").value = "";
+          document
+            .getElementById("resumeUploadArea")
+            .classList.remove("hidden");
+          document.getElementById("resumePreview").classList.add("hidden");
+        }
+      }
+
+      // Edit Mode Functions
+      function toggleEditMode(section) {
+        const form = document.getElementById(section + "Form");
+        const inputs = form.querySelectorAll("input, textarea, select");
+        const actions = document.getElementById(section + "Actions");
+        const editBtn = document.getElementById(
+          "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
+        );
+
+        inputs.forEach((input) => {
+          input.disabled = !input.disabled;
+          if (!input.disabled) {
+            input.classList.remove("bg-slate-50", "opacity-60");
+            input.classList.add("bg-white");
+          }
+        });
+
+        actions.classList.toggle("hidden");
+        editBtn.classList.toggle("hidden");
+      }
+
+      function cancelEdit(section) {
+        const form = document.getElementById(section + "Form");
+        const inputs = form.querySelectorAll("input, textarea, select");
+        const actions = document.getElementById(section + "Actions");
+        const editBtn = document.getElementById(
+          "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
+        );
+
+        inputs.forEach((input) => {
+          input.disabled = true;
+          input.classList.add("bg-slate-50", "opacity-60");
+          input.classList.remove("bg-white");
+        });
+
+        actions.classList.add("hidden");
+        editBtn.classList.remove("hidden");
+      }
+
+      function savePersonalInfo() {
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const location = document.getElementById("location").value;
+
+        // Update display values
+        document.getElementById("displayName").textContent = fullName;
+        document.getElementById("headerName").textContent = fullName;
+        document.getElementById("displayEmail").textContent = email;
+        document.getElementById("displayLocation").textContent = location;
+
+        // Save to localStorage
+        const profileData = {
+          fullName,
+          email,
+          phone: document.getElementById("phone").value,
+          location,
+          bio: document.getElementById("bio").value,
+        };
+        localStorage.setItem("personalInfo", JSON.stringify(profileData));
+
+        alert("Personal information saved successfully! ✓");
+        cancelEdit("personal");
+      }
+
+      function saveProfessionalInfo() {
+        const jobTitle = document.getElementById("jobTitle").value;
+
+        // Update display values
+        document.getElementById("displayJobTitle").textContent = jobTitle;
+        document.getElementById("headerJobTitle").textContent = jobTitle;
+
+        // Save to localStorage
+        const professionalData = {
+          jobTitle,
+          experience: document.getElementById("experience").value,
+          linkedin: document.getElementById("linkedin").value,
+        };
+        localStorage.setItem(
+          "professionalInfo",
+          JSON.stringify(professionalData)
+        );
+
+        alert("Professional information saved successfully! ✓");
+        cancelEdit("professional");
+      }
+
+      // Skill Management
+      document
+        .getElementById("skillInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter" && !this.disabled) {
+            e.preventDefault();
+            const skill = this.value.trim();
+            if (skill) {
+              const skillsList = document.getElementById("skillsList");
+              const skillTag = document.createElement("span");
+              skillTag.className =
+                "px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium flex items-center gap-2";
+              skillTag.innerHTML = `${skill} <button onclick="this.parentElement.remove()" class="hover:text-red-600"><i class="fas fa-times text-xs"></i></button>`;
+              skillsList.appendChild(skillTag);
+              this.value = "";
+            }
+          }
+        });
+
+      // Load saved data on page load
+      window.addEventListener("DOMContentLoaded", function () {
+        const savedPersonal = localStorage.getItem("personalInfo");
+        const savedProfessional = localStorage.getItem("professionalInfo");
+
+        if (savedPersonal) {
+          const data = JSON.parse(savedPersonal);
+          document.getElementById("fullName").value = data.fullName;
+          document.getElementById("email").value = data.email;
+          document.getElementById("phone").value = data.phone;
+          document.getElementById("location").value = data.location;
+          document.getElementById("bio").value = data.bio;
+
+          // Update display
+          document.getElementById("displayName").textContent = data.fullName;
+          document.getElementById("headerName").textContent = data.fullName;
+          document.getElementById("displayEmail").textContent = data.email;
+          document.getElementById("displayLocation").textContent =
+            data.location;
+        }
+
+        if (savedProfessional) {
+          const data = JSON.parse(savedProfessional);
+          document.getElementById("jobTitle").value = data.jobTitle;
+          document.getElementById("experience").value = data.experience;
+          document.getElementById("linkedin").value = data.linkedin;
+
+          // Update display
+          document.getElementById("displayJobTitle").textContent =
+            data.jobTitle;
+          document.getElementById("headerJobTitle").textContent = data.jobTitle;
+        }
+      });
+    </script>
+  </body>
+</html>
