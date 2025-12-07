@@ -1,774 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agorai | My Applications</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#4F46E5",
-              secondary: "#0EA5E9",
-              surface: "#F8FAFC",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              heading: ["Poppins", "sans-serif"],
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agorai | My Applications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4F46E5",
+            secondary: "#0EA5E9",
+            surface: "#F8FAFC",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            heading: ["Poppins", "sans-serif"],
           },
         },
-      };
-    </script>
-  </head>
+      },
+    };
+  </script>
+</head>
 
-  <style>
-    /* Color Blind Mode Styles */
-    body.colorblind-mode {
-      --cb-primary: #0066cc;
-      --cb-secondary: #ff9900;
-      --cb-info: #6600cc;
-    }
-    body.colorblind-mode .bg-primary,
-    body.colorblind-mode .text-primary,
-    body.colorblind-mode .border-primary {
-      background-color: var(--cb-primary) !important;
-      color: white !important;
-    }
-    body.colorblind-mode .text-primary {
-      color: var(--cb-primary) !important;
-      background-color: transparent !important;
-    }
-    body.colorblind-mode .bg-yellow-50 {
-      background-color: #fff4e6 !important;
-    }
-    body.colorblind-mode .text-yellow-600 {
-      color: var(--cb-secondary) !important;
-    }
-    body.colorblind-mode .bg-blue-50 {
-      background-color: #f0e6ff !important;
-    }
-    body.colorblind-mode .text-blue-600 {
-      color: var(--cb-info) !important;
-    }
-    #colorBlindToggle.active {
-      background-color: #0066cc !important;
-      color: white !important;
-    }
+<style>
+  /* Color Blind Mode Styles */
+  body.colorblind-mode {
+    --cb-primary: #0066cc;
+    --cb-secondary: #ff9900;
+    --cb-info: #6600cc;
+  }
 
-    /* Dark Mode Styles */
-    .dark {
-      background-color: #0f172a;
-      color: #e2e8f0;
-    }
+  body.colorblind-mode .bg-primary,
+  body.colorblind-mode .text-primary,
+  body.colorblind-mode .border-primary {
+    background-color: var(--cb-primary) !important;
+    color: white !important;
+  }
 
-    .dark .bg-white {
-      background-color: #1e293b !important;
-    }
+  body.colorblind-mode .text-primary {
+    color: var(--cb-primary) !important;
+    background-color: transparent !important;
+  }
 
-    .dark .bg-slate-50 {
-      background-color: #0f172a !important;
-    }
+  body.colorblind-mode .bg-yellow-50 {
+    background-color: #fff4e6 !important;
+  }
 
-    .dark .text-slate-800 {
-      color: #e2e8f0 !important;
-    }
+  body.colorblind-mode .text-yellow-600 {
+    color: var(--cb-secondary) !important;
+  }
 
-    .dark .text-slate-700 {
-      color: #cbd5e1 !important;
-    }
+  body.colorblind-mode .bg-blue-50 {
+    background-color: #f0e6ff !important;
+  }
 
-    .dark .text-slate-600 {
-      color: #94a3b8 !important;
-    }
+  body.colorblind-mode .text-blue-600 {
+    color: var(--cb-info) !important;
+  }
 
-    .dark .text-slate-500 {
-      color: #64748b !important;
-    }
+  #colorBlindToggle.active {
+    background-color: #0066cc !important;
+    color: white !important;
+  }
 
-    .dark .text-slate-400 {
-      color: #475569 !important;
-    }
+  /* Dark Mode Styles */
+  .dark {
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
 
-    .dark .border-slate-100 {
-      border-color: #334155 !important;
-    }
+  .dark .bg-white {
+    background-color: #1e293b !important;
+  }
 
-    .dark .border-slate-200 {
-      border-color: #475569 !important;
-    }
+  .dark .bg-slate-50 {
+    background-color: #0f172a !important;
+  }
 
-    .dark .bg-slate-100 {
-      background-color: #1e293b !important;
-    }
+  .dark .text-slate-800 {
+    color: #e2e8f0 !important;
+  }
 
-    .dark .hover\:bg-slate-50:hover {
-      background-color: #1e293b !important;
-    }
+  .dark .text-slate-700 {
+    color: #cbd5e1 !important;
+  }
 
-    .dark .hover\:bg-slate-100:hover {
-      background-color: #334155 !important;
-    }
+  .dark .text-slate-600 {
+    color: #94a3b8 !important;
+  }
 
-    .dark table tbody tr:hover {
-      background-color: #1e293b !important;
-    }
-  </style>
+  .dark .text-slate-500 {
+    color: #64748b !important;
+  }
 
-  <body
-    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200"
-  >
-    <!-- Left Sidebar -->
-    <aside
-      class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex"
-    >
-      <div class="h-20 flex items-center px-8">
-        <a href="index.html" class="flex items-center gap-2">
-          <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8" />
-          <span class="font-heading font-bold text-xl text-slate-800"
-            >Agorai</span
-          >
-        </a>
-      </div>
-      <nav class="flex-1 px-4 space-y-2 py-4">
-        <a
-          href="dashboard-jobseeker.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-th-large w-5"></i> Dashboard
-        </a>
-        <a
-          href="findjobs.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-search w-5"></i> Find Jobs
-        </a>
-        <a
-          href="myapplication.html"
-          class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary"
-        >
-          <i class="fas fa-file-alt w-5"></i> My Applications
-        </a>
-        <a
-          href="interview.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-video w-5"></i> Interviews
-        </a>
-      </nav>
-    </aside>
+  .dark .text-slate-400 {
+    color: #475569 !important;
+  }
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col overflow-hidden relative">
-      <!-- Header -->
-      <header
-        class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10"
-      >
-        <h1 class="text-2xl font-bold text-slate-800 font-heading">
-          My Applications
-        </h1>
+  .dark .border-slate-100 {
+    border-color: #334155 !important;
+  }
+
+  .dark .border-slate-200 {
+    border-color: #475569 !important;
+  }
+
+  .dark .bg-slate-100 {
+    background-color: #1e293b !important;
+  }
+
+  .dark .hover\:bg-slate-50:hover {
+    background-color: #1e293b !important;
+  }
+
+  .dark .hover\:bg-slate-100:hover {
+    background-color: #334155 !important;
+  }
+
+  .dark table tbody tr:hover {
+    background-color: #1e293b !important;
+  }
+</style>
+
+<body
+  class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200">
+  <!-- Left Sidebar -->
+  <aside class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex">
+    <div class="h-20 flex items-center px-8">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/agorai-logo-v2.png" alt="Agorai Logo" class="w-10 h-10" />
+        <span class="font-heading font-bold text-xl text-slate-800">Agorai</span>
+      </a>
+    </div>
+    <nav class="flex-1 px-4 space-y-2 py-4">
+      <a href="dashboard-jobseeker.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-th-large w-5"></i> Dashboard
+      </a>
+      <a href="findjobs.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-search w-5"></i> Find Jobs
+      </a>
+      <a href="myapplication.html"
+        class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary">
+        <i class="fas fa-file-alt w-5"></i> My Applications
+      </a>
+      <a href="interview.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-video w-5"></i> Interviews
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col overflow-hidden relative">
+    <!-- Header -->
+    <header
+      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
+      <h1 class="text-2xl font-bold text-slate-800 font-heading">
+        My Applications
+      </h1>
+      <div class="flex items-center gap-4">
+        <button
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
+          <i class="fas fa-bell"></i>
+          <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+        </button>
         <div class="flex items-center gap-4">
-          <button
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
-          >
-            <i class="fas fa-bell"></i>
-            <span
-              class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"
-            ></span>
+          <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+            title="Toggle Color Blind Mode">
+            <i class="fas fa-eye"></i>
           </button>
-          <div class="flex items-center gap-4">
-                <button
-                    id="colorBlindToggle"
-                    onclick="toggleColorBlindMode()"
-                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
-                    title="Toggle Color Blind Mode">
-                    <i class="fas fa-eye"></i>
-                </button>
+          <button id="theme-toggle" type="button"
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+            title="Toggle Dark Mode">
+            <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+            <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+          </button>
           <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
-            <button
-              id="profileDropdown"
-              onclick="toggleProfileDropdown()"
-              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer"
-            >
-              <img
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                class="w-9 h-9 rounded-full border-2 border-white shadow-sm"
-              />
+            <button id="profileDropdown" onclick="toggleProfileDropdown()"
+              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
+              <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                class="w-9 h-9 rounded-full border-2 border-white shadow-sm" />
               <div class="hidden md:block text-left">
-                <div class="text-sm font-bold text-slate-800">John Doe</div>
+                <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
                 <div class="text-xs text-slate-500">Software Engineer</div>
               </div>
               <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
             </button>
-            
+
             <!-- Dropdown Menu -->
-            <div
-              id="profileDropdownMenu"
-              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50"
-            >
-              <a
-                href="profile.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
-              >
+            <div id="profileDropdownMenu"
+              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+              <a href="profile.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
                 <i class="fas fa-user text-primary w-5"></i>
                 <span class="font-medium">Profile</span>
               </a>
-              <a
-                href="settings.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
-              >
+              <a href="settings.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
                 <i class="fas fa-cog text-primary w-5"></i>
                 <span class="font-medium">Settings</span>
               </a>
               <div class="border-t border-slate-100 my-2"></div>
-              <a
-                href="index.html"
-                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
-              >
+              <a href="index.html"
+                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
                 <i class="fas fa-sign-out-alt w-5"></i>
                 <span class="font-medium">Logout</span>
               </a>
             </div>
           </div>
         </div>
-      </header>
+    </header>
 
-      <div class="flex-1 overflow-y-auto p-8">
-        <div
-          class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"
-        >
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr
-                  class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider"
-                >
-                  <th class="p-4 font-medium">Company</th>
-                  <th class="p-4 font-medium">Role</th>
-                  <th class="p-4 font-medium">Applied Date</th>
-                  <th class="p-4 font-medium">Status</th>
-                  <th class="p-4 font-medium">Action</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 text-sm">
-                <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 flex items-center gap-3">
-                    <div
-                      class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg"
-                    >
-                      <i class="fab fa-google text-red-500"></i>
-                    </div>
-                    <span class="font-bold text-slate-800">Google</span>
-                  </td>
-                  <td class="p-4 text-slate-600">Product Designer</td>
-                  <td class="p-4 text-slate-500">Dec 01, 2025</td>
-                  <td class="p-4">
-                    <span
-                      class="px-2 py-1 rounded bg-yellow-50 text-yellow-600 text-xs font-bold"
-                      >In Review</span
-                    >
-                  </td>
-                  <td class="p-4">
-                    <button
-                      onclick="openViewDetailsModal('Google', 'Product Designer', 'Mountain View, CA', 'Contract', '$90/hr', 'Dec 01, 2025', 'In Review', 'Lead the design process from concept to launch, creating intuitive and engaging user experiences.', 'I am deeply passionate about user-centered design and have led successful projects at startups...', 'resume_john_doe.pdf', '#APP-2401')"
-                      class="text-primary hover:underline font-medium"
-                    >
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 flex items-center gap-3">
-                    <div
-                      class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg"
-                    >
-                      <i class="fab fa-microsoft text-blue-500"></i>
-                    </div>
-                    <span class="font-bold text-slate-800">Microsoft</span>
-                  </td>
-                  <td class="p-4 text-slate-600">Frontend Developer</td>
-                  <td class="p-4 text-slate-500">Nov 28, 2025</td>
-                  <td class="p-4">
-                    <span
-                      class="px-2 py-1 rounded bg-blue-50 text-blue-600 text-xs font-bold"
-                      >Interview</span
-                    >
-                  </td>
-                  <td class="p-4">
-                    <button
-                      onclick="openViewDetailsModal('Microsoft', 'Frontend Developer', 'Redmond, WA', 'Full-time', '$120k - $160k', 'Nov 28, 2025', 'Interview', 'Develop and maintain user-facing features using modern frontend technologies.', 'With over 5 years of experience in React and TypeScript, I have built scalable applications...', 'resume_john_doe.pdf', '#APP-2328')"
-                      class="text-primary hover:underline font-medium"
-                    >
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 flex items-center gap-3">
-                    <div
-                      class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg"
-                    >
-                      <i class="fab fa-spotify text-green-500"></i>
-                    </div>
-                    <span class="font-bold text-slate-800">Spotify</span>
-                  </td>
-                  <td class="p-4 text-slate-600">Data Analyst</td>
-                  <td class="p-4 text-slate-500">Nov 20, 2025</td>
-                  <td class="p-4">
-                    <span
-                      class="px-2 py-1 rounded bg-slate-100 text-slate-500 text-xs font-bold"
-                      >Rejected</span
-                    >
-                  </td>
-                  <td class="p-4">
-                    <button
-                      onclick="openViewDetailsModal('Spotify', 'Data Analyst', 'Stockholm, Sweden', 'Full-time', '$80k - $110k', 'Nov 20, 2025', 'Rejected', 'Analyze user data to provide insights for product decisions and business strategy.', 'I have a strong background in data analysis and visualization with Python and SQL...', 'resume_john_doe.pdf', '#APP-2320')"
-                      class="text-primary hover:underline font-medium"
-                    >
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- View Application Details Modal -->
-    <div
-      id="viewDetailsModal"
-      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
-    >
-      <div
-        class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col"
-      >
-        <!-- Modal Header -->
-        <div
-          class="flex items-center justify-between p-6 border-b border-slate-100"
-        >
-          <div>
-            <h2 class="text-2xl font-bold text-slate-800 font-heading">
-              Application Details
-            </h2>
-            <p class="text-sm text-slate-500 mt-1" id="appId"></p>
-          </div>
-          <button
-            onclick="closeViewDetailsModal()"
-            class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
-          >
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-
-        <!-- Modal Body -->
-        <div class="flex-1 overflow-y-auto p-6">
-          <div class="space-y-6">
-            <!-- Application Status Timeline -->
-            <div
-              class="bg-gradient-to-r from-primary/5 to-blue-50 rounded-2xl p-6 border border-primary/10"
-            >
-              <h3
-                class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2"
-              >
-                <i class="fas fa-timeline text-primary"></i> Application
-                Timeline
-              </h3>
-              <div class="flex items-center justify-between relative">
-                <div
-                  class="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"
-                ></div>
-                <div
-                  class="absolute top-5 left-0 h-0.5 bg-primary transition-all"
-                  id="progressBar"
-                  style="width: 33%"
-                ></div>
-
-                <div class="flex flex-col items-center z-10">
-                  <div
-                    class="w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center"
-                  >
-                    <i class="fas fa-check text-white text-sm"></i>
+    <div class="flex-1 overflow-y-auto p-8">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+                <th class="p-4 font-medium">Company</th>
+                <th class="p-4 font-medium">Role</th>
+                <th class="p-4 font-medium">Applied Date</th>
+                <th class="p-4 font-medium">Status</th>
+                <th class="p-4 font-medium">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-sm">
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="p-4 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg">
+                    <i class="fab fa-google text-red-500"></i>
                   </div>
-                  <span class="mt-2 text-xs font-bold text-slate-700"
-                    >Applied</span
-                  >
-                  <span class="text-xs text-slate-400" id="appliedDate"></span>
-                </div>
-
-                <div class="flex flex-col items-center z-10" id="reviewStep">
-                  <div
-                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center"
-                  >
-                    <i class="fas fa-hourglass-half text-slate-400 text-sm"></i>
+                  <span class="font-bold text-slate-800">Google</span>
+                </td>
+                <td class="p-4 text-slate-600">Product Designer</td>
+                <td class="p-4 text-slate-500">Dec 01, 2025</td>
+                <td class="p-4">
+                  <span class="px-2 py-1 rounded bg-yellow-50 text-yellow-600 text-xs font-bold">In Review</span>
+                </td>
+                <td class="p-4">
+                  <button
+                    onclick="openViewDetailsModal('Google', 'Product Designer', 'Mountain View, CA', 'Contract', '$90/hr', 'Dec 01, 2025', 'In Review', 'Lead the design process from concept to launch, creating intuitive and engaging user experiences.', 'I am deeply passionate about user-centered design and have led successful projects at startups...', 'resume_john_doe.pdf', '#APP-2401')"
+                    class="text-primary hover:underline font-medium">
+                    View Details
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="p-4 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg">
+                    <i class="fab fa-microsoft text-blue-500"></i>
                   </div>
-                  <span class="mt-2 text-xs font-bold text-slate-400"
-                    >In Review</span
-                  >
-                </div>
-
-                <div class="flex flex-col items-center z-10" id="interviewStep">
-                  <div
-                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center"
-                  >
-                    <i class="fas fa-video text-slate-400 text-sm"></i>
+                  <span class="font-bold text-slate-800">Microsoft</span>
+                </td>
+                <td class="p-4 text-slate-600">Frontend Developer</td>
+                <td class="p-4 text-slate-500">Nov 28, 2025</td>
+                <td class="p-4">
+                  <span class="px-2 py-1 rounded bg-blue-50 text-blue-600 text-xs font-bold">Interview</span>
+                </td>
+                <td class="p-4">
+                  <button
+                    onclick="openViewDetailsModal('Microsoft', 'Frontend Developer', 'Redmond, WA', 'Full-time', '$120k - $160k', 'Nov 28, 2025', 'Interview', 'Develop and maintain user-facing features using modern frontend technologies.', 'With over 5 years of experience in React and TypeScript, I have built scalable applications...', 'resume_john_doe.pdf', '#APP-2328')"
+                    class="text-primary hover:underline font-medium">
+                    View Details
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="p-4 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-lg">
+                    <i class="fab fa-spotify text-green-500"></i>
                   </div>
-                  <span class="mt-2 text-xs font-bold text-slate-400"
-                    >Interview</span
-                  >
-                </div>
-
-                <div class="flex flex-col items-center z-10" id="offerStep">
-                  <div
-                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center"
-                  >
-                    <i class="fas fa-trophy text-slate-400 text-sm"></i>
-                  </div>
-                  <span class="mt-2 text-xs font-bold text-slate-400"
-                    >Offer</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Left Column: Job Details -->
-              <div class="space-y-4">
-                <h3
-                  class="text-lg font-bold text-slate-800 flex items-center gap-2"
-                >
-                  <i class="fas fa-briefcase text-primary"></i> Job Information
-                </h3>
-
-                <!-- Company & Role -->
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <div class="text-xs text-slate-500 mb-1">Position</div>
-                  <div
-                    class="font-bold text-slate-800 text-lg"
-                    id="detailRole"
-                  ></div>
-                  <div
-                    class="text-sm text-slate-600 mt-1"
-                    id="detailCompany"
-                  ></div>
-                </div>
-
-                <!-- Location -->
-                <div>
-                  <div class="text-xs font-bold text-slate-500 mb-2">
-                    <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                    LOCATION
-                  </div>
-                  <div class="text-sm text-slate-700" id="detailLocation"></div>
-                </div>
-
-                <!-- Work Type & Salary -->
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <div class="text-xs font-bold text-slate-500 mb-2">
-                      <i class="fas fa-clock text-primary mr-1"></i> WORK TYPE
-                    </div>
-                    <div
-                      class="text-sm text-slate-700"
-                      id="detailWorkType"
-                    ></div>
-                  </div>
-                  <div>
-                    <div class="text-xs font-bold text-slate-500 mb-2">
-                      <i class="fas fa-dollar-sign text-primary mr-1"></i>
-                      SALARY
-                    </div>
-                    <div class="text-sm text-slate-700" id="detailSalary"></div>
-                  </div>
-                </div>
-
-                <!-- Job Description -->
-                <div>
-                  <div class="text-xs font-bold text-slate-500 mb-2">
-                    <i class="fas fa-align-left text-primary mr-1"></i> JOB
-                    DESCRIPTION
-                  </div>
-                  <div
-                    class="text-sm text-slate-600 leading-relaxed"
-                    id="detailDescription"
-                  ></div>
-                </div>
-              </div>
-
-              <!-- Right Column: Your Application -->
-              <div class="space-y-4">
-                <h3
-                  class="text-lg font-bold text-slate-800 flex items-center gap-2"
-                >
-                  <i class="fas fa-file-alt text-primary"></i> Your Application
-                </h3>
-
-                <!-- Cover Letter -->
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <div
-                    class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between"
-                  >
-                    <span
-                      ><i class="fas fa-pen text-primary mr-1"></i> COVER
-                      LETTER</span
-                    >
-                    <button
-                      class="text-primary hover:text-indigo-700 text-xs"
-                      onclick="downloadCoverLetter()"
-                    >
-                      <i class="fas fa-download mr-1"></i>Download
-                    </button>
-                  </div>
-                  <div
-                    class="text-sm text-slate-600 leading-relaxed max-h-48 overflow-y-auto bg-white rounded-lg p-3"
-                    id="detailCoverLetter"
-                  ></div>
-                </div>
-
-                <!-- Resume -->
-                <div class="bg-green-50 rounded-xl p-4 border border-green-100">
-                  <div class="text-xs font-bold text-green-700 mb-2">
-                    <i class="fas fa-file-pdf text-green-600 mr-1"></i> RESUME
-                    SUBMITTED
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                      <i class="fas fa-check-circle text-green-600"></i>
-                      <span
-                        class="text-sm text-green-700 font-medium"
-                        id="detailResume"
-                      ></span>
-                    </div>
-                    <button
-                      class="text-green-700 hover:text-green-800 text-xs font-bold"
-                    >
-                      <i class="fas fa-download"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Status Badge -->
-                <div>
-                  <div class="text-xs font-bold text-slate-500 mb-2">
-                    <i class="fas fa-info-circle text-primary mr-1"></i> CURRENT
-                    STATUS
-                  </div>
-                  <div id="statusBadge"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal Footer -->
-        <div
-          class="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50"
-        >
-          <button
-            onclick="withdrawApplication()"
-            type="button"
-            class="px-6 py-3 rounded-xl border border-red-200 text-red-600 font-medium text-sm hover:bg-red-50 transition-colors"
-          >
-            <i class="fas fa-times-circle mr-2"></i>Withdraw Application
-          </button>
-          <button
-            onclick="closeViewDetailsModal()"
-            type="button"
-            class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
-          >
-            Close
-          </button>
+                  <span class="font-bold text-slate-800">Spotify</span>
+                </td>
+                <td class="p-4 text-slate-600">Data Analyst</td>
+                <td class="p-4 text-slate-500">Nov 20, 2025</td>
+                <td class="p-4">
+                  <span class="px-2 py-1 rounded bg-slate-100 text-slate-500 text-xs font-bold">Rejected</span>
+                </td>
+                <td class="p-4">
+                  <button
+                    onclick="openViewDetailsModal('Spotify', 'Data Analyst', 'Stockholm, Sweden', 'Full-time', '$80k - $110k', 'Nov 20, 2025', 'Rejected', 'Analyze user data to provide insights for product decisions and business strategy.', 'I have a strong background in data analysis and visualization with Python and SQL...', 'resume_john_doe.pdf', '#APP-2320')"
+                    class="text-primary hover:underline font-medium">
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </main>
 
-    <script>
-      // Initialize Dark Mode from localStorage
-      if (localStorage.getItem("darkMode") === "true") {
-        document.documentElement.classList.add("dark");
+  <!-- View Application Details Modal -->
+  <div id="viewDetailsModal"
+    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-slate-100">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-800 font-heading">
+            Application Details
+          </h2>
+          <p class="text-sm text-slate-500 mt-1" id="appId"></p>
+        </div>
+        <button onclick="closeViewDetailsModal()"
+          class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="space-y-6">
+          <!-- Application Status Timeline -->
+          <div class="bg-gradient-to-r from-primary/5 to-blue-50 rounded-2xl p-6 border border-primary/10">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+              <i class="fas fa-timeline text-primary"></i> Application
+              Timeline
+            </h3>
+            <div class="flex items-center justify-between relative">
+              <div class="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"></div>
+              <div class="absolute top-5 left-0 h-0.5 bg-primary transition-all" id="progressBar" style="width: 33%">
+              </div>
+
+              <div class="flex flex-col items-center z-10">
+                <div
+                  class="w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center">
+                  <i class="fas fa-check text-white text-sm"></i>
+                </div>
+                <span class="mt-2 text-xs font-bold text-slate-700">Applied</span>
+                <span class="text-xs text-slate-400" id="appliedDate"></span>
+              </div>
+
+              <div class="flex flex-col items-center z-10" id="reviewStep">
+                <div
+                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                  <i class="fas fa-hourglass-half text-slate-400 text-sm"></i>
+                </div>
+                <span class="mt-2 text-xs font-bold text-slate-400">In Review</span>
+              </div>
+
+              <div class="flex flex-col items-center z-10" id="interviewStep">
+                <div
+                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                  <i class="fas fa-video text-slate-400 text-sm"></i>
+                </div>
+                <span class="mt-2 text-xs font-bold text-slate-400">Interview</span>
+              </div>
+
+              <div class="flex flex-col items-center z-10" id="offerStep">
+                <div
+                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                  <i class="fas fa-trophy text-slate-400 text-sm"></i>
+                </div>
+                <span class="mt-2 text-xs font-bold text-slate-400">Offer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Column: Job Details -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <i class="fas fa-briefcase text-primary"></i> Job Information
+              </h3>
+
+              <!-- Company & Role -->
+              <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                <div class="text-xs text-slate-500 mb-1">Position</div>
+                <div class="font-bold text-slate-800 text-lg" id="detailRole"></div>
+                <div class="text-sm text-slate-600 mt-1" id="detailCompany"></div>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <div class="text-xs font-bold text-slate-500 mb-2">
+                  <i class="fas fa-map-marker-alt text-primary mr-1"></i>
+                  LOCATION
+                </div>
+                <div class="text-sm text-slate-700" id="detailLocation"></div>
+              </div>
+
+              <!-- Work Type & Salary -->
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <div class="text-xs font-bold text-slate-500 mb-2">
+                    <i class="fas fa-clock text-primary mr-1"></i> WORK TYPE
+                  </div>
+                  <div class="text-sm text-slate-700" id="detailWorkType"></div>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-500 mb-2">
+                    <i class="fas fa-dollar-sign text-primary mr-1"></i>
+                    SALARY
+                  </div>
+                  <div class="text-sm text-slate-700" id="detailSalary"></div>
+                </div>
+              </div>
+
+              <!-- Job Description -->
+              <div>
+                <div class="text-xs font-bold text-slate-500 mb-2">
+                  <i class="fas fa-align-left text-primary mr-1"></i> JOB
+                  DESCRIPTION
+                </div>
+                <div class="text-sm text-slate-600 leading-relaxed" id="detailDescription"></div>
+              </div>
+            </div>
+
+            <!-- Right Column: Your Application -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <i class="fas fa-file-alt text-primary"></i> Your Application
+              </h3>
+
+              <!-- Cover Letter -->
+              <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                <div class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between">
+                  <span><i class="fas fa-pen text-primary mr-1"></i> COVER
+                    LETTER</span>
+                  <button class="text-primary hover:text-indigo-700 text-xs" onclick="downloadCoverLetter()">
+                    <i class="fas fa-download mr-1"></i>Download
+                  </button>
+                </div>
+                <div class="text-sm text-slate-600 leading-relaxed max-h-48 overflow-y-auto bg-white rounded-lg p-3"
+                  id="detailCoverLetter"></div>
+              </div>
+
+              <!-- Resume -->
+              <div class="bg-green-50 rounded-xl p-4 border border-green-100">
+                <div class="text-xs font-bold text-green-700 mb-2">
+                  <i class="fas fa-file-pdf text-green-600 mr-1"></i> RESUME
+                  SUBMITTED
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-green-600"></i>
+                    <span class="text-sm text-green-700 font-medium" id="detailResume"></span>
+                  </div>
+                  <button class="text-green-700 hover:text-green-800 text-xs font-bold">
+                    <i class="fas fa-download"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Status Badge -->
+              <div>
+                <div class="text-xs font-bold text-slate-500 mb-2">
+                  <i class="fas fa-info-circle text-primary mr-1"></i> CURRENT
+                  STATUS
+                </div>
+                <div id="statusBadge"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50">
+        <button onclick="withdrawApplication()" type="button"
+          class="px-6 py-3 rounded-xl border border-red-200 text-red-600 font-medium text-sm hover:bg-red-50 transition-colors">
+          <i class="fas fa-times-circle mr-2"></i>Withdraw Application
+        </button>
+        <button onclick="closeViewDetailsModal()" type="button"
+          class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Dark Mode from localStorage
+    if (localStorage.getItem("darkMode") === "true") {
+      document.documentElement.classList.add("dark");
+    }
+
+    // View Details Modal Functions
+    function openViewDetailsModal(
+      company,
+      role,
+      location,
+      workType,
+      salary,
+      appliedDate,
+      status,
+      description,
+      coverLetter,
+      resume,
+      appId
+    ) {
+      // Set basic job info
+      document.getElementById("detailRole").textContent = role;
+      document.getElementById("detailCompany").textContent = company;
+      document.getElementById("detailLocation").textContent = location;
+      document.getElementById("detailWorkType").textContent = workType;
+      document.getElementById("detailSalary").textContent = salary;
+      document.getElementById("detailDescription").textContent = description;
+      document.getElementById("appliedDate").textContent = appliedDate;
+      document.getElementById("appId").textContent = appId;
+
+      // Set application info
+      document.getElementById("detailCoverLetter").textContent = coverLetter;
+      document.getElementById("detailResume").textContent = resume;
+
+      // Set status badge
+      const statusBadge = document.getElementById("statusBadge");
+      let badgeClass = "";
+      if (status === "In Review") {
+        badgeClass =
+          "px-3 py-2 rounded-lg bg-yellow-50 text-yellow-600 text-sm font-bold inline-flex items-center gap-2";
+        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-hourglass-half"></i> ${status}</span>`;
+      } else if (status === "Interview") {
+        badgeClass =
+          "px-3 py-2 rounded-lg bg-blue-50 text-blue-600 text-sm font-bold inline-flex items-center gap-2";
+        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-video"></i> ${status}</span>`;
+      } else if (status === "Rejected") {
+        badgeClass =
+          "px-3 py-2 rounded-lg bg-slate-100 text-slate-600 text-sm font-bold inline-flex items-center gap-2";
+        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-times-circle"></i> ${status}</span>`;
       }
 
-      // View Details Modal Functions
-      function openViewDetailsModal(
-        company,
-        role,
-        location,
-        workType,
-        salary,
-        appliedDate,
-        status,
-        description,
-        coverLetter,
-        resume,
-        appId
-      ) {
-        // Set basic job info
-        document.getElementById("detailRole").textContent = role;
-        document.getElementById("detailCompany").textContent = company;
-        document.getElementById("detailLocation").textContent = location;
-        document.getElementById("detailWorkType").textContent = workType;
-        document.getElementById("detailSalary").textContent = salary;
-        document.getElementById("detailDescription").textContent = description;
-        document.getElementById("appliedDate").textContent = appliedDate;
-        document.getElementById("appId").textContent = appId;
+      // Update timeline based on status
+      updateTimeline(status);
 
-        // Set application info
-        document.getElementById("detailCoverLetter").textContent = coverLetter;
-        document.getElementById("detailResume").textContent = resume;
+      // Show modal
+      document.getElementById("viewDetailsModal").classList.remove("hidden");
+      document.getElementById("viewDetailsModal").classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
 
-        // Set status badge
-        const statusBadge = document.getElementById("statusBadge");
-        let badgeClass = "";
-        if (status === "In Review") {
-          badgeClass =
-            "px-3 py-2 rounded-lg bg-yellow-50 text-yellow-600 text-sm font-bold inline-flex items-center gap-2";
-          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-hourglass-half"></i> ${status}</span>`;
-        } else if (status === "Interview") {
-          badgeClass =
-            "px-3 py-2 rounded-lg bg-blue-50 text-blue-600 text-sm font-bold inline-flex items-center gap-2";
-          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-video"></i> ${status}</span>`;
-        } else if (status === "Rejected") {
-          badgeClass =
-            "px-3 py-2 rounded-lg bg-slate-100 text-slate-600 text-sm font-bold inline-flex items-center gap-2";
-          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-times-circle"></i> ${status}</span>`;
-        }
+    function updateTimeline(status) {
+      const reviewStep = document.getElementById("reviewStep");
+      const interviewStep = document.getElementById("interviewStep");
+      const offerStep = document.getElementById("offerStep");
+      const progressBar = document.getElementById("progressBar");
 
-        // Update timeline based on status
-        updateTimeline(status);
+      // Reset all steps
+      [reviewStep, interviewStep, offerStep].forEach((step) => {
+        const circle = step.querySelector("div");
+        const text = step.querySelector("span");
+        circle.className =
+          "w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center";
+        text.className = "mt-2 text-xs font-bold text-slate-400";
+      });
 
-        // Show modal
-        document.getElementById("viewDetailsModal").classList.remove("hidden");
-        document.getElementById("viewDetailsModal").classList.add("flex");
-        document.body.style.overflow = "hidden";
+      if (status === "In Review") {
+        progressBar.style.width = "33%";
+        reviewStep.querySelector("div").className =
+          "w-10 h-10 rounded-full bg-yellow-400 border-4 border-white shadow-md flex items-center justify-center";
+        reviewStep.querySelector("div").innerHTML =
+          '<i class="fas fa-hourglass-half text-white text-sm"></i>';
+        reviewStep.querySelector("span").className =
+          "mt-2 text-xs font-bold text-yellow-600";
+      } else if (status === "Interview") {
+        progressBar.style.width = "66%";
+        reviewStep.querySelector("div").className =
+          "w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center";
+        reviewStep.querySelector("div").innerHTML =
+          '<i class="fas fa-check text-white text-sm"></i>';
+        reviewStep.querySelector("span").className =
+          "mt-2 text-xs font-bold text-slate-700";
+
+        interviewStep.querySelector("div").className =
+          "w-10 h-10 rounded-full bg-blue-500 border-4 border-white shadow-md flex items-center justify-center";
+        interviewStep.querySelector("div").innerHTML =
+          '<i class="fas fa-video text-white text-sm"></i>';
+        interviewStep.querySelector("span").className =
+          "mt-2 text-xs font-bold text-blue-600";
+      } else if (status === "Rejected") {
+        progressBar.style.width = "33%";
+        reviewStep.querySelector("div").className =
+          "w-10 h-10 rounded-full bg-slate-400 border-4 border-white shadow-md flex items-center justify-center";
+        reviewStep.querySelector("div").innerHTML =
+          '<i class="fas fa-times text-white text-sm"></i>';
+        reviewStep.querySelector("span").className =
+          "mt-2 text-xs font-bold text-slate-600";
       }
+    }
 
-      function updateTimeline(status) {
-        const reviewStep = document.getElementById("reviewStep");
-        const interviewStep = document.getElementById("interviewStep");
-        const offerStep = document.getElementById("offerStep");
-        const progressBar = document.getElementById("progressBar");
+    function closeViewDetailsModal() {
+      document.getElementById("viewDetailsModal").classList.add("hidden");
+      document.getElementById("viewDetailsModal").classList.remove("flex");
+      document.body.style.overflow = "auto";
+    }
 
-        // Reset all steps
-        [reviewStep, interviewStep, offerStep].forEach((step) => {
-          const circle = step.querySelector("div");
-          const text = step.querySelector("span");
-          circle.className =
-            "w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center";
-          text.className = "mt-2 text-xs font-bold text-slate-400";
-        });
-
-        if (status === "In Review") {
-          progressBar.style.width = "33%";
-          reviewStep.querySelector("div").className =
-            "w-10 h-10 rounded-full bg-yellow-400 border-4 border-white shadow-md flex items-center justify-center";
-          reviewStep.querySelector("div").innerHTML =
-            '<i class="fas fa-hourglass-half text-white text-sm"></i>';
-          reviewStep.querySelector("span").className =
-            "mt-2 text-xs font-bold text-yellow-600";
-        } else if (status === "Interview") {
-          progressBar.style.width = "66%";
-          reviewStep.querySelector("div").className =
-            "w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center";
-          reviewStep.querySelector("div").innerHTML =
-            '<i class="fas fa-check text-white text-sm"></i>';
-          reviewStep.querySelector("span").className =
-            "mt-2 text-xs font-bold text-slate-700";
-
-          interviewStep.querySelector("div").className =
-            "w-10 h-10 rounded-full bg-blue-500 border-4 border-white shadow-md flex items-center justify-center";
-          interviewStep.querySelector("div").innerHTML =
-            '<i class="fas fa-video text-white text-sm"></i>';
-          interviewStep.querySelector("span").className =
-            "mt-2 text-xs font-bold text-blue-600";
-        } else if (status === "Rejected") {
-          progressBar.style.width = "33%";
-          reviewStep.querySelector("div").className =
-            "w-10 h-10 rounded-full bg-slate-400 border-4 border-white shadow-md flex items-center justify-center";
-          reviewStep.querySelector("div").innerHTML =
-            '<i class="fas fa-times text-white text-sm"></i>';
-          reviewStep.querySelector("span").className =
-            "mt-2 text-xs font-bold text-slate-600";
-        }
+    function withdrawApplication() {
+      if (confirm("Are you sure you want to withdraw this application?")) {
+        alert("Application withdrawn successfully.");
+        closeViewDetailsModal();
       }
+    }
 
-      function closeViewDetailsModal() {
-        document.getElementById("viewDetailsModal").classList.add("hidden");
-        document.getElementById("viewDetailsModal").classList.remove("flex");
-        document.body.style.overflow = "auto";
-      }
+    function downloadCoverLetter() {
+      alert("Downloading cover letter...");
+    }
 
-      function withdrawApplication() {
-        if (confirm("Are you sure you want to withdraw this application?")) {
-          alert("Application withdrawn successfully.");
+    // Close modal when clicking outside
+    document
+      .getElementById("viewDetailsModal")
+      .addEventListener("click", function (e) {
+        if (e.target === this) {
           closeViewDetailsModal();
         }
-      }
+      });
 
-      function downloadCoverLetter() {
-        alert("Downloading cover letter...");
-      }
+    function toggleColorBlindMode() {
+      const body = document.body;
+      const toggleBtn = document.getElementById("colorBlindToggle");
+      const isColorBlindMode = body.classList.contains("colorblind-mode");
 
-      // Close modal when clicking outside
-      document
-        .getElementById("viewDetailsModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeViewDetailsModal();
+      if (isColorBlindMode) {
+        body.classList.remove("colorblind-mode");
+        toggleBtn.classList.remove("active");
+        localStorage.setItem("colorBlindMode", "false");
+      } else {
+        body.classList.add("colorblind-mode");
+        toggleBtn.classList.add("active");
+        localStorage.setItem("colorBlindMode", "true");
+      }
+    }
+
+    // Initialize color blind mode from localStorage
+    window.addEventListener("DOMContentLoaded", function () {
+      const colorBlindMode = localStorage.getItem("colorBlindMode");
+      if (colorBlindMode === "true") {
+        document.body.classList.add("colorblind-mode");
+        document.getElementById("colorBlindToggle").classList.add("active");
+      }
+    });
+
+    // Profile Dropdown Toggle
+    function toggleProfileDropdown() {
+      const dropdown = document.getElementById('profileDropdownMenu');
+      dropdown.classList.toggle('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+      const dropdown = document.getElementById('profileDropdownMenu');
+      const button = document.getElementById('profileDropdown');
+
+      if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    // Dark Mode Logic (Toggle)
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Check local storage or system preference
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      themeToggleLightIcon.classList.remove('hidden');
+      document.documentElement.classList.add('dark');
+    } else {
+      themeToggleDarkIcon.classList.remove('hidden');
+      document.documentElement.classList.remove('dark');
+    }
+
+    var themeToggleBtn = document.getElementById('theme-toggle');
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', function () {
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+
+        if (localStorage.getItem('color-theme')) {
+          if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
           }
-        });
-
-        function toggleColorBlindMode() {
-        const body = document.body;
-        const toggleBtn = document.getElementById("colorBlindToggle");
-        const isColorBlindMode = body.classList.contains("colorblind-mode");
-
-        if (isColorBlindMode) {
-          body.classList.remove("colorblind-mode");
-          toggleBtn.classList.remove("active");
-          localStorage.setItem("colorBlindMode", "false");
         } else {
-          body.classList.add("colorblind-mode");
-          toggleBtn.classList.add("active");
-          localStorage.setItem("colorBlindMode", "true");
-        }
-      }
-
-      // Initialize color blind mode from localStorage
-      window.addEventListener("DOMContentLoaded", function () {
-        const colorBlindMode = localStorage.getItem("colorBlindMode");
-        if (colorBlindMode === "true") {
-          document.body.classList.add("colorblind-mode");
-          document.getElementById("colorBlindToggle").classList.add("active");
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
         }
       });
+    }
+  </script>
+</body>
 
-      // Profile Dropdown Toggle
-      function toggleProfileDropdown() {
-        const dropdown = document.getElementById('profileDropdownMenu');
-        dropdown.classList.toggle('hidden');
-      }
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(event) {
-        const dropdown = document.getElementById('profileDropdownMenu');
-        const button = document.getElementById('profileDropdown');
-        
-        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-          dropdown.classList.add('hidden');
-        }
-      });
-    </script>
-  </body>
 </html>

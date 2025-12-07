@@ -12,6 +12,7 @@
         rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -27,14 +28,86 @@
             }
         }
     </script>
+    <style>
+        /* Dark Mode Styles */
+        .dark {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .dark .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        .dark .bg-slate-50 {
+            background-color: #0f172a !important;
+        }
+
+        .dark .text-slate-800 {
+            color: #e2e8f0 !important;
+        }
+
+        .dark .text-slate-700 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark .text-slate-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        .dark .text-slate-400 {
+            color: #475569 !important;
+        }
+
+        .dark .border-slate-100 {
+            border-color: #334155 !important;
+        }
+
+        .dark .border-slate-200 {
+            border-color: #475569 !important;
+        }
+
+        .dark .bg-slate-100 {
+            background-color: #1e293b !important;
+        }
+
+        .dark input:not([type="checkbox"]):not([type="radio"]),
+        .dark select,
+        .dark textarea {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: #475569 !important;
+        }
+
+        .dark .hover\:bg-slate-50:hover {
+            background-color: #1e293b !important;
+        }
+
+        .dark .hover\:bg-slate-100:hover {
+            background-color: #334155 !important;
+        }
+
+        .dark .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden">
+<body
+    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200">
     <!-- Left Sidebar -->
     <aside class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex">
         <div class="h-20 flex items-center px-8">
             <a href="index.html" class="flex items-center gap-2">
-                <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8">
+                <img src="assets/images/agorai-logo-v2.png" alt="Agorai Logo" class="w-10 h-10">
                 <span class="font-heading font-bold text-xl text-slate-800">Agorai</span>
             </a>
         </div>
@@ -60,12 +133,44 @@
             class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
             <h1 class="text-2xl font-bold text-slate-800 font-heading">Post a New Job</h1>
             <div class="flex items-center gap-4">
-                <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
-                    <img src="https://ui-avatars.com/api/?name=Angelina+Julie&background=FFEDD5&color=C2410C"
-                        class="w-9 h-9 rounded-full border-2 border-white shadow-sm">
-                    <div class="hidden md:block">
-                        <div class="text-sm font-bold text-slate-800">Angelina Julie</div>
-                        <div class="text-xs text-slate-500">Recruiting Manager</div>
+                <button id="theme-toggle" type="button"
+                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+                    title="Toggle Dark Mode">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                </button>
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative pl-4 border-l border-slate-200">
+                    <button onclick="toggleProfileDropdown()"
+                        class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors text-left">
+                        <img src="https://ui-avatars.com/api/?name=Angelina+Julie&background=FFEDD5&color=C2410C"
+                            class="w-9 h-9 rounded-full border-2 border-white shadow-sm">
+                        <div class="hidden md:block">
+                            <div class="text-sm font-bold text-slate-800">Angelina Julie</div>
+                            <div class="text-xs text-slate-500">Recruiting Manager</div>
+                        </div>
+                        <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="profileDropdownMenu"
+                        class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+                        <a href="profile.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-user text-primary w-5"></i>
+                            <span class="font-medium">Profile</span>
+                        </a>
+                        <a href="settings.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-cog text-primary w-5"></i>
+                            <span class="font-medium">Settings</span>
+                        </a>
+                        <div class="border-t border-slate-100 my-2"></div>
+                        <a href="index.html"
+                            class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span class="font-medium">Logout</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -73,13 +178,11 @@
 
         <div class="flex-1 overflow-y-auto p-8">
             <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-                <form
-                    onsubmit="event.preventDefault(); alert('Job posted successfully!'); window.location.href='dashboard-recruiter.html';"
-                    class="space-y-6">
+                <form class="space-y-6">
                     <!-- Job Title -->
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Job Title</label>
-                        <input type="text" placeholder="e.g. Senior Frontend Developer"
+                        <input type="text" id="jobTitle" placeholder="e.g. Senior Frontend Developer"
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                             required>
                     </div>
@@ -88,20 +191,20 @@
                         <!-- Job Type -->
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Job Type</label>
-                            <select
+                            <select id="jobType"
                                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all bg-white"
                                 required>
                                 <option value="">Select Type</option>
-                                <option value="full-time">Full Time</option>
-                                <option value="part-time">Part Time</option>
-                                <option value="contract">Contract</option>
-                                <option value="internship">Internship</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Part Time">Part Time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Internship">Internship</option>
                             </select>
                         </div>
                         <!-- Salary Range -->
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Salary Range</label>
-                            <input type="text" placeholder="e.g. $120k - $150k"
+                            <input type="text" id="salaryRange" placeholder="e.g. $120k - $150k"
                                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                                 required>
                         </div>
@@ -110,7 +213,8 @@
                     <!-- Job Description -->
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Job Description</label>
-                        <textarea rows="6" placeholder="Describe the role, responsibilities, and requirements..."
+                        <textarea id="jobDescription" rows="6"
+                            placeholder="Describe the role, responsibilities, and requirements..."
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                             required></textarea>
                     </div>
@@ -118,7 +222,7 @@
                     <!-- Requirements (Optional) -->
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Key Requirements</label>
-                        <textarea rows="4" placeholder="List key skills and qualifications..."
+                        <textarea id="jobRequirements" rows="4" placeholder="List key skills and qualifications..."
                             class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"></textarea>
                     </div>
 
@@ -133,6 +237,91 @@
             </div>
         </div>
     </main>
+    <script>
+        function toggleProfileDropdown() {
+            const menu = document.getElementById('profileDropdownMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('profileDropdownMenu');
+            const button = document.querySelector('button[onclick="toggleProfileDropdown()"]');
+            if (dropdown && !dropdown.classList.contains('hidden') && !button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        function saveJob(event) {
+            event.preventDefault();
+
+            const jobTitle = document.getElementById('jobTitle').value;
+            const jobType = document.getElementById('jobType').value;
+            const salaryRange = document.getElementById('salaryRange').value;
+            const description = document.getElementById('jobDescription').value;
+            const requirements = document.getElementById('jobRequirements').value;
+
+            const newJob = {
+                id: Date.now(),
+                title: jobTitle,
+                type: jobType,
+                salary: salaryRange,
+                description: description,
+                requirements: requirements,
+                applications: 0, // Initial state
+                datePosted: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+            };
+
+            // Get existing jobs or init empty array
+            const jobs = JSON.parse(localStorage.getItem('agora_jobs') || '[]');
+            jobs.unshift(newJob); // Add to top
+            localStorage.setItem('agora_jobs', JSON.stringify(jobs));
+
+            alert('Job posted successfully!');
+            window.location.href = 'dashboard-recruiter.html';
+        }
+
+        // Attach submission handler
+        document.querySelector('form').addEventListener('submit', saveJob);
+
+        // Dark Mode Logic
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check local storage or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function () {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
