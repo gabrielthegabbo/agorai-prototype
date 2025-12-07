@@ -193,25 +193,27 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex flex-col overflow-hidden relative">
-    <!-- Header -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
     <header
-      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-      <h1 class="text-2xl font-bold text-slate-800 font-heading">Settings</h1>
+      class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 dark:bg-slate-900/80 dark:border-slate-800 transition-colors flex items-center justify-between px-8 sticky top-0 z-10">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800 font-heading dark:text-white">Settings</h1>
+      </div>
+
       <div class="flex items-center gap-4">
-        <!-- Dark Mode Toggle -->
         <button id="theme-toggle" type="button"
-          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+          class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm p-2.5"
           title="Toggle Dark Mode">
           <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
           <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
         </button>
+
         <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
           class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
           title="Toggle Color Blind Mode">
           <i class="fas fa-eye"></i>
         </button>
+
         <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
           <button id="profileDropdown" onclick="toggleProfileDropdown()"
             class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
@@ -587,284 +589,285 @@
         </div>
       </div>
     </div>
-  </main>
+    </main>
 
-  <script>
-    // Dark Mode Functions
-    // Sync Header Toggle with Settings Switch
-    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    <script>
+      // Dark Mode Functions
+      // Sync Header Toggle with Settings Switch
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-    function updateThemeIcons() {
-      if (document.documentElement.classList.contains('dark')) {
-        if (themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
-        if (themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+      function updateThemeIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          if (themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+          if (themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+          document.getElementById("darkModeToggle").checked = true;
+        } else {
+          if (themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+          if (themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+          document.getElementById("darkModeToggle").checked = false;
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDarkMode = document.getElementById("darkModeToggle").checked;
+        if (isDarkMode) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("darkMode", "true");
+          localStorage.setItem("color-theme", "dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("darkMode", "false");
+          localStorage.setItem("color-theme", "light");
+        }
+        updateThemeIcons();
+      }
+
+      var themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function () {
+          if (document.documentElement.classList.contains('dark')) {
+            document.getElementById("darkModeToggle").checked = false;
+            toggleDarkMode(); // Reuse existing function which reads the checkbox
+          } else {
+            document.getElementById("darkModeToggle").checked = true;
+            toggleDarkMode();
+          }
+        });
+      }
+
+      // Init
+      // Check local storage or system preference
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) || localStorage.getItem('darkMode') === 'true') {
+        document.documentElement.classList.add('dark');
         document.getElementById("darkModeToggle").checked = true;
       } else {
-        if (themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
-        if (themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+        document.documentElement.classList.remove('dark');
         document.getElementById("darkModeToggle").checked = false;
-      }
-    }
-
-    function toggleDarkMode() {
-      const isDarkMode = document.getElementById("darkModeToggle").checked;
-      if (isDarkMode) {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("darkMode", "true");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("darkMode", "false");
-        localStorage.setItem("color-theme", "light");
       }
       updateThemeIcons();
-    }
 
-    var themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', function () {
-        if (document.documentElement.classList.contains('dark')) {
-          document.getElementById("darkModeToggle").checked = false;
-          toggleDarkMode(); // Reuse existing function which reads the checkbox
+      // Color Blind Mode Functions
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const settingsToggle = document.getElementById("colorBlindModeToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
+
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          if (settingsToggle) settingsToggle.checked = false;
+          localStorage.setItem("colorBlindMode", "false");
         } else {
-          document.getElementById("darkModeToggle").checked = true;
-          toggleDarkMode();
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          if (settingsToggle) settingsToggle.checked = true;
+          localStorage.setItem("colorBlindMode", "true");
+        }
+      }
+
+      function toggleColorBlindModeFromSettings() {
+        toggleColorBlindMode();
+      }
+
+      // Font Size Functions
+      function changeFontSize(value) {
+        const sizes = ["small", "medium", "large"];
+        const labels = ["Small", "Medium", "Large"];
+        const sizeValue = sizes[value];
+
+        document.getElementById("fontSizeValue").textContent = labels[value];
+
+        // Apply font size
+        if (sizeValue === "small") {
+          document.documentElement.style.fontSize = "14px";
+        } else if (sizeValue === "medium") {
+          document.documentElement.style.fontSize = "16px";
+        } else {
+          document.documentElement.style.fontSize = "18px";
+        }
+
+        localStorage.setItem("fontSize", sizeValue);
+      }
+
+      // Notification Settings
+      function saveNotificationSettings() {
+        const settings = {
+          email: document.getElementById("emailNotifications").checked,
+          push: document.getElementById("pushNotifications").checked,
+          applications: document.getElementById("applicationUpdates").checked,
+          interviews: document.getElementById("interviewReminders").checked,
+        };
+        localStorage.setItem("notificationSettings", JSON.stringify(settings));
+      }
+
+      // Privacy Settings
+      function savePrivacySettings() {
+        const settings = {
+          publicProfile: document.getElementById("publicProfile").checked,
+          activityStatus: document.getElementById("activityStatus").checked,
+        };
+        localStorage.setItem("privacySettings", JSON.stringify(settings));
+      }
+
+      // Account Management Functions
+      function enable2FA() {
+        alert(
+          "Two-Factor Authentication setup will be initiated. You'll receive a verification code via email."
+        );
+      }
+
+      function changePassword() {
+        const newPassword = prompt("Enter your new password:");
+        if (newPassword) {
+          alert("Password changed successfully! ✓");
+        }
+      }
+
+      function exportData() {
+        alert(
+          "Your data export has been initiated. You'll receive a download link via email shortly."
+        );
+      }
+
+      function deleteAccount() {
+        const confirmation = confirm(
+          "Are you sure you want to delete your account? This action cannot be undone."
+        );
+        if (confirmation) {
+          const doubleCheck = prompt(
+            'Type "DELETE" to confirm account deletion:'
+          );
+          if (doubleCheck === "DELETE") {
+            alert("Account deletion initiated. We're sorry to see you go.");
+            window.location.href = "index.html";
+          }
+        }
+      }
+
+      // Save All Settings
+      function saveAllSettings() {
+        saveNotificationSettings();
+        savePrivacySettings();
+        alert("All settings saved successfully! ✓");
+      }
+
+      // Reset Settings
+      function resetSettings() {
+        if (
+          confirm(
+            "Are you sure you want to reset all settings to default values?"
+          )
+        ) {
+          // Reset Dark Mode
+          document.getElementById("darkModeToggle").checked = false;
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("darkMode", "false");
+
+          // Reset Color Blind Mode
+          document.getElementById("colorBlindModeToggle").checked = false;
+          document.body.classList.remove("colorblind-mode");
+          document
+            .getElementById("colorBlindToggle")
+            .classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
+
+          // Reset Font Size
+          document.getElementById("fontSizeSlider").value = 1;
+          document.getElementById("fontSizeValue").textContent = "Medium";
+          document.documentElement.style.fontSize = "16px";
+          localStorage.setItem("fontSize", "medium");
+
+          // Reset Notifications
+          document.getElementById("emailNotifications").checked = true;
+          document.getElementById("pushNotifications").checked = true;
+          document.getElementById("applicationUpdates").checked = true;
+          document.getElementById("interviewReminders").checked = true;
+
+          // Reset Privacy
+          document.getElementById("publicProfile").checked = true;
+          document.getElementById("activityStatus").checked = true;
+
+          saveAllSettings();
+          alert("All settings have been reset to default! ✓");
+        }
+      }
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        const button = document.getElementById("profileDropdown");
+
+        if (
+          !button.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.classList.add("hidden");
         }
       });
-    }
 
-    // Init
-    // Check local storage or system preference
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) || localStorage.getItem('darkMode') === 'true') {
-      document.documentElement.classList.add('dark');
-      document.getElementById("darkModeToggle").checked = true;
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.getElementById("darkModeToggle").checked = false;
-    }
-    updateThemeIcons();
-
-    // Color Blind Mode Functions
-    function toggleColorBlindMode() {
-      const body = document.body;
-      const toggleBtn = document.getElementById("colorBlindToggle");
-      const settingsToggle = document.getElementById("colorBlindModeToggle");
-      const isColorBlindMode = body.classList.contains("colorblind-mode");
-
-      if (isColorBlindMode) {
-        body.classList.remove("colorblind-mode");
-        toggleBtn.classList.remove("active");
-        if (settingsToggle) settingsToggle.checked = false;
-        localStorage.setItem("colorBlindMode", "false");
-      } else {
-        body.classList.add("colorblind-mode");
-        toggleBtn.classList.add("active");
-        if (settingsToggle) settingsToggle.checked = true;
-        localStorage.setItem("colorBlindMode", "true");
-      }
-    }
-
-    function toggleColorBlindModeFromSettings() {
-      toggleColorBlindMode();
-    }
-
-    // Font Size Functions
-    function changeFontSize(value) {
-      const sizes = ["small", "medium", "large"];
-      const labels = ["Small", "Medium", "Large"];
-      const sizeValue = sizes[value];
-
-      document.getElementById("fontSizeValue").textContent = labels[value];
-
-      // Apply font size
-      if (sizeValue === "small") {
-        document.documentElement.style.fontSize = "14px";
-      } else if (sizeValue === "medium") {
-        document.documentElement.style.fontSize = "16px";
-      } else {
-        document.documentElement.style.fontSize = "18px";
-      }
-
-      localStorage.setItem("fontSize", sizeValue);
-    }
-
-    // Notification Settings
-    function saveNotificationSettings() {
-      const settings = {
-        email: document.getElementById("emailNotifications").checked,
-        push: document.getElementById("pushNotifications").checked,
-        applications: document.getElementById("applicationUpdates").checked,
-        interviews: document.getElementById("interviewReminders").checked,
-      };
-      localStorage.setItem("notificationSettings", JSON.stringify(settings));
-    }
-
-    // Privacy Settings
-    function savePrivacySettings() {
-      const settings = {
-        publicProfile: document.getElementById("publicProfile").checked,
-        activityStatus: document.getElementById("activityStatus").checked,
-      };
-      localStorage.setItem("privacySettings", JSON.stringify(settings));
-    }
-
-    // Account Management Functions
-    function enable2FA() {
-      alert(
-        "Two-Factor Authentication setup will be initiated. You'll receive a verification code via email."
-      );
-    }
-
-    function changePassword() {
-      const newPassword = prompt("Enter your new password:");
-      if (newPassword) {
-        alert("Password changed successfully! ✓");
-      }
-    }
-
-    function exportData() {
-      alert(
-        "Your data export has been initiated. You'll receive a download link via email shortly."
-      );
-    }
-
-    function deleteAccount() {
-      const confirmation = confirm(
-        "Are you sure you want to delete your account? This action cannot be undone."
-      );
-      if (confirmation) {
-        const doubleCheck = prompt(
-          'Type "DELETE" to confirm account deletion:'
-        );
-        if (doubleCheck === "DELETE") {
-          alert("Account deletion initiated. We're sorry to see you go.");
-          window.location.href = "index.html";
+      // Initialize settings on page load
+      window.addEventListener("DOMContentLoaded", function () {
+        // Load Dark Mode
+        const darkMode = localStorage.getItem("darkMode");
+        if (darkMode === "true") {
+          document.getElementById("darkModeToggle").checked = true;
+          document.documentElement.classList.add("dark");
         }
-      }
-    }
 
-    // Save All Settings
-    function saveAllSettings() {
-      saveNotificationSettings();
-      savePrivacySettings();
-      alert("All settings saved successfully! ✓");
-    }
+        // Load Color Blind Mode
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
+          document.getElementById("colorBlindModeToggle").checked = true;
+        }
 
-    // Reset Settings
-    function resetSettings() {
-      if (
-        confirm(
-          "Are you sure you want to reset all settings to default values?"
-        )
-      ) {
-        // Reset Dark Mode
-        document.getElementById("darkModeToggle").checked = false;
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("darkMode", "false");
+        // Load Font Size
+        const fontSize = localStorage.getItem("fontSize");
+        if (fontSize) {
+          const sizes = { small: 0, medium: 1, large: 2 };
+          const labels = { small: "Small", medium: "Medium", large: "Large" };
+          document.getElementById("fontSizeSlider").value = sizes[fontSize];
+          document.getElementById("fontSizeValue").textContent =
+            labels[fontSize];
+          changeFontSize(sizes[fontSize]);
+        }
 
-        // Reset Color Blind Mode
-        document.getElementById("colorBlindModeToggle").checked = false;
-        document.body.classList.remove("colorblind-mode");
-        document
-          .getElementById("colorBlindToggle")
-          .classList.remove("active");
-        localStorage.setItem("colorBlindMode", "false");
+        // Load Notification Settings
+        const notificationSettings = localStorage.getItem(
+          "notificationSettings"
+        );
+        if (notificationSettings) {
+          const settings = JSON.parse(notificationSettings);
+          document.getElementById("emailNotifications").checked =
+            settings.email;
+          document.getElementById("pushNotifications").checked = settings.push;
+          document.getElementById("applicationUpdates").checked =
+            settings.applications;
+          document.getElementById("interviewReminders").checked =
+            settings.interviews;
+        }
 
-        // Reset Font Size
-        document.getElementById("fontSizeSlider").value = 1;
-        document.getElementById("fontSizeValue").textContent = "Medium";
-        document.documentElement.style.fontSize = "16px";
-        localStorage.setItem("fontSize", "medium");
-
-        // Reset Notifications
-        document.getElementById("emailNotifications").checked = true;
-        document.getElementById("pushNotifications").checked = true;
-        document.getElementById("applicationUpdates").checked = true;
-        document.getElementById("interviewReminders").checked = true;
-
-        // Reset Privacy
-        document.getElementById("publicProfile").checked = true;
-        document.getElementById("activityStatus").checked = true;
-
-        saveAllSettings();
-        alert("All settings have been reset to default! ✓");
-      }
-    }
-
-    // Profile Dropdown Toggle
-    function toggleProfileDropdown() {
-      const dropdown = document.getElementById("profileDropdownMenu");
-      dropdown.classList.toggle("hidden");
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", function (event) {
-      const dropdown = document.getElementById("profileDropdownMenu");
-      const button = document.getElementById("profileDropdown");
-
-      if (
-        !button.contains(event.target) &&
-        !dropdown.contains(event.target)
-      ) {
-        dropdown.classList.add("hidden");
-      }
-    });
-
-    // Initialize settings on page load
-    window.addEventListener("DOMContentLoaded", function () {
-      // Load Dark Mode
-      const darkMode = localStorage.getItem("darkMode");
-      if (darkMode === "true") {
-        document.getElementById("darkModeToggle").checked = true;
-        document.documentElement.classList.add("dark");
-      }
-
-      // Load Color Blind Mode
-      const colorBlindMode = localStorage.getItem("colorBlindMode");
-      if (colorBlindMode === "true") {
-        document.body.classList.add("colorblind-mode");
-        document.getElementById("colorBlindToggle").classList.add("active");
-        document.getElementById("colorBlindModeToggle").checked = true;
-      }
-
-      // Load Font Size
-      const fontSize = localStorage.getItem("fontSize");
-      if (fontSize) {
-        const sizes = { small: 0, medium: 1, large: 2 };
-        const labels = { small: "Small", medium: "Medium", large: "Large" };
-        document.getElementById("fontSizeSlider").value = sizes[fontSize];
-        document.getElementById("fontSizeValue").textContent =
-          labels[fontSize];
-        changeFontSize(sizes[fontSize]);
-      }
-
-      // Load Notification Settings
-      const notificationSettings = localStorage.getItem(
-        "notificationSettings"
-      );
-      if (notificationSettings) {
-        const settings = JSON.parse(notificationSettings);
-        document.getElementById("emailNotifications").checked =
-          settings.email;
-        document.getElementById("pushNotifications").checked = settings.push;
-        document.getElementById("applicationUpdates").checked =
-          settings.applications;
-        document.getElementById("interviewReminders").checked =
-          settings.interviews;
-      }
-
-      // Load Privacy Settings
-      const privacySettings = localStorage.getItem("privacySettings");
-      if (privacySettings) {
-        const settings = JSON.parse(privacySettings);
-        document.getElementById("publicProfile").checked =
-          settings.publicProfile;
-        document.getElementById("activityStatus").checked =
-          settings.activityStatus;
-      }
-    });
-  </script>
+        // Load Privacy Settings
+        const privacySettings = localStorage.getItem("privacySettings");
+        if (privacySettings) {
+          const settings = JSON.parse(privacySettings);
+          document.getElementById("publicProfile").checked =
+            settings.publicProfile;
+          document.getElementById("activityStatus").checked =
+            settings.activityStatus;
+        }
+      });
+    </script>
+  </div>
 </body>
 
 </html>
