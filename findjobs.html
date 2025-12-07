@@ -150,36 +150,33 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex flex-col overflow-hidden relative">
-    <!-- Header -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
     <header
-      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-      <h1 class="text-2xl font-bold text-slate-800 font-heading">
-        Find Jobs
-      </h1>
+      class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 dark:bg-slate-900/80 dark:border-slate-800 transition-colors flex items-center justify-between px-8 sticky top-0 z-10">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800 font-heading dark:text-white">Find Jobs</h1>
+      </div>
+
       <div class="flex items-center gap-4">
-        <div class="relative hidden md:block">
-          <input type="text" placeholder="Search for jobs..."
-            class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all" />
-          <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-        </div>
-        <button
-          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
-          <i class="fas fa-bell"></i>
-          <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+        <button id="theme-toggle" type="button"
+          class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm p-2.5"
+          title="Toggle Dark Mode">
+          <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+          <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
         </button>
+
         <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
           class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
           title="Toggle Color Blind Mode">
           <i class="fas fa-eye"></i>
         </button>
-        <button id="theme-toggle" type="button"
-          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
-          title="Toggle Dark Mode">
-          <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
-          <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+
+        <button
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
+          <i class="fas fa-bell"></i>
+          <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
         </button>
+
         <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
           <button id="profileDropdown" onclick="toggleProfileDropdown()"
             class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
@@ -318,7 +315,8 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
+  </div>
 
   <!-- Apply Job Modal -->
   <div id="applyJobModal"

@@ -160,66 +160,67 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex flex-col overflow-hidden relative">
-    <!-- Header -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
     <header
-      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-      <h1 class="text-2xl font-bold text-slate-800 font-heading">
-        My Applications
-      </h1>
+      class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 dark:bg-slate-900/80 dark:border-slate-800 transition-colors flex items-center justify-between px-8 sticky top-0 z-10">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800 font-heading dark:text-white">My Applications</h1>
+      </div>
+
       <div class="flex items-center gap-4">
+        <button id="theme-toggle" type="button"
+          class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm p-2.5"
+          title="Toggle Dark Mode">
+          <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+          <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+        </button>
+
+        <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+          title="Toggle Color Blind Mode">
+          <i class="fas fa-eye"></i>
+        </button>
+
         <button
           class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
           <i class="fas fa-bell"></i>
           <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
         </button>
-        <div class="flex items-center gap-4">
-          <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
-            title="Toggle Color Blind Mode">
-            <i class="fas fa-eye"></i>
-          </button>
-          <button id="theme-toggle" type="button"
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
-            title="Toggle Dark Mode">
-            <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
-            <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
-          </button>
-          <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
-            <button id="profileDropdown" onclick="toggleProfileDropdown()"
-              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
-              <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                class="w-9 h-9 rounded-full border-2 border-white shadow-sm" />
-              <div class="hidden md:block text-left">
-                <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
-                <div class="text-xs text-slate-500">Software Engineer</div>
-              </div>
-              <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
-            </button>
 
-            <!-- Dropdown Menu -->
-            <div id="profileDropdownMenu"
-              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
-              <a href="profile.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-user text-primary w-5"></i>
-                <span class="font-medium">Profile</span>
-              </a>
-              <a href="settings.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-cog text-primary w-5"></i>
-                <span class="font-medium">Settings</span>
-              </a>
-              <div class="border-t border-slate-100 my-2"></div>
-              <a href="index.html"
-                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
-                <i class="fas fa-sign-out-alt w-5"></i>
-                <span class="font-medium">Logout</span>
-              </a>
+        <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
+          <button id="profileDropdown" onclick="toggleProfileDropdown()"
+            class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
+            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              class="w-9 h-9 rounded-full border-2 border-white shadow-sm" />
+            <div class="hidden md:block text-left">
+              <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
+              <div class="text-xs text-slate-500">Software Engineer</div>
             </div>
+            <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="profileDropdownMenu"
+            class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+            <a href="profile.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+              <i class="fas fa-user text-primary w-5"></i>
+              <span class="font-medium">Profile</span>
+            </a>
+            <a href="settings.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+              <i class="fas fa-cog text-primary w-5"></i>
+              <span class="font-medium">Settings</span>
+            </a>
+            <div class="border-t border-slate-100 my-2"></div>
+            <a href="index.html"
+              class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+              <i class="fas fa-sign-out-alt w-5"></i>
+              <span class="font-medium">Logout</span>
+            </a>
           </div>
         </div>
+      </div>
     </header>
 
     <div class="flex-1 overflow-y-auto p-8">
@@ -301,404 +302,405 @@
         </div>
       </div>
     </div>
-  </main>
+    </main>
 
-  <!-- View Application Details Modal -->
-  <div id="viewDetailsModal"
-    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between p-6 border-b border-slate-100">
-        <div>
-          <h2 class="text-2xl font-bold text-slate-800 font-heading">
-            Application Details
-          </h2>
-          <p class="text-sm text-slate-500 mt-1" id="appId"></p>
+    <!-- View Application Details Modal -->
+    <div id="viewDetailsModal"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between p-6 border-b border-slate-100">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800 font-heading">
+              Application Details
+            </h2>
+            <p class="text-sm text-slate-500 mt-1" id="appId"></p>
+          </div>
+          <button onclick="closeViewDetailsModal()"
+            class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-        <button onclick="closeViewDetailsModal()"
-          class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
 
-      <!-- Modal Body -->
-      <div class="flex-1 overflow-y-auto p-6">
-        <div class="space-y-6">
-          <!-- Application Status Timeline -->
-          <div class="bg-gradient-to-r from-primary/5 to-blue-50 rounded-2xl p-6 border border-primary/10">
-            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
-              <i class="fas fa-timeline text-primary"></i> Application
-              Timeline
-            </h3>
-            <div class="flex items-center justify-between relative">
-              <div class="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"></div>
-              <div class="absolute top-5 left-0 h-0.5 bg-primary transition-all" id="progressBar" style="width: 33%">
+        <!-- Modal Body -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <div class="space-y-6">
+            <!-- Application Status Timeline -->
+            <div class="bg-gradient-to-r from-primary/5 to-blue-50 rounded-2xl p-6 border border-primary/10">
+              <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+                <i class="fas fa-timeline text-primary"></i> Application
+                Timeline
+              </h3>
+              <div class="flex items-center justify-between relative">
+                <div class="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"></div>
+                <div class="absolute top-5 left-0 h-0.5 bg-primary transition-all" id="progressBar" style="width: 33%">
+                </div>
+
+                <div class="flex flex-col items-center z-10">
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center">
+                    <i class="fas fa-check text-white text-sm"></i>
+                  </div>
+                  <span class="mt-2 text-xs font-bold text-slate-700">Applied</span>
+                  <span class="text-xs text-slate-400" id="appliedDate"></span>
+                </div>
+
+                <div class="flex flex-col items-center z-10" id="reviewStep">
+                  <div
+                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                    <i class="fas fa-hourglass-half text-slate-400 text-sm"></i>
+                  </div>
+                  <span class="mt-2 text-xs font-bold text-slate-400">In Review</span>
+                </div>
+
+                <div class="flex flex-col items-center z-10" id="interviewStep">
+                  <div
+                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                    <i class="fas fa-video text-slate-400 text-sm"></i>
+                  </div>
+                  <span class="mt-2 text-xs font-bold text-slate-400">Interview</span>
+                </div>
+
+                <div class="flex flex-col items-center z-10" id="offerStep">
+                  <div
+                    class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
+                    <i class="fas fa-trophy text-slate-400 text-sm"></i>
+                  </div>
+                  <span class="mt-2 text-xs font-bold text-slate-400">Offer</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Left Column: Job Details -->
+              <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                  <i class="fas fa-briefcase text-primary"></i> Job Information
+                </h3>
+
+                <!-- Company & Role -->
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                  <div class="text-xs text-slate-500 mb-1">Position</div>
+                  <div class="font-bold text-slate-800 text-lg" id="detailRole"></div>
+                  <div class="text-sm text-slate-600 mt-1" id="detailCompany"></div>
+                </div>
+
+                <!-- Location -->
+                <div>
+                  <div class="text-xs font-bold text-slate-500 mb-2">
+                    <i class="fas fa-map-marker-alt text-primary mr-1"></i>
+                    LOCATION
+                  </div>
+                  <div class="text-sm text-slate-700" id="detailLocation"></div>
+                </div>
+
+                <!-- Work Type & Salary -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <div class="text-xs font-bold text-slate-500 mb-2">
+                      <i class="fas fa-clock text-primary mr-1"></i> WORK TYPE
+                    </div>
+                    <div class="text-sm text-slate-700" id="detailWorkType"></div>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-slate-500 mb-2">
+                      <i class="fas fa-dollar-sign text-primary mr-1"></i>
+                      SALARY
+                    </div>
+                    <div class="text-sm text-slate-700" id="detailSalary"></div>
+                  </div>
+                </div>
+
+                <!-- Job Description -->
+                <div>
+                  <div class="text-xs font-bold text-slate-500 mb-2">
+                    <i class="fas fa-align-left text-primary mr-1"></i> JOB
+                    DESCRIPTION
+                  </div>
+                  <div class="text-sm text-slate-600 leading-relaxed" id="detailDescription"></div>
+                </div>
               </div>
 
-              <div class="flex flex-col items-center z-10">
-                <div
-                  class="w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center">
-                  <i class="fas fa-check text-white text-sm"></i>
-                </div>
-                <span class="mt-2 text-xs font-bold text-slate-700">Applied</span>
-                <span class="text-xs text-slate-400" id="appliedDate"></span>
-              </div>
+              <!-- Right Column: Your Application -->
+              <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                  <i class="fas fa-file-alt text-primary"></i> Your Application
+                </h3>
 
-              <div class="flex flex-col items-center z-10" id="reviewStep">
-                <div
-                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
-                  <i class="fas fa-hourglass-half text-slate-400 text-sm"></i>
+                <!-- Cover Letter -->
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                  <div class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between">
+                    <span><i class="fas fa-pen text-primary mr-1"></i> COVER
+                      LETTER</span>
+                    <button class="text-primary hover:text-indigo-700 text-xs" onclick="downloadCoverLetter()">
+                      <i class="fas fa-download mr-1"></i>Download
+                    </button>
+                  </div>
+                  <div class="text-sm text-slate-600 leading-relaxed max-h-48 overflow-y-auto bg-white rounded-lg p-3"
+                    id="detailCoverLetter"></div>
                 </div>
-                <span class="mt-2 text-xs font-bold text-slate-400">In Review</span>
-              </div>
 
-              <div class="flex flex-col items-center z-10" id="interviewStep">
-                <div
-                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
-                  <i class="fas fa-video text-slate-400 text-sm"></i>
+                <!-- Resume -->
+                <div class="bg-green-50 rounded-xl p-4 border border-green-100">
+                  <div class="text-xs font-bold text-green-700 mb-2">
+                    <i class="fas fa-file-pdf text-green-600 mr-1"></i> RESUME
+                    SUBMITTED
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-check-circle text-green-600"></i>
+                      <span class="text-sm text-green-700 font-medium" id="detailResume"></span>
+                    </div>
+                    <button class="text-green-700 hover:text-green-800 text-xs font-bold">
+                      <i class="fas fa-download"></i>
+                    </button>
+                  </div>
                 </div>
-                <span class="mt-2 text-xs font-bold text-slate-400">Interview</span>
-              </div>
 
-              <div class="flex flex-col items-center z-10" id="offerStep">
-                <div
-                  class="w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center">
-                  <i class="fas fa-trophy text-slate-400 text-sm"></i>
+                <!-- Status Badge -->
+                <div>
+                  <div class="text-xs font-bold text-slate-500 mb-2">
+                    <i class="fas fa-info-circle text-primary mr-1"></i> CURRENT
+                    STATUS
+                  </div>
+                  <div id="statusBadge"></div>
                 </div>
-                <span class="mt-2 text-xs font-bold text-slate-400">Offer</span>
               </div>
             </div>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Left Column: Job Details -->
-            <div class="space-y-4">
-              <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <i class="fas fa-briefcase text-primary"></i> Job Information
-              </h3>
-
-              <!-- Company & Role -->
-              <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                <div class="text-xs text-slate-500 mb-1">Position</div>
-                <div class="font-bold text-slate-800 text-lg" id="detailRole"></div>
-                <div class="text-sm text-slate-600 mt-1" id="detailCompany"></div>
-              </div>
-
-              <!-- Location -->
-              <div>
-                <div class="text-xs font-bold text-slate-500 mb-2">
-                  <i class="fas fa-map-marker-alt text-primary mr-1"></i>
-                  LOCATION
-                </div>
-                <div class="text-sm text-slate-700" id="detailLocation"></div>
-              </div>
-
-              <!-- Work Type & Salary -->
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <div class="text-xs font-bold text-slate-500 mb-2">
-                    <i class="fas fa-clock text-primary mr-1"></i> WORK TYPE
-                  </div>
-                  <div class="text-sm text-slate-700" id="detailWorkType"></div>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-slate-500 mb-2">
-                    <i class="fas fa-dollar-sign text-primary mr-1"></i>
-                    SALARY
-                  </div>
-                  <div class="text-sm text-slate-700" id="detailSalary"></div>
-                </div>
-              </div>
-
-              <!-- Job Description -->
-              <div>
-                <div class="text-xs font-bold text-slate-500 mb-2">
-                  <i class="fas fa-align-left text-primary mr-1"></i> JOB
-                  DESCRIPTION
-                </div>
-                <div class="text-sm text-slate-600 leading-relaxed" id="detailDescription"></div>
-              </div>
-            </div>
-
-            <!-- Right Column: Your Application -->
-            <div class="space-y-4">
-              <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <i class="fas fa-file-alt text-primary"></i> Your Application
-              </h3>
-
-              <!-- Cover Letter -->
-              <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                <div class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between">
-                  <span><i class="fas fa-pen text-primary mr-1"></i> COVER
-                    LETTER</span>
-                  <button class="text-primary hover:text-indigo-700 text-xs" onclick="downloadCoverLetter()">
-                    <i class="fas fa-download mr-1"></i>Download
-                  </button>
-                </div>
-                <div class="text-sm text-slate-600 leading-relaxed max-h-48 overflow-y-auto bg-white rounded-lg p-3"
-                  id="detailCoverLetter"></div>
-              </div>
-
-              <!-- Resume -->
-              <div class="bg-green-50 rounded-xl p-4 border border-green-100">
-                <div class="text-xs font-bold text-green-700 mb-2">
-                  <i class="fas fa-file-pdf text-green-600 mr-1"></i> RESUME
-                  SUBMITTED
-                </div>
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <i class="fas fa-check-circle text-green-600"></i>
-                    <span class="text-sm text-green-700 font-medium" id="detailResume"></span>
-                  </div>
-                  <button class="text-green-700 hover:text-green-800 text-xs font-bold">
-                    <i class="fas fa-download"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Status Badge -->
-              <div>
-                <div class="text-xs font-bold text-slate-500 mb-2">
-                  <i class="fas fa-info-circle text-primary mr-1"></i> CURRENT
-                  STATUS
-                </div>
-                <div id="statusBadge"></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Modal Footer -->
-      <div class="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50">
-        <button onclick="withdrawApplication()" type="button"
-          class="px-6 py-3 rounded-xl border border-red-200 text-red-600 font-medium text-sm hover:bg-red-50 transition-colors">
-          <i class="fas fa-times-circle mr-2"></i>Withdraw Application
-        </button>
-        <button onclick="closeViewDetailsModal()" type="button"
-          class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">
-          Close
-        </button>
+        <!-- Modal Footer -->
+        <div class="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50">
+          <button onclick="withdrawApplication()" type="button"
+            class="px-6 py-3 rounded-xl border border-red-200 text-red-600 font-medium text-sm hover:bg-red-50 transition-colors">
+            <i class="fas fa-times-circle mr-2"></i>Withdraw Application
+          </button>
+          <button onclick="closeViewDetailsModal()" type="button"
+            class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">
+            Close
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // Initialize Dark Mode from localStorage
-    if (localStorage.getItem("darkMode") === "true") {
-      document.documentElement.classList.add("dark");
-    }
-
-    // View Details Modal Functions
-    function openViewDetailsModal(
-      company,
-      role,
-      location,
-      workType,
-      salary,
-      appliedDate,
-      status,
-      description,
-      coverLetter,
-      resume,
-      appId
-    ) {
-      // Set basic job info
-      document.getElementById("detailRole").textContent = role;
-      document.getElementById("detailCompany").textContent = company;
-      document.getElementById("detailLocation").textContent = location;
-      document.getElementById("detailWorkType").textContent = workType;
-      document.getElementById("detailSalary").textContent = salary;
-      document.getElementById("detailDescription").textContent = description;
-      document.getElementById("appliedDate").textContent = appliedDate;
-      document.getElementById("appId").textContent = appId;
-
-      // Set application info
-      document.getElementById("detailCoverLetter").textContent = coverLetter;
-      document.getElementById("detailResume").textContent = resume;
-
-      // Set status badge
-      const statusBadge = document.getElementById("statusBadge");
-      let badgeClass = "";
-      if (status === "In Review") {
-        badgeClass =
-          "px-3 py-2 rounded-lg bg-yellow-50 text-yellow-600 text-sm font-bold inline-flex items-center gap-2";
-        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-hourglass-half"></i> ${status}</span>`;
-      } else if (status === "Interview") {
-        badgeClass =
-          "px-3 py-2 rounded-lg bg-blue-50 text-blue-600 text-sm font-bold inline-flex items-center gap-2";
-        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-video"></i> ${status}</span>`;
-      } else if (status === "Rejected") {
-        badgeClass =
-          "px-3 py-2 rounded-lg bg-slate-100 text-slate-600 text-sm font-bold inline-flex items-center gap-2";
-        statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-times-circle"></i> ${status}</span>`;
+    <script>
+      // Initialize Dark Mode from localStorage
+      if (localStorage.getItem("darkMode") === "true") {
+        document.documentElement.classList.add("dark");
       }
 
-      // Update timeline based on status
-      updateTimeline(status);
+      // View Details Modal Functions
+      function openViewDetailsModal(
+        company,
+        role,
+        location,
+        workType,
+        salary,
+        appliedDate,
+        status,
+        description,
+        coverLetter,
+        resume,
+        appId
+      ) {
+        // Set basic job info
+        document.getElementById("detailRole").textContent = role;
+        document.getElementById("detailCompany").textContent = company;
+        document.getElementById("detailLocation").textContent = location;
+        document.getElementById("detailWorkType").textContent = workType;
+        document.getElementById("detailSalary").textContent = salary;
+        document.getElementById("detailDescription").textContent = description;
+        document.getElementById("appliedDate").textContent = appliedDate;
+        document.getElementById("appId").textContent = appId;
 
-      // Show modal
-      document.getElementById("viewDetailsModal").classList.remove("hidden");
-      document.getElementById("viewDetailsModal").classList.add("flex");
-      document.body.style.overflow = "hidden";
-    }
+        // Set application info
+        document.getElementById("detailCoverLetter").textContent = coverLetter;
+        document.getElementById("detailResume").textContent = resume;
 
-    function updateTimeline(status) {
-      const reviewStep = document.getElementById("reviewStep");
-      const interviewStep = document.getElementById("interviewStep");
-      const offerStep = document.getElementById("offerStep");
-      const progressBar = document.getElementById("progressBar");
+        // Set status badge
+        const statusBadge = document.getElementById("statusBadge");
+        let badgeClass = "";
+        if (status === "In Review") {
+          badgeClass =
+            "px-3 py-2 rounded-lg bg-yellow-50 text-yellow-600 text-sm font-bold inline-flex items-center gap-2";
+          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-hourglass-half"></i> ${status}</span>`;
+        } else if (status === "Interview") {
+          badgeClass =
+            "px-3 py-2 rounded-lg bg-blue-50 text-blue-600 text-sm font-bold inline-flex items-center gap-2";
+          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-video"></i> ${status}</span>`;
+        } else if (status === "Rejected") {
+          badgeClass =
+            "px-3 py-2 rounded-lg bg-slate-100 text-slate-600 text-sm font-bold inline-flex items-center gap-2";
+          statusBadge.innerHTML = `<span class="${badgeClass}"><i class="fas fa-times-circle"></i> ${status}</span>`;
+        }
 
-      // Reset all steps
-      [reviewStep, interviewStep, offerStep].forEach((step) => {
-        const circle = step.querySelector("div");
-        const text = step.querySelector("span");
-        circle.className =
-          "w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center";
-        text.className = "mt-2 text-xs font-bold text-slate-400";
-      });
+        // Update timeline based on status
+        updateTimeline(status);
 
-      if (status === "In Review") {
-        progressBar.style.width = "33%";
-        reviewStep.querySelector("div").className =
-          "w-10 h-10 rounded-full bg-yellow-400 border-4 border-white shadow-md flex items-center justify-center";
-        reviewStep.querySelector("div").innerHTML =
-          '<i class="fas fa-hourglass-half text-white text-sm"></i>';
-        reviewStep.querySelector("span").className =
-          "mt-2 text-xs font-bold text-yellow-600";
-      } else if (status === "Interview") {
-        progressBar.style.width = "66%";
-        reviewStep.querySelector("div").className =
-          "w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center";
-        reviewStep.querySelector("div").innerHTML =
-          '<i class="fas fa-check text-white text-sm"></i>';
-        reviewStep.querySelector("span").className =
-          "mt-2 text-xs font-bold text-slate-700";
-
-        interviewStep.querySelector("div").className =
-          "w-10 h-10 rounded-full bg-blue-500 border-4 border-white shadow-md flex items-center justify-center";
-        interviewStep.querySelector("div").innerHTML =
-          '<i class="fas fa-video text-white text-sm"></i>';
-        interviewStep.querySelector("span").className =
-          "mt-2 text-xs font-bold text-blue-600";
-      } else if (status === "Rejected") {
-        progressBar.style.width = "33%";
-        reviewStep.querySelector("div").className =
-          "w-10 h-10 rounded-full bg-slate-400 border-4 border-white shadow-md flex items-center justify-center";
-        reviewStep.querySelector("div").innerHTML =
-          '<i class="fas fa-times text-white text-sm"></i>';
-        reviewStep.querySelector("span").className =
-          "mt-2 text-xs font-bold text-slate-600";
+        // Show modal
+        document.getElementById("viewDetailsModal").classList.remove("hidden");
+        document.getElementById("viewDetailsModal").classList.add("flex");
+        document.body.style.overflow = "hidden";
       }
-    }
 
-    function closeViewDetailsModal() {
-      document.getElementById("viewDetailsModal").classList.add("hidden");
-      document.getElementById("viewDetailsModal").classList.remove("flex");
-      document.body.style.overflow = "auto";
-    }
+      function updateTimeline(status) {
+        const reviewStep = document.getElementById("reviewStep");
+        const interviewStep = document.getElementById("interviewStep");
+        const offerStep = document.getElementById("offerStep");
+        const progressBar = document.getElementById("progressBar");
 
-    function withdrawApplication() {
-      if (confirm("Are you sure you want to withdraw this application?")) {
-        alert("Application withdrawn successfully.");
-        closeViewDetailsModal();
+        // Reset all steps
+        [reviewStep, interviewStep, offerStep].forEach((step) => {
+          const circle = step.querySelector("div");
+          const text = step.querySelector("span");
+          circle.className =
+            "w-10 h-10 rounded-full bg-slate-200 border-4 border-white shadow-md flex items-center justify-center";
+          text.className = "mt-2 text-xs font-bold text-slate-400";
+        });
+
+        if (status === "In Review") {
+          progressBar.style.width = "33%";
+          reviewStep.querySelector("div").className =
+            "w-10 h-10 rounded-full bg-yellow-400 border-4 border-white shadow-md flex items-center justify-center";
+          reviewStep.querySelector("div").innerHTML =
+            '<i class="fas fa-hourglass-half text-white text-sm"></i>';
+          reviewStep.querySelector("span").className =
+            "mt-2 text-xs font-bold text-yellow-600";
+        } else if (status === "Interview") {
+          progressBar.style.width = "66%";
+          reviewStep.querySelector("div").className =
+            "w-10 h-10 rounded-full bg-primary border-4 border-white shadow-md flex items-center justify-center";
+          reviewStep.querySelector("div").innerHTML =
+            '<i class="fas fa-check text-white text-sm"></i>';
+          reviewStep.querySelector("span").className =
+            "mt-2 text-xs font-bold text-slate-700";
+
+          interviewStep.querySelector("div").className =
+            "w-10 h-10 rounded-full bg-blue-500 border-4 border-white shadow-md flex items-center justify-center";
+          interviewStep.querySelector("div").innerHTML =
+            '<i class="fas fa-video text-white text-sm"></i>';
+          interviewStep.querySelector("span").className =
+            "mt-2 text-xs font-bold text-blue-600";
+        } else if (status === "Rejected") {
+          progressBar.style.width = "33%";
+          reviewStep.querySelector("div").className =
+            "w-10 h-10 rounded-full bg-slate-400 border-4 border-white shadow-md flex items-center justify-center";
+          reviewStep.querySelector("div").innerHTML =
+            '<i class="fas fa-times text-white text-sm"></i>';
+          reviewStep.querySelector("span").className =
+            "mt-2 text-xs font-bold text-slate-600";
+        }
       }
-    }
 
-    function downloadCoverLetter() {
-      alert("Downloading cover letter...");
-    }
+      function closeViewDetailsModal() {
+        document.getElementById("viewDetailsModal").classList.add("hidden");
+        document.getElementById("viewDetailsModal").classList.remove("flex");
+        document.body.style.overflow = "auto";
+      }
 
-    // Close modal when clicking outside
-    document
-      .getElementById("viewDetailsModal")
-      .addEventListener("click", function (e) {
-        if (e.target === this) {
+      function withdrawApplication() {
+        if (confirm("Are you sure you want to withdraw this application?")) {
+          alert("Application withdrawn successfully.");
           closeViewDetailsModal();
         }
-      });
-
-    function toggleColorBlindMode() {
-      const body = document.body;
-      const toggleBtn = document.getElementById("colorBlindToggle");
-      const isColorBlindMode = body.classList.contains("colorblind-mode");
-
-      if (isColorBlindMode) {
-        body.classList.remove("colorblind-mode");
-        toggleBtn.classList.remove("active");
-        localStorage.setItem("colorBlindMode", "false");
-      } else {
-        body.classList.add("colorblind-mode");
-        toggleBtn.classList.add("active");
-        localStorage.setItem("colorBlindMode", "true");
       }
-    }
 
-    // Initialize color blind mode from localStorage
-    window.addEventListener("DOMContentLoaded", function () {
-      const colorBlindMode = localStorage.getItem("colorBlindMode");
-      if (colorBlindMode === "true") {
-        document.body.classList.add("colorblind-mode");
-        document.getElementById("colorBlindToggle").classList.add("active");
+      function downloadCoverLetter() {
+        alert("Downloading cover letter...");
       }
-    });
 
-    // Profile Dropdown Toggle
-    function toggleProfileDropdown() {
-      const dropdown = document.getElementById('profileDropdownMenu');
-      dropdown.classList.toggle('hidden');
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (event) {
-      const dropdown = document.getElementById('profileDropdownMenu');
-      const button = document.getElementById('profileDropdown');
-
-      if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.classList.add('hidden');
-      }
-    });
-
-    // Dark Mode Logic (Toggle)
-    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    // Check local storage or system preference
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      themeToggleLightIcon.classList.remove('hidden');
-      document.documentElement.classList.add('dark');
-    } else {
-      themeToggleDarkIcon.classList.remove('hidden');
-      document.documentElement.classList.remove('dark');
-    }
-
-    var themeToggleBtn = document.getElementById('theme-toggle');
-
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', function () {
-        themeToggleDarkIcon.classList.toggle('hidden');
-        themeToggleLightIcon.classList.toggle('hidden');
-
-        if (localStorage.getItem('color-theme')) {
-          if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
+      // Close modal when clicking outside
+      document
+        .getElementById("viewDetailsModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeViewDetailsModal();
           }
+        });
+
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
+
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
         } else {
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          }
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          localStorage.setItem("colorBlindMode", "true");
+        }
+      }
+
+      // Initialize color blind mode from localStorage
+      window.addEventListener("DOMContentLoaded", function () {
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
         }
       });
-    }
-  </script>
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById('profileDropdownMenu');
+        dropdown.classList.toggle('hidden');
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('profileDropdownMenu');
+        const button = document.getElementById('profileDropdown');
+
+        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+          dropdown.classList.add('hidden');
+        }
+      });
+
+      // Dark Mode Logic (Toggle)
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+      // Check local storage or system preference
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+        document.documentElement.classList.add('dark');
+      } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+        document.documentElement.classList.remove('dark');
+      }
+
+      var themeToggleBtn = document.getElementById('theme-toggle');
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function () {
+          themeToggleDarkIcon.classList.toggle('hidden');
+          themeToggleLightIcon.classList.toggle('hidden');
+
+          if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+            }
+          } else {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+            }
+          }
+        });
+      }
+    </script>
+  </div>
 </body>
 
 </html>

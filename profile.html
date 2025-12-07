@@ -150,27 +150,27 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex flex-col overflow-hidden relative">
-    <!-- Header -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
     <header
-      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-      <h1 class="text-2xl font-bold text-slate-800 font-heading">
-        My Profile
-      </h1>
+      class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 dark:bg-slate-900/80 dark:border-slate-800 transition-colors flex items-center justify-between px-8 sticky top-0 z-10">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800 font-heading dark:text-white">Profile</h1>
+      </div>
+
       <div class="flex items-center gap-4">
-        <!-- Dark Mode Toggle -->
         <button id="theme-toggle" type="button"
-          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+          class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm p-2.5"
           title="Toggle Dark Mode">
           <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
           <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
         </button>
+
         <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
           class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
           title="Toggle Color Blind Mode">
           <i class="fas fa-eye"></i>
         </button>
+
         <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
           <button id="profileDropdown" onclick="toggleProfileDropdown()"
             class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
@@ -432,288 +432,289 @@ Passionate software engineer with 5+ years of experience in web development. Spe
         </div>
       </div>
     </div>
-  </main>
+    </main>
 
-  <script>
-    // Initialize Dark Mode from localStorage
-    if (localStorage.getItem("darkMode") === "true") {
-      document.documentElement.classList.add("dark");
-    }
-
-    // Color Blind Mode Toggle
-    function toggleColorBlindMode() {
-      const body = document.body;
-      const toggleBtn = document.getElementById("colorBlindToggle");
-      const isColorBlindMode = body.classList.contains("colorblind-mode");
-
-      if (isColorBlindMode) {
-        body.classList.remove("colorblind-mode");
-        toggleBtn.classList.remove("active");
-        localStorage.setItem("colorBlindMode", "false");
-      } else {
-        body.classList.add("colorblind-mode");
-        toggleBtn.classList.add("active");
-        localStorage.setItem("colorBlindMode", "true");
-      }
-    }
-
-    // Initialize color blind mode from localStorage
-    window.addEventListener("DOMContentLoaded", function () {
-      const colorBlindMode = localStorage.getItem("colorBlindMode");
-      if (colorBlindMode === "true") {
-        document.body.classList.add("colorblind-mode");
-        document.getElementById("colorBlindToggle").classList.add("active");
-      }
-    });
-
-    // Profile Dropdown Toggle
-    function toggleProfileDropdown() {
-      const dropdown = document.getElementById("profileDropdownMenu");
-      dropdown.classList.toggle("hidden");
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", function (event) {
-      const dropdown = document.getElementById("profileDropdownMenu");
-      const button = document.getElementById("profileDropdown");
-
-      if (
-        !button.contains(event.target) &&
-        !dropdown.contains(event.target)
-      ) {
-        dropdown.classList.add("hidden");
-      }
-    });
-
-    // Photo Upload
-    function handlePhotoUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById("profileImage").src = e.target.result;
-          document.getElementById("headerProfileImage").src = e.target.result;
-          alert("Profile photo updated successfully!");
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Resume Upload
-    function handleResumeUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        if (file.size > 5 * 1024 * 1024) {
-          alert("File size exceeds 5MB limit");
-          return;
-        }
-        document.getElementById("resumeFileName").textContent = file.name;
-        document.getElementById("resumeUploadArea").classList.add("hidden");
-        document.getElementById("resumePreview").classList.remove("hidden");
-      }
-    }
-
-    function viewResume() {
-      alert("Opening resume in new tab...");
-    }
-
-    function removeResume() {
-      if (confirm("Are you sure you want to remove your resume?")) {
-        document.getElementById("resumeUpload").value = "";
-        document
-          .getElementById("resumeUploadArea")
-          .classList.remove("hidden");
-        document.getElementById("resumePreview").classList.add("hidden");
-      }
-    }
-
-    // Edit Mode Functions
-    function toggleEditMode(section) {
-      const form = document.getElementById(section + "Form");
-      const inputs = form.querySelectorAll("input, textarea, select");
-      const actions = document.getElementById(section + "Actions");
-      const editBtn = document.getElementById(
-        "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
-      );
-
-      inputs.forEach((input) => {
-        input.disabled = !input.disabled;
-        if (!input.disabled) {
-          input.classList.remove("bg-slate-50", "opacity-60");
-          input.classList.add("bg-white");
-        }
-      });
-
-      actions.classList.toggle("hidden");
-      editBtn.classList.toggle("hidden");
-    }
-
-    function cancelEdit(section) {
-      const form = document.getElementById(section + "Form");
-      const inputs = form.querySelectorAll("input, textarea, select");
-      const actions = document.getElementById(section + "Actions");
-      const editBtn = document.getElementById(
-        "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
-      );
-
-      inputs.forEach((input) => {
-        input.disabled = true;
-        input.classList.add("bg-slate-50", "opacity-60");
-        input.classList.remove("bg-white");
-      });
-
-      actions.classList.add("hidden");
-      editBtn.classList.remove("hidden");
-    }
-
-    function savePersonalInfo() {
-      const fullName = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const location = document.getElementById("location").value;
-
-      // Update display values
-      document.getElementById("displayName").textContent = fullName;
-      document.getElementById("headerName").textContent = fullName;
-      document.getElementById("displayEmail").textContent = email;
-      document.getElementById("displayLocation").textContent = location;
-
-      // Save to localStorage
-      const profileData = {
-        fullName,
-        email,
-        phone: document.getElementById("phone").value,
-        location,
-        bio: document.getElementById("bio").value,
-      };
-      localStorage.setItem("personalInfo", JSON.stringify(profileData));
-
-      alert("Personal information saved successfully! ✓");
-      cancelEdit("personal");
-    }
-
-    function saveProfessionalInfo() {
-      const jobTitle = document.getElementById("jobTitle").value;
-
-      // Update display values
-      document.getElementById("displayJobTitle").textContent = jobTitle;
-      document.getElementById("headerJobTitle").textContent = jobTitle;
-
-      // Save to localStorage
-      const professionalData = {
-        jobTitle,
-        experience: document.getElementById("experience").value,
-        linkedin: document.getElementById("linkedin").value,
-      };
-      localStorage.setItem(
-        "professionalInfo",
-        JSON.stringify(professionalData)
-      );
-
-      alert("Professional information saved successfully! ✓");
-      cancelEdit("professional");
-    }
-
-    // Skill Management
-    document
-      .getElementById("skillInput")
-      .addEventListener("keypress", function (e) {
-        if (e.key === "Enter" && !this.disabled) {
-          e.preventDefault();
-          const skill = this.value.trim();
-          if (skill) {
-            const skillsList = document.getElementById("skillsList");
-            const skillTag = document.createElement("span");
-            skillTag.className =
-              "px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium flex items-center gap-2";
-            skillTag.innerHTML = `${skill} <button onclick="this.parentElement.remove()" class="hover:text-red-600"><i class="fas fa-times text-xs"></i></button>`;
-            skillsList.appendChild(skillTag);
-            this.value = "";
-          }
-        }
-      });
-
-    // Load saved data on page load
-    window.addEventListener("DOMContentLoaded", function () {
-      const savedPersonal = localStorage.getItem("personalInfo");
-      const savedProfessional = localStorage.getItem("professionalInfo");
-
-      if (savedPersonal) {
-        const data = JSON.parse(savedPersonal);
-        document.getElementById("fullName").value = data.fullName;
-        document.getElementById("email").value = data.email;
-        document.getElementById("phone").value = data.phone;
-        document.getElementById("location").value = data.location;
-        document.getElementById("bio").value = data.bio;
-
-        // Update display
-        document.getElementById("displayName").textContent = data.fullName;
-        document.getElementById("headerName").textContent = data.fullName;
-        document.getElementById("displayEmail").textContent = data.email;
-        document.getElementById("displayLocation").textContent =
-          data.location;
+    <script>
+      // Initialize Dark Mode from localStorage
+      if (localStorage.getItem("darkMode") === "true") {
+        document.documentElement.classList.add("dark");
       }
 
-      if (savedProfessional) {
-        const data = JSON.parse(savedProfessional);
-        document.getElementById("jobTitle").value = data.jobTitle;
-        document.getElementById("experience").value = data.experience;
-        document.getElementById("linkedin").value = data.linkedin;
+      // Color Blind Mode Toggle
+      function toggleColorBlindMode() {
+        const body = document.body;
+        const toggleBtn = document.getElementById("colorBlindToggle");
+        const isColorBlindMode = body.classList.contains("colorblind-mode");
 
-        // Update display
-        document.getElementById("displayJobTitle").textContent =
-          data.jobTitle;
-        document.getElementById("headerJobTitle").textContent = data.jobTitle;
-      }
-    });
-
-    // Dark Mode Logic (Toggle)
-    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    function updateThemeIcons() {
-      if (document.documentElement.classList.contains('dark')) {
-        themeToggleLightIcon.classList.remove('hidden');
-        themeToggleDarkIcon.classList.add('hidden');
-      } else {
-        themeToggleLightIcon.classList.add('hidden');
-        themeToggleDarkIcon.classList.remove('hidden');
-      }
-    }
-
-    // Initial Icon check
-    updateThemeIcons();
-
-    var themeToggleBtn = document.getElementById('theme-toggle');
-
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', function () {
-        // Toggle icons handled by updateThemeIcons
-
-        if (localStorage.getItem('color-theme')) {
-          if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-            localStorage.setItem('darkMode', 'true'); // Sync with other logic
-          } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-            localStorage.setItem('darkMode', 'false');
-          }
+        if (isColorBlindMode) {
+          body.classList.remove("colorblind-mode");
+          toggleBtn.classList.remove("active");
+          localStorage.setItem("colorBlindMode", "false");
         } else {
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-            localStorage.setItem('darkMode', 'false');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-            localStorage.setItem('darkMode', 'true');
-          }
+          body.classList.add("colorblind-mode");
+          toggleBtn.classList.add("active");
+          localStorage.setItem("colorBlindMode", "true");
         }
-        updateThemeIcons();
+      }
+
+      // Initialize color blind mode from localStorage
+      window.addEventListener("DOMContentLoaded", function () {
+        const colorBlindMode = localStorage.getItem("colorBlindMode");
+        if (colorBlindMode === "true") {
+          document.body.classList.add("colorblind-mode");
+          document.getElementById("colorBlindToggle").classList.add("active");
+        }
       });
-    }
-  </script>
+
+      // Profile Dropdown Toggle
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdownMenu");
+        const button = document.getElementById("profileDropdown");
+
+        if (
+          !button.contains(event.target) &&
+          !dropdown.contains(event.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // Photo Upload
+      function handlePhotoUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById("profileImage").src = e.target.result;
+            document.getElementById("headerProfileImage").src = e.target.result;
+            alert("Profile photo updated successfully!");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      // Resume Upload
+      function handleResumeUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          if (file.size > 5 * 1024 * 1024) {
+            alert("File size exceeds 5MB limit");
+            return;
+          }
+          document.getElementById("resumeFileName").textContent = file.name;
+          document.getElementById("resumeUploadArea").classList.add("hidden");
+          document.getElementById("resumePreview").classList.remove("hidden");
+        }
+      }
+
+      function viewResume() {
+        alert("Opening resume in new tab...");
+      }
+
+      function removeResume() {
+        if (confirm("Are you sure you want to remove your resume?")) {
+          document.getElementById("resumeUpload").value = "";
+          document
+            .getElementById("resumeUploadArea")
+            .classList.remove("hidden");
+          document.getElementById("resumePreview").classList.add("hidden");
+        }
+      }
+
+      // Edit Mode Functions
+      function toggleEditMode(section) {
+        const form = document.getElementById(section + "Form");
+        const inputs = form.querySelectorAll("input, textarea, select");
+        const actions = document.getElementById(section + "Actions");
+        const editBtn = document.getElementById(
+          "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
+        );
+
+        inputs.forEach((input) => {
+          input.disabled = !input.disabled;
+          if (!input.disabled) {
+            input.classList.remove("bg-slate-50", "opacity-60");
+            input.classList.add("bg-white");
+          }
+        });
+
+        actions.classList.toggle("hidden");
+        editBtn.classList.toggle("hidden");
+      }
+
+      function cancelEdit(section) {
+        const form = document.getElementById(section + "Form");
+        const inputs = form.querySelectorAll("input, textarea, select");
+        const actions = document.getElementById(section + "Actions");
+        const editBtn = document.getElementById(
+          "edit" + section.charAt(0).toUpperCase() + section.slice(1) + "Btn"
+        );
+
+        inputs.forEach((input) => {
+          input.disabled = true;
+          input.classList.add("bg-slate-50", "opacity-60");
+          input.classList.remove("bg-white");
+        });
+
+        actions.classList.add("hidden");
+        editBtn.classList.remove("hidden");
+      }
+
+      function savePersonalInfo() {
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const location = document.getElementById("location").value;
+
+        // Update display values
+        document.getElementById("displayName").textContent = fullName;
+        document.getElementById("headerName").textContent = fullName;
+        document.getElementById("displayEmail").textContent = email;
+        document.getElementById("displayLocation").textContent = location;
+
+        // Save to localStorage
+        const profileData = {
+          fullName,
+          email,
+          phone: document.getElementById("phone").value,
+          location,
+          bio: document.getElementById("bio").value,
+        };
+        localStorage.setItem("personalInfo", JSON.stringify(profileData));
+
+        alert("Personal information saved successfully! ✓");
+        cancelEdit("personal");
+      }
+
+      function saveProfessionalInfo() {
+        const jobTitle = document.getElementById("jobTitle").value;
+
+        // Update display values
+        document.getElementById("displayJobTitle").textContent = jobTitle;
+        document.getElementById("headerJobTitle").textContent = jobTitle;
+
+        // Save to localStorage
+        const professionalData = {
+          jobTitle,
+          experience: document.getElementById("experience").value,
+          linkedin: document.getElementById("linkedin").value,
+        };
+        localStorage.setItem(
+          "professionalInfo",
+          JSON.stringify(professionalData)
+        );
+
+        alert("Professional information saved successfully! ✓");
+        cancelEdit("professional");
+      }
+
+      // Skill Management
+      document
+        .getElementById("skillInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter" && !this.disabled) {
+            e.preventDefault();
+            const skill = this.value.trim();
+            if (skill) {
+              const skillsList = document.getElementById("skillsList");
+              const skillTag = document.createElement("span");
+              skillTag.className =
+                "px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium flex items-center gap-2";
+              skillTag.innerHTML = `${skill} <button onclick="this.parentElement.remove()" class="hover:text-red-600"><i class="fas fa-times text-xs"></i></button>`;
+              skillsList.appendChild(skillTag);
+              this.value = "";
+            }
+          }
+        });
+
+      // Load saved data on page load
+      window.addEventListener("DOMContentLoaded", function () {
+        const savedPersonal = localStorage.getItem("personalInfo");
+        const savedProfessional = localStorage.getItem("professionalInfo");
+
+        if (savedPersonal) {
+          const data = JSON.parse(savedPersonal);
+          document.getElementById("fullName").value = data.fullName;
+          document.getElementById("email").value = data.email;
+          document.getElementById("phone").value = data.phone;
+          document.getElementById("location").value = data.location;
+          document.getElementById("bio").value = data.bio;
+
+          // Update display
+          document.getElementById("displayName").textContent = data.fullName;
+          document.getElementById("headerName").textContent = data.fullName;
+          document.getElementById("displayEmail").textContent = data.email;
+          document.getElementById("displayLocation").textContent =
+            data.location;
+        }
+
+        if (savedProfessional) {
+          const data = JSON.parse(savedProfessional);
+          document.getElementById("jobTitle").value = data.jobTitle;
+          document.getElementById("experience").value = data.experience;
+          document.getElementById("linkedin").value = data.linkedin;
+
+          // Update display
+          document.getElementById("displayJobTitle").textContent =
+            data.jobTitle;
+          document.getElementById("headerJobTitle").textContent = data.jobTitle;
+        }
+      });
+
+      // Dark Mode Logic (Toggle)
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+      function updateThemeIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          themeToggleLightIcon.classList.remove('hidden');
+          themeToggleDarkIcon.classList.add('hidden');
+        } else {
+          themeToggleLightIcon.classList.add('hidden');
+          themeToggleDarkIcon.classList.remove('hidden');
+        }
+      }
+
+      // Initial Icon check
+      updateThemeIcons();
+
+      var themeToggleBtn = document.getElementById('theme-toggle');
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function () {
+          // Toggle icons handled by updateThemeIcons
+
+          if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+              localStorage.setItem('darkMode', 'true'); // Sync with other logic
+            } else {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+              localStorage.setItem('darkMode', 'false');
+            }
+          } else {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+              localStorage.setItem('darkMode', 'false');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+              localStorage.setItem('darkMode', 'true');
+            }
+          }
+          updateThemeIcons();
+        });
+      }
+    </script>
+  </div>
 </body>
 
 </html>

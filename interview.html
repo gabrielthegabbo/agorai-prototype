@@ -131,24 +131,64 @@
         </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col overflow-hidden relative">
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
         <header
-            class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
-            <h1 class="text-2xl font-bold text-slate-800 font-heading">AI Interview Practice</h1>
+            class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 dark:bg-slate-900/80 dark:border-slate-800 transition-colors flex items-center justify-between px-8 sticky top-0 z-10">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800 font-heading dark:text-white">Interviews</h1>
+            </div>
+
             <div class="flex items-center gap-4">
                 <button id="theme-toggle" type="button"
-                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+                    class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm p-2.5"
                     title="Toggle Dark Mode">
                     <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
                     <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
                 </button>
-                <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
-                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                        class="w-9 h-9 rounded-full border-2 border-white shadow-sm">
-                    <div class="hidden md:block">
-                        <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
-                        <div class="text-xs text-slate-500">Software Engineer</div>
+
+                <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
+                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+                    title="Toggle Color Blind Mode">
+                    <i class="fas fa-eye"></i>
+                </button>
+
+                <button
+                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+
+                <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
+                    <button id="profileDropdown" onclick="toggleProfileDropdown()"
+                        class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                            class="w-9 h-9 rounded-full border-2 border-white shadow-sm" />
+                        <div class="hidden md:block text-left">
+                            <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
+                            <div class="text-xs text-slate-500">Software Engineer</div>
+                        </div>
+                        <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="profileDropdownMenu"
+                        class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+                        <a href="profile.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-user text-primary w-5"></i>
+                            <span class="font-medium">Profile</span>
+                        </a>
+                        <a href="settings.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-cog text-primary w-5"></i>
+                            <span class="font-medium">Settings</span>
+                        </a>
+                        <div class="border-t border-slate-100 my-2"></div>
+                        <a href="index.html"
+                            class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span class="font-medium">Logout</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -210,7 +250,8 @@
 
                         <!-- Skills -->
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Detected Skills
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Detected
+                                Skills
                             </h4>
                             <div class="flex flex-wrap gap-2">
                                 <span
@@ -227,7 +268,8 @@
 
                         <!-- Key Highlights -->
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Key Highlights
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Key
+                                Highlights
                             </h4>
                             <ul class="space-y-2">
                                 <li class="flex gap-3 text-sm text-slate-600">
@@ -252,90 +294,92 @@
                             disabled>
                             Start Interview
                         </button>
-                        <p class="text-center text-xs text-slate-400 mt-3">Upload a resume to unlock the interview.</p>
+                        <p class="text-center text-xs text-slate-400 mt-3">Upload a resume to unlock the interview.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+        </main>
 
-    <script>
-        // Dark Mode Logic
-        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        <script>
+            // Dark Mode Logic
+            var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // Check local storage or system preference
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            themeToggleLightIcon.classList.remove('hidden');
-            document.documentElement.classList.add('dark');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-            document.documentElement.classList.remove('dark');
-        }
-
-        var themeToggleBtn = document.getElementById('theme-toggle');
-
-        themeToggleBtn.addEventListener('click', function () {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+            // Check local storage or system preference
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.add('dark');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                themeToggleDarkIcon.classList.remove('hidden');
+                document.documentElement.classList.remove('dark');
             }
-        });
-        function handleFileUpload(input) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
 
-                // Simulate processing delay
-                const summaryEmpty = document.getElementById('summary-empty');
-                const summaryContent = document.getElementById('summary-content');
-                const startBtn = document.getElementById('start-btn');
+            var themeToggleBtn = document.getElementById('theme-toggle');
 
-                // Show loading state (optional, but good UX)
-                summaryEmpty.innerHTML = `
+            themeToggleBtn.addEventListener('click', function () {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+            });
+            function handleFileUpload(input) {
+                if (input.files && input.files[0]) {
+                    const file = input.files[0];
+
+                    // Simulate processing delay
+                    const summaryEmpty = document.getElementById('summary-empty');
+                    const summaryContent = document.getElementById('summary-content');
+                    const startBtn = document.getElementById('start-btn');
+
+                    // Show loading state (optional, but good UX)
+                    summaryEmpty.innerHTML = `
                     <div class="animate-spin w-10 h-10 border-4 border-primary border-t-transparent rounded-full mb-4"></div>
                     <p class="text-slate-500 font-medium">Analyzing resume...</p>
                 `;
 
-                setTimeout(() => {
-                    // Show content
-                    summaryEmpty.classList.add('hidden');
-                    summaryContent.classList.remove('hidden');
+                    setTimeout(() => {
+                        // Show content
+                        summaryEmpty.classList.add('hidden');
+                        summaryContent.classList.remove('hidden');
 
-                    // Enable button
-                    startBtn.disabled = false;
-                    startBtn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
-                    startBtn.classList.add('bg-primary', 'text-white', 'hover:bg-indigo-600', 'shadow-lg', 'shadow-primary/20');
+                        // Enable button
+                        startBtn.disabled = false;
+                        startBtn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+                        startBtn.classList.add('bg-primary', 'text-white', 'hover:bg-indigo-600', 'shadow-lg', 'shadow-primary/20');
 
-                    // Update button text to indicate readiness
-                    startBtn.innerHTML = 'Start Interview <i class="fas fa-arrow-right ml-2"></i>';
+                        // Update button text to indicate readiness
+                        startBtn.innerHTML = 'Start Interview <i class="fas fa-arrow-right ml-2"></i>';
 
-                    // Alert user
-                    // alert(`Resume "${file.name}" uploaded and analyzed successfully!`);
-                }, 1500);
+                        // Alert user
+                        // alert(`Resume "${file.name}" uploaded and analyzed successfully!`);
+                    }, 1500);
+                }
             }
-        }
 
-        async function toggleInterview() {
-            // Open the full-screen interview session in a new tab
-            window.open('interview-session.html', '_blank');
-        }
-    </script>
+            async function toggleInterview() {
+                // Open the full-screen interview session in a new tab
+                window.open('interview-session.html', '_blank');
+            }
+        </script>
+    </div>
 </body>
 
 </html>
