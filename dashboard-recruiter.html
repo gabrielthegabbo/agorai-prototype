@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -31,15 +32,87 @@
             }
         }
     </script>
+    <style>
+        /* Dark Mode Styles */
+        .dark {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .dark .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        .dark .bg-slate-50 {
+            background-color: #0f172a !important;
+        }
+
+        .dark .text-slate-800 {
+            color: #e2e8f0 !important;
+        }
+
+        .dark .text-slate-700 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark .text-slate-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        .dark .text-slate-400 {
+            color: #475569 !important;
+        }
+
+        .dark .border-slate-100 {
+            border-color: #334155 !important;
+        }
+
+        .dark .border-slate-200 {
+            border-color: #475569 !important;
+        }
+
+        .dark .bg-slate-100 {
+            background-color: #1e293b !important;
+        }
+
+        .dark input:not([type="checkbox"]):not([type="radio"]),
+        .dark select,
+        .dark textarea {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: #475569 !important;
+        }
+
+        .dark .hover\:bg-slate-50:hover {
+            background-color: #1e293b !important;
+        }
+
+        .dark .hover\:bg-slate-100:hover {
+            background-color: #334155 !important;
+        }
+
+        .dark .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden">
+<body
+    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden transition-colors duration-200">
     <!-- Left Sidebar -->
     <aside class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex">
         <!-- Logo -->
         <div class="h-20 flex items-center px-8">
             <a href="index.html" class="flex items-center gap-2">
-                <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8">
+                <img src="assets/images/agorai-logo-v2.png" alt="Agorai Logo" class="w-10 h-10">
                 <span class="font-heading font-bold text-xl text-slate-800">Agorai</span>
             </a>
         </div>
@@ -56,18 +129,6 @@
             <a href="manage-applications.html"
                 class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
                 <i class="fas fa-file-alt w-5"></i> Applications
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-users w-5"></i> Team
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-wallet w-5"></i> Billing
-            </a>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-                <i class="fas fa-chart-bar w-5"></i> Reports
             </a>
         </nav>
         <!-- Upgrade Card -->
@@ -103,6 +164,47 @@
                     <input type="text" placeholder="Search..."
                         class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all">
                     <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+                <button id="theme-toggle" type="button"
+                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+                    title="Toggle Dark Mode">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                </button>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative pl-4 border-l border-slate-200">
+                    <button onclick="toggleProfileDropdown()"
+                        class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors text-left">
+                        <img src="https://ui-avatars.com/api/?name=Angelina+Julie&background=FFEDD5&color=C2410C"
+                            class="w-9 h-9 rounded-full border-2 border-white shadow-sm">
+                        <div class="hidden md:block">
+                            <div class="text-sm font-bold text-slate-800">Jarren Aceret</div>
+                            <div class="text-xs text-slate-500">Recruiting Manager</div>
+                        </div>
+                        <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="profileDropdownMenu"
+                        class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+                        <a href="profile.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-user text-primary w-5"></i>
+                            <span class="font-medium">Profile</span>
+                        </a>
+                        <a href="settings.html"
+                            class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-cog text-primary w-5"></i>
+                            <span class="font-medium">Settings</span>
+                        </a>
+                        <div class="border-t border-slate-100 my-2"></div>
+                        <a href="index.html"
+                            class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span class="font-medium">Logout</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
@@ -169,7 +271,14 @@
                     <!-- Chart Section -->
                     <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                         <div class="flex justify-between items-center mb-6">
-                            <h3 class="font-bold text-lg text-slate-800">Top Active Jobs</h3>
+                            <div class="flex items-center gap-4">
+                                <h3 class="font-bold text-lg text-slate-800">Top Active Jobs</h3>
+                                <button onclick="clearPostedJobs()"
+                                    class="text-xs text-red-500 hover:text-red-700 font-medium bg-red-50 px-2 py-1 rounded-md transition-colors"
+                                    title="Delete all manually posted jobs">
+                                    <i class="fas fa-trash-alt mr-1"></i> Clear Posted
+                                </button>
+                            </div>
                             <div class="flex gap-4">
                                 <label
                                     class="flex items-center gap-2 text-xs font-medium text-slate-600 cursor-pointer">
@@ -198,7 +307,7 @@
                             <h3 class="font-bold text-lg text-slate-800">Job Title</h3>
                             <span class="text-xs font-bold text-slate-400 uppercase">Applications</span>
                         </div>
-                        <div class="space-y-4">
+                        <div class="space-y-4" id="jobListContainer">
                             <div
                                 class="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors">
                                 <span class="font-medium text-slate-700">Full Stack Developer</span>
@@ -302,7 +411,7 @@
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Douglas"
                                     class="w-10 h-10 rounded-full bg-slate-100">
                                 <div>
-                                    <div class="font-bold text-sm text-slate-800">Douglas Ray</div>
+                                    <div class="font-bold text-sm text-slate-800">Jarren Aceret</div>
                                     <div class="text-xs text-slate-500">Applied for <span
                                             class="text-slate-700 font-medium">iOS Developer</span></div>
                                 </div>
@@ -311,7 +420,7 @@
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Elizabeth"
                                     class="w-10 h-10 rounded-full bg-slate-100">
                                 <div>
-                                    <div class="font-bold text-sm text-slate-800">Elizabeth Martin</div>
+                                    <div class="font-bold text-sm text-slate-800">Jomar Lazaro</div>
                                     <div class="text-xs text-slate-500">Applied for <span
                                             class="text-slate-700 font-medium">Full Stack Developer</span></div>
                                 </div>
@@ -320,7 +429,7 @@
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
                                     class="w-10 h-10 rounded-full bg-slate-100">
                                 <div>
-                                    <div class="font-bold text-sm text-slate-800">Emma Wade</div>
+                                    <div class="font-bold text-sm text-slate-800">Derek Lagadon</div>
                                     <div class="text-xs text-slate-500">Applied for <span
                                             class="text-slate-700 font-medium">Product Designer</span></div>
                                 </div>
@@ -329,7 +438,7 @@
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Teresa"
                                     class="w-10 h-10 rounded-full bg-slate-100">
                                 <div>
-                                    <div class="font-bold text-sm text-slate-800">Teresa Reyes</div>
+                                    <div class="font-bold text-sm text-slate-800">Gabriel Adajar</div>
                                     <div class="text-xs text-slate-500">Applied for <span
                                             class="text-slate-700 font-medium">Design Lead</span></div>
                                 </div>
@@ -338,7 +447,7 @@
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Crystal"
                                     class="w-10 h-10 rounded-full bg-slate-100">
                                 <div>
-                                    <div class="font-bold text-sm text-slate-800">Crystal Austin</div>
+                                    <div class="font-bold text-sm text-slate-800">Paulo Pascua</div>
                                     <div class="text-xs text-slate-500">Applied for <span
                                             class="text-slate-700 font-medium">Marketing Manager</span></div>
                                 </div>
@@ -352,17 +461,7 @@
 
     <!-- Right Sidebar -->
     <aside class="w-80 bg-white border-l border-slate-100 hidden xl:flex flex-col z-20">
-        <!-- Profile -->
-        <div class="p-8 text-center border-b border-slate-100">
-            <div class="relative inline-block">
-                <img src="https://ui-avatars.com/api/?name=Angelina+Julie&background=FFEDD5&color=C2410C"
-                    class="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-orange-50">
-            </div>
-            <h3 class="font-bold text-lg text-slate-800">Angelina Julie</h3>
-            <p class="text-sm text-slate-500">Recruiting Manager</p>
-        </div>
 
-        <!-- Messages -->
         <div class="p-6 border-b border-slate-100 flex-1 overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="font-bold text-slate-800">Messages</h3>
@@ -373,7 +472,7 @@
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Carol"
                         class="w-10 h-10 rounded-full bg-slate-100">
                     <div>
-                        <div class="font-bold text-sm text-slate-800">Carol Ferdina</div>
+                        <div class="font-bold text-sm text-slate-800">Jomar Lazaro</div>
                         <p class="text-xs text-slate-500 line-clamp-2">Have you planned for any deadline regarding
                             the...</p>
                     </div>
@@ -382,7 +481,7 @@
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rob"
                         class="w-10 h-10 rounded-full bg-slate-100">
                     <div>
-                        <div class="font-bold text-sm text-slate-800">Rob Dial</div>
+                        <div class="font-bold text-sm text-slate-800">Derek Lagadon</div>
                         <p class="text-xs text-slate-500 line-clamp-2">The candidate has been shortlisted for the...</p>
                     </div>
                 </div>
@@ -437,15 +536,99 @@
             </div>
         </div>
 
-        <div class="p-4 border-t border-slate-100">
-            <a href="index.html"
-                class="flex items-center justify-center gap-2 text-slate-500 hover:text-primary transition-colors text-sm font-medium">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-        </div>
+
     </aside>
 
     <script>
+        function toggleProfileDropdown() {
+            const menu = document.getElementById('profileDropdownMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('profileDropdownMenu');
+            const button = document.querySelector('button[onclick="toggleProfileDropdown()"]');
+            if (dropdown && !dropdown.classList.contains('hidden') && !button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Load Saved Jobs from localStorage
+        function loadJobs() {
+            const jobs = JSON.parse(localStorage.getItem('agora_jobs') || '[]');
+            const container = document.getElementById('jobListContainer');
+
+            if (jobs.length > 0) {
+                // Create HTML for saved jobs
+                const jobsHTML = jobs.map(job => `
+                    <div class="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors border-l-4 border-green-400 bg-green-50/10">
+                        <div>
+                            <span class="font-medium text-slate-700 block">${job.title}</span>
+                            <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Posted: ${job.datePosted || 'Just now'}</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="font-bold text-slate-800">${job.applications}</span>
+                            <button class="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Insert at the beginning of the container
+                container.innerHTML = jobsHTML + container.innerHTML;
+            }
+        }
+
+        function clearPostedJobs() {
+            if (confirm('Are you sure you want to delete all manually posted jobs?')) {
+                localStorage.removeItem('agora_jobs');
+                window.location.reload();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadJobs);
+
+        // Dark Mode Logic
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check local storage or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function () {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
         // Chart.js Implementation
         const ctx = document.getElementById('activeJobsChart').getContext('2d');
 

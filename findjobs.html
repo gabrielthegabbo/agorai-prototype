@@ -1,712 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agorai | Find Jobs</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#4F46E5",
-              secondary: "#0EA5E9",
-              surface: "#F8FAFC",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              heading: ["Poppins", "sans-serif"],
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agorai | Find Jobs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4F46E5",
+            secondary: "#0EA5E9",
+            surface: "#F8FAFC",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            heading: ["Poppins", "sans-serif"],
           },
         },
-      };
-    </script>
-    <style>
-      /* Color Blind Mode Styles */
-      body.colorblind-mode {
-        --cb-primary: #0066cc;
-        --cb-secondary: #ff9900;
-        --cb-success: #0099cc;
-      }
-      body.colorblind-mode .bg-primary,
-      body.colorblind-mode .text-primary,
-      body.colorblind-mode .border-primary {
-        background-color: var(--cb-primary) !important;
-        color: white !important;
-      }
-      body.colorblind-mode .text-primary {
-        color: var(--cb-primary) !important;
-        background-color: transparent !important;
-      }
-      body.colorblind-mode .text-orange-500 {
-        color: var(--cb-secondary) !important;
-      }
-      #colorBlindToggle.active {
-        background-color: #0066cc !important;
-        color: white !important;
-      }
+      },
+    };
+  </script>
+  <style>
+    /* Color Blind Mode Styles */
+    body.colorblind-mode {
+      --cb-primary: #0066cc;
+      --cb-secondary: #ff9900;
+      --cb-success: #0099cc;
+    }
 
-      /* Dark Mode Styles */
-      .dark {
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
+    body.colorblind-mode .bg-primary,
+    body.colorblind-mode .text-primary,
+    body.colorblind-mode .border-primary {
+      background-color: var(--cb-primary) !important;
+      color: white !important;
+    }
 
-      .dark .bg-white {
-        background-color: #1e293b !important;
-      }
+    body.colorblind-mode .text-primary {
+      color: var(--cb-primary) !important;
+      background-color: transparent !important;
+    }
 
-      .dark .bg-slate-50 {
-        background-color: #0f172a !important;
-      }
+    body.colorblind-mode .text-orange-500 {
+      color: var(--cb-secondary) !important;
+    }
 
-      .dark .text-slate-800 {
-        color: #e2e8f0 !important;
-      }
+    #colorBlindToggle.active {
+      background-color: #0066cc !important;
+      color: white !important;
+    }
 
-      .dark .text-slate-700 {
-        color: #cbd5e1 !important;
-      }
+    /* Dark Mode Styles */
+    .dark {
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
 
-      .dark .text-slate-600 {
-        color: #94a3b8 !important;
-      }
+    .dark .bg-white {
+      background-color: #1e293b !important;
+    }
 
-      .dark .text-slate-500 {
-        color: #64748b !important;
-      }
+    .dark .bg-slate-50 {
+      background-color: #0f172a !important;
+    }
 
-      .dark .text-slate-400 {
-        color: #475569 !important;
-      }
+    .dark .text-slate-800 {
+      color: #e2e8f0 !important;
+    }
 
-      .dark .border-slate-100 {
-        border-color: #334155 !important;
-      }
+    .dark .text-slate-700 {
+      color: #cbd5e1 !important;
+    }
 
-      .dark .border-slate-200 {
-        border-color: #475569 !important;
-      }
+    .dark .text-slate-600 {
+      color: #94a3b8 !important;
+    }
 
-      .dark .bg-slate-100 {
-        background-color: #1e293b !important;
-      }
+    .dark .text-slate-500 {
+      color: #64748b !important;
+    }
 
-      .dark input,
-      .dark select,
-      .dark textarea {
-        background-color: #1e293b !important;
-        color: #e2e8f0 !important;
-        border-color: #475569 !important;
-      }
+    .dark .text-slate-400 {
+      color: #475569 !important;
+    }
 
-      .dark .hover\:bg-slate-50:hover {
-        background-color: #1e293b !important;
-      }
+    .dark .border-slate-100 {
+      border-color: #334155 !important;
+    }
 
-      .dark .hover\:bg-slate-100:hover {
-        background-color: #334155 !important;
-      }
-    </style>
-  </head>
+    .dark .border-slate-200 {
+      border-color: #475569 !important;
+    }
 
-  <body
-    class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden"
-  >
-    <!-- Left Sidebar -->
-    <aside
-      class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex"
-    >
-      <div class="h-20 flex items-center px-8">
-        <a href="index.html" class="flex items-center gap-2">
-          <img src="assets/images/logo.png" alt="Agorai Logo" class="w-8 h-8" />
-          <span class="font-heading font-bold text-xl text-slate-800"
-            >Agorai</span
-          >
-        </a>
-      </div>
-      <nav class="flex-1 px-4 space-y-2 py-4">
-        <a
-          href="dashboard-jobseeker.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-th-large w-5"></i> Dashboard
-        </a>
-        <a
-          href="findjobs.html"
-          class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary"
-        >
-          <i class="fas fa-search w-5"></i> Find Jobs
-        </a>
-        <a
-          href="myapplication.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-file-alt w-5"></i> My Applications
-        </a>
-        <a
-          href="interview.html"
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors"
-        >
-          <i class="fas fa-video w-5"></i> Interviews
-        </a>
-      </nav>
-    </aside>
+    .dark .bg-slate-100 {
+      background-color: #1e293b !important;
+    }
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col overflow-hidden relative">
-      <!-- Header -->
-      <header
-        class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10"
-      >
-        <h1 class="text-2xl font-bold text-slate-800 font-heading">
-          Find Jobs
-        </h1>
-        <div class="flex items-center gap-4">
-          <div class="relative hidden md:block">
-            <input
-              type="text"
-              placeholder="Search for jobs..."
-              class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all"
-            />
-            <i
-              class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-            ></i>
+    .dark input,
+    .dark select,
+    .dark textarea {
+      background-color: #1e293b !important;
+      color: #e2e8f0 !important;
+      border-color: #475569 !important;
+    }
+
+    .dark .hover\:bg-slate-50:hover {
+      background-color: #1e293b !important;
+    }
+
+    .dark .hover\:bg-slate-100:hover {
+      background-color: #334155 !important;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased h-screen flex overflow-hidden">
+  <!-- Left Sidebar -->
+  <aside class="w-64 bg-white border-r border-slate-100 flex flex-col z-20 hidden md:flex">
+    <div class="h-20 flex items-center px-8">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/agorai-logo-v2.png" alt="Agorai Logo" class="w-10 h-10" />
+        <span class="font-heading font-bold text-xl text-slate-800">Agorai</span>
+      </a>
+    </div>
+    <nav class="flex-1 px-4 space-y-2 py-4">
+      <a href="dashboard-jobseeker.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-th-large w-5"></i> Dashboard
+      </a>
+      <a href="findjobs.html"
+        class="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium border-l-4 border-primary">
+        <i class="fas fa-search w-5"></i> Find Jobs
+      </a>
+      <a href="myapplication.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-file-alt w-5"></i> My Applications
+      </a>
+      <a href="interview.html"
+        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+        <i class="fas fa-video w-5"></i> Interviews
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col overflow-hidden relative">
+    <!-- Header -->
+    <header
+      class="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-100 flex items-center justify-between px-8 sticky top-0 z-10">
+      <h1 class="text-2xl font-bold text-slate-800 font-heading">
+        Find Jobs
+      </h1>
+      <div class="flex items-center gap-4">
+        <div class="relative hidden md:block">
+          <input type="text" placeholder="Search for jobs..."
+            class="pl-10 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all" />
+          <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        </div>
+        <button
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative">
+          <i class="fas fa-bell"></i>
+          <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+        </button>
+        <button id="colorBlindToggle" onclick="toggleColorBlindMode()"
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
+          title="Toggle Color Blind Mode">
+          <i class="fas fa-eye"></i>
+        </button>
+        <button id="theme-toggle" type="button"
+          class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
+          title="Toggle Dark Mode">
+          <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+          <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+        </button>
+        <div class="relative flex items-center gap-3 pl-4 border-l border-slate-200">
+          <button id="profileDropdown" onclick="toggleProfileDropdown()"
+            class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer">
+            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              class="w-9 h-9 rounded-full border-2 border-white shadow-sm" />
+            <div class="hidden md:block text-left">
+              <div class="text-sm font-bold text-slate-800">Gabriel Adajar</div>
+              <div class="text-xs text-slate-500">Software Engineer</div>
+            </div>
+            <i class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="profileDropdownMenu"
+            class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50">
+            <a href="profile.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+              <i class="fas fa-user text-primary w-5"></i>
+              <span class="font-medium">Profile</span>
+            </a>
+            <a href="settings.html"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors">
+              <i class="fas fa-cog text-primary w-5"></i>
+              <span class="font-medium">Settings</span>
+            </a>
+            <div class="border-t border-slate-100 my-2"></div>
+            <a href="index.html"
+              class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+              <i class="fas fa-sign-out-alt w-5"></i>
+              <span class="font-medium">Logout</span>
+            </a>
           </div>
-          <button
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors relative"
-          >
-            <i class="fas fa-bell"></i>
-            <span
-              class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"
-            ></span>
-          </button>
-          <button
-            id="colorBlindToggle"
-            onclick="toggleColorBlindMode()"
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-500 shadow-sm hover:text-primary transition-colors"
-            title="Toggle Color Blind Mode"
-          >
-            <i class="fas fa-eye"></i>
-          </button>
-          <div
-            class="relative flex items-center gap-3 pl-4 border-l border-slate-200"
-          >
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto p-8">
+      <div class="grid grid-cols-1 gap-6">
+        <!-- Job Card 1 -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+          <div class="flex justify-between items-start">
+            <div class="flex gap-4">
+              <div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl">
+                <i class="fab fa-amazon text-orange-500"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-800 text-xl">
+                  Backend Engineer
+                </h3>
+                <p class="text-slate-500">Amazon • Seattle, WA</p>
+                <div class="flex gap-2 mt-3">
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Full-time</span>
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$130k - $170k</span>
+                </div>
+              </div>
+            </div>
             <button
-              id="profileDropdown"
-              onclick="toggleProfileDropdown()"
-              class="flex items-center gap-3 hover:bg-slate-50 rounded-xl px-2 py-1 transition-colors cursor-pointer"
-            >
-              <img
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                class="w-9 h-9 rounded-full border-2 border-white shadow-sm"
-              />
-              <div class="hidden md:block text-left">
-                <div class="text-sm font-bold text-slate-800">John Doe</div>
-                <div class="text-xs text-slate-500">Software Engineer</div>
-              </div>
-              <i
-                class="fas fa-chevron-down text-slate-400 text-xs hidden md:block"
-              ></i>
+              class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+              onclick="openApplyModal('Backend Engineer', 'Amazon', 'Seattle, WA', 'Full-time', '$130k - $170k', 'Join our AWS team to build scalable cloud infrastructure. We are looking for experienced backend engineers with strong Java and distributed systems knowledge.')">
+              Apply Now
             </button>
-
-            <!-- Dropdown Menu -->
-            <div
-              id="profileDropdownMenu"
-              class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-2 z-50"
-            >
-              <a
-                href="profile.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                <i class="fas fa-user text-primary w-5"></i>
-                <span class="font-medium">Profile</span>
-              </a>
-              <a
-                href="settings.html"
-                class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                <i class="fas fa-cog text-primary w-5"></i>
-                <span class="font-medium">Settings</span>
-              </a>
-              <div class="border-t border-slate-100 my-2"></div>
-              <a
-                href="index.html"
-                class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
-              >
-                <i class="fas fa-sign-out-alt w-5"></i>
-                <span class="font-medium">Logout</span>
-              </a>
-            </div>
           </div>
-        </div>
-      </header>
-
-      <div class="flex-1 overflow-y-auto p-8">
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Job Card 1 -->
-          <div
-            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group"
-          >
-            <div class="flex justify-between items-start">
-              <div class="flex gap-4">
-                <div
-                  class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl"
-                >
-                  <i class="fab fa-amazon text-orange-500"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-slate-800 text-xl">
-                    Backend Engineer
-                  </h3>
-                  <p class="text-slate-500">Amazon • Seattle, WA</p>
-                  <div class="flex gap-2 mt-3">
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >Full-time</span
-                    >
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >$130k - $170k</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <button
-                class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
-                onclick="openApplyModal('Backend Engineer', 'Amazon', 'Seattle, WA', 'Full-time', '$130k - $170k', 'Join our AWS team to build scalable cloud infrastructure. We are looking for experienced backend engineers with strong Java and distributed systems knowledge.')"
-              >
-                Apply Now
-              </button>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-50">
-              <p class="text-sm text-slate-600 line-clamp-2">
-                Join our AWS team to build scalable cloud infrastructure. We are
-                looking for experienced backend engineers with strong Java and
-                distributed systems knowledge.
-              </p>
-            </div>
-          </div>
-
-          <!-- Job Card 2 -->
-          <div
-            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group"
-          >
-            <div class="flex justify-between items-start">
-              <div class="flex gap-4">
-                <div
-                  class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl"
-                >
-                  <i class="fab fa-facebook text-blue-600"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-slate-800 text-xl">
-                    Product Manager
-                  </h3>
-                  <p class="text-slate-500">Meta • Menlo Park, CA</p>
-                  <div class="flex gap-2 mt-3">
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >Full-time</span
-                    >
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >$150k - $200k</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <button
-                class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
-                onclick="openApplyModal('Product Manager', 'Meta', 'Menlo Park, CA', 'Full-time', '$150k - $200k', 'Lead the development of new social features for Instagram. We need a product manager with a strong design sense and data-driven mindset.')"
-              >
-                Apply Now
-              </button>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-50">
-              <p class="text-sm text-slate-600 line-clamp-2">
-                Lead the development of new social features for Instagram. We
-                need a product manager with a strong design sense and
-                data-driven mindset.
-              </p>
-            </div>
-          </div>
-
-          <!-- Job Card 3 -->
-          <div
-            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group"
-          >
-            <div class="flex justify-between items-start">
-              <div class="flex gap-4">
-                <div
-                  class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl"
-                >
-                  <i class="fab fa-airbnb text-red-500"></i>
-                </div>
-                <div>
-                  <h3 class="font-bold text-slate-800 text-xl">
-                    UX Researcher
-                  </h3>
-                  <p class="text-slate-500">Airbnb • Remote</p>
-                  <div class="flex gap-2 mt-3">
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >Contract</span
-                    >
-                    <span
-                      class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium"
-                      >$80/hr</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <button
-                class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
-                onclick="openApplyModal('UX Researcher', 'Airbnb', 'Remote', 'Contract', '$80/hr', 'Conduct user research to improve the guest booking experience. You will work closely with designers and product teams to gather insights.')"
-              >
-                Apply Now
-              </button>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-50">
-              <p class="text-sm text-slate-600 line-clamp-2">
-                Conduct user research to improve the guest booking experience.
-                You will work closely with designers and product teams to gather
-                insights.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Apply Job Modal -->
-    <div
-      id="applyJobModal"
-      class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
-    >
-      <div
-        class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
-      >
-        <!-- Modal Header -->
-        <div
-          class="flex items-center justify-between p-6 border-b border-slate-100"
-        >
-          <div>
-            <h2 class="text-2xl font-bold text-slate-800 font-heading">
-              Apply for Position
-            </h2>
-            <p class="text-sm text-slate-500 mt-1">
-              Complete your application details
+          <div class="mt-4 pt-4 border-t border-slate-50">
+            <p class="text-sm text-slate-600 line-clamp-2">
+              Join our AWS team to build scalable cloud infrastructure. We are
+              looking for experienced backend engineers with strong Java and
+              distributed systems knowledge.
             </p>
           </div>
-          <button
-            onclick="closeApplyModal()"
-            class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
-          >
-            <i class="fas fa-times"></i>
-          </button>
         </div>
 
-        <!-- Modal Body -->
-        <div class="flex-1 overflow-y-auto p-6">
-          <form id="applyJobForm" class="space-y-6">
-            <!-- Role -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-briefcase text-primary mr-2"></i>Role
-              </label>
-              <input
-                type="text"
-                id="jobRole"
-                readonly
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-
-            <!-- Company -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-building text-primary mr-2"></i>Company
-              </label>
-              <input
-                type="text"
-                id="jobCompany"
-                readonly
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-
-            <!-- Location -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-map-marker-alt text-primary mr-2"></i>Location
-              </label>
-              <input
-                type="text"
-                id="jobLocation"
-                readonly
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-
-            <!-- Work Type -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-clock text-primary mr-2"></i>Work Type
-              </label>
-              <input
-                type="text"
-                id="jobWorkType"
-                readonly
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-
-            <!-- Salary -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-dollar-sign text-primary mr-2"></i>Salary Range
-              </label>
-              <input
-                type="text"
-                id="jobSalary"
-                readonly
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              />
-            </div>
-
-            <!-- Job Description -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-align-left text-primary mr-2"></i>Job
-                Description
-              </label>
-              <textarea
-                id="jobDescription"
-                readonly
-                rows="6"
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-              ></textarea>
-            </div>
-
-            <!-- Cover Letter -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-pen text-primary mr-2"></i>Cover Letter
-                <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="coverLetter"
-                rows="5"
-                required
-                placeholder="Tell us why you're a great fit for this role..."
-                class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-              ></textarea>
-            </div>
-
-            <!-- Resume Upload -->
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">
-                <i class="fas fa-file-upload text-primary mr-2"></i>Upload
-                Resume <span class="text-red-500">*</span>
-              </label>
-              <div
-                class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-primary transition-colors cursor-pointer"
-              >
-                <input
-                  type="file"
-                  id="resumeUpload"
-                  accept=".pdf,.doc,.docx"
-                  required
-                  class="hidden"
-                />
-                <label for="resumeUpload" class="cursor-pointer">
-                  <i
-                    class="fas fa-cloud-upload-alt text-4xl text-slate-300 mb-3"
-                  ></i>
-                  <p class="text-sm font-medium text-slate-600">
-                    Click to upload or drag and drop
-                  </p>
-                  <p class="text-xs text-slate-400 mt-1">
-                    PDF, DOC, DOCX (Max 5MB)
-                  </p>
-                </label>
+        <!-- Job Card 2 -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+          <div class="flex justify-between items-start">
+            <div class="flex gap-4">
+              <div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl">
+                <i class="fab fa-facebook text-blue-600"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-800 text-xl">
+                  Product Manager
+                </h3>
+                <p class="text-slate-500">Meta • Menlo Park, CA</p>
+                <div class="flex gap-2 mt-3">
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Full-time</span>
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$150k - $200k</span>
+                </div>
               </div>
             </div>
-          </form>
+            <button
+              class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+              onclick="openApplyModal('Product Manager', 'Meta', 'Menlo Park, CA', 'Full-time', '$150k - $200k', 'Lead the development of new social features for Instagram. We need a product manager with a strong design sense and data-driven mindset.')">
+              Apply Now
+            </button>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-50">
+            <p class="text-sm text-slate-600 line-clamp-2">
+              Lead the development of new social features for Instagram. We
+              need a product manager with a strong design sense and
+              data-driven mindset.
+            </p>
+          </div>
         </div>
 
-        <!-- Modal Footer -->
-        <div
-          class="flex items-center justify-end gap-3 p-6 border-t border-slate-100 bg-slate-50"
-        >
-          <button
-            onclick="closeApplyModal()"
-            type="button"
-            class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-white transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            onclick="submitApplication()"
-            type="button"
-            class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
-          >
-            <i class="fas fa-paper-plane mr-2"></i>Submit Application
-          </button>
+        <!-- Job Card 3 -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+          <div class="flex justify-between items-start">
+            <div class="flex gap-4">
+              <div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center text-3xl">
+                <i class="fab fa-airbnb text-red-500"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-800 text-xl">
+                  UX Researcher
+                </h3>
+                <p class="text-slate-500">Airbnb • Remote</p>
+                <div class="flex gap-2 mt-3">
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">Contract</span>
+                  <span class="px-3 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium">$80/hr</span>
+                </div>
+              </div>
+            </div>
+            <button
+              class="px-6 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20"
+              onclick="openApplyModal('UX Researcher', 'Airbnb', 'Remote', 'Contract', '$80/hr', 'Conduct user research to improve the guest booking experience. You will work closely with designers and product teams to gather insights.')">
+              Apply Now
+            </button>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-50">
+            <p class="text-sm text-slate-600 line-clamp-2">
+              Conduct user research to improve the guest booking experience.
+              You will work closely with designers and product teams to gather
+              insights.
+            </p>
+          </div>
         </div>
       </div>
     </div>
+  </main>
 
-    <script>
-      // Initialize Dark Mode from localStorage
-      if (localStorage.getItem("darkMode") === "true") {
-        document.documentElement.classList.add("dark");
+  <!-- Apply Job Modal -->
+  <div id="applyJobModal"
+    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-slate-100">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-800 font-heading">
+            Apply for Position
+          </h2>
+          <p class="text-sm text-slate-500 mt-1">
+            Complete your application details
+          </p>
+        </div>
+        <button onclick="closeApplyModal()"
+          class="w-10 h-10 rounded-xl hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <form id="applyJobForm" class="space-y-6">
+          <!-- Role -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-briefcase text-primary mr-2"></i>Role
+            </label>
+            <input type="text" id="jobRole" readonly
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+
+          <!-- Company -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-building text-primary mr-2"></i>Company
+            </label>
+            <input type="text" id="jobCompany" readonly
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+
+          <!-- Location -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-map-marker-alt text-primary mr-2"></i>Location
+            </label>
+            <input type="text" id="jobLocation" readonly
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+
+          <!-- Work Type -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-clock text-primary mr-2"></i>Work Type
+            </label>
+            <input type="text" id="jobWorkType" readonly
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+
+          <!-- Salary -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-dollar-sign text-primary mr-2"></i>Salary Range
+            </label>
+            <input type="text" id="jobSalary" readonly
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+
+          <!-- Job Description -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-align-left text-primary mr-2"></i>Job
+              Description
+            </label>
+            <textarea id="jobDescription" readonly rows="6"
+              class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+          </div>
+
+          <!-- Cover Letter -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-pen text-primary mr-2"></i>Cover Letter
+              <span class="text-red-500">*</span>
+            </label>
+            <textarea id="coverLetter" rows="5" required placeholder="Tell us why you're a great fit for this role..."
+              class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+          </div>
+
+          <!-- Resume Upload -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">
+              <i class="fas fa-file-upload text-primary mr-2"></i>Upload
+              Resume <span class="text-red-500">*</span>
+            </label>
+            <div
+              class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-primary transition-colors cursor-pointer">
+              <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" required class="hidden" />
+              <label for="resumeUpload" class="cursor-pointer">
+                <i class="fas fa-cloud-upload-alt text-4xl text-slate-300 mb-3"></i>
+                <p class="text-sm font-medium text-slate-600">
+                  Click to upload or drag and drop
+                </p>
+                <p class="text-xs text-slate-400 mt-1">
+                  PDF, DOC, DOCX (Max 5MB)
+                </p>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end gap-3 p-6 border-t border-slate-100 bg-slate-50">
+        <button onclick="closeApplyModal()" type="button"
+          class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium text-sm hover:bg-white transition-colors">
+          Cancel
+        </button>
+        <button onclick="submitApplication()" type="button"
+          class="px-6 py-3 bg-primary text-white rounded-xl font-medium text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/20">
+          <i class="fas fa-paper-plane mr-2"></i>Submit Application
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Dark Mode from localStorage
+    if (localStorage.getItem("darkMode") === "true") {
+      document.documentElement.classList.add("dark");
+    }
+
+    // Modal Functions
+    function openApplyModal(
+      role,
+      company,
+      location,
+      workType,
+      salary,
+      description
+    ) {
+      document.getElementById("jobRole").value = role;
+      document.getElementById("jobCompany").value = company;
+      document.getElementById("jobLocation").value = location;
+      document.getElementById("jobWorkType").value = workType;
+      document.getElementById("jobSalary").value = salary;
+      document.getElementById("jobDescription").value = description;
+      document.getElementById("applyJobModal").classList.remove("hidden");
+      document.getElementById("applyJobModal").classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeApplyModal() {
+      document.getElementById("applyJobModal").classList.add("hidden");
+      document.getElementById("applyJobModal").classList.remove("flex");
+      document.body.style.overflow = "auto";
+      document.getElementById("applyJobForm").reset();
+    }
+
+    function submitApplication() {
+      const coverLetter = document.getElementById("coverLetter").value;
+      const resumeUpload = document.getElementById("resumeUpload").files[0];
+
+      if (!coverLetter.trim()) {
+        alert("Please write a cover letter");
+        return;
       }
 
-      // Modal Functions
-      function openApplyModal(
-        role,
-        company,
-        location,
-        workType,
-        salary,
-        description
-      ) {
-        document.getElementById("jobRole").value = role;
-        document.getElementById("jobCompany").value = company;
-        document.getElementById("jobLocation").value = location;
-        document.getElementById("jobWorkType").value = workType;
-        document.getElementById("jobSalary").value = salary;
-        document.getElementById("jobDescription").value = description;
-        document.getElementById("applyJobModal").classList.remove("hidden");
-        document.getElementById("applyJobModal").classList.add("flex");
-        document.body.style.overflow = "hidden";
+      if (!resumeUpload) {
+        alert("Please upload your resume");
+        return;
       }
 
-      function closeApplyModal() {
-        document.getElementById("applyJobModal").classList.add("hidden");
-        document.getElementById("applyJobModal").classList.remove("flex");
-        document.body.style.overflow = "auto";
-        document.getElementById("applyJobForm").reset();
-      }
+      // Prepare application data
+      const applicationData = {
+        role: document.getElementById("jobRole").value,
+        company: document.getElementById("jobCompany").value,
+        location: document.getElementById("jobLocation").value,
+        workType: document.getElementById("jobWorkType").value,
+        salary: document.getElementById("jobSalary").value,
+        coverLetter: coverLetter,
+        resumeName: resumeUpload.name,
+        appliedDate: new Date().toISOString(),
+      };
 
-      function submitApplication() {
-        const coverLetter = document.getElementById("coverLetter").value;
-        const resumeUpload = document.getElementById("resumeUpload").files[0];
+      // Get existing applications from localStorage
+      let applications = JSON.parse(
+        localStorage.getItem("jobApplications") || "[]"
+      );
+      applications.push(applicationData);
+      localStorage.setItem("jobApplications", JSON.stringify(applications));
 
-        if (!coverLetter.trim()) {
-          alert("Please write a cover letter");
-          return;
+      // Show success message
+      alert("Application submitted successfully! 🎉");
+      closeApplyModal();
+    }
+
+    // Close modal when clicking outside
+    document
+      .getElementById("applyJobModal")
+      .addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeApplyModal();
         }
+      });
 
-        if (!resumeUpload) {
-          alert("Please upload your resume");
-          return;
-        }
-
-        // Prepare application data
-        const applicationData = {
-          role: document.getElementById("jobRole").value,
-          company: document.getElementById("jobCompany").value,
-          location: document.getElementById("jobLocation").value,
-          workType: document.getElementById("jobWorkType").value,
-          salary: document.getElementById("jobSalary").value,
-          coverLetter: coverLetter,
-          resumeName: resumeUpload.name,
-          appliedDate: new Date().toISOString(),
-        };
-
-        // Get existing applications from localStorage
-        let applications = JSON.parse(
-          localStorage.getItem("jobApplications") || "[]"
-        );
-        applications.push(applicationData);
-        localStorage.setItem("jobApplications", JSON.stringify(applications));
-
-        // Show success message
-        alert("Application submitted successfully! 🎉");
-        closeApplyModal();
-      }
-
-      // Close modal when clicking outside
-      document
-        .getElementById("applyJobModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeApplyModal();
-          }
-        });
-
-      // File upload feedback
-      document
-        .getElementById("resumeUpload")
-        .addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            const label = e.target.nextElementSibling;
-            label.innerHTML = `
+    // File upload feedback
+    document
+      .getElementById("resumeUpload")
+      .addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const label = e.target.nextElementSibling;
+          label.innerHTML = `
                     <i class="fas fa-check-circle text-4xl text-green-500 mb-3"></i>
                     <p class="text-sm font-medium text-green-600">${file.name}</p>
                     <p class="text-xs text-slate-400 mt-1">Click to change file</p>
                 `;
-          }
-        });
+        }
+      });
 
-      // Color Blind Mode Toggle
-      function toggleColorBlindMode() {
-        const body = document.body;
-        const toggleBtn = document.getElementById("colorBlindToggle");
-        const isColorBlindMode = body.classList.contains("colorblind-mode");
+    // Color Blind Mode Toggle
+    function toggleColorBlindMode() {
+      const body = document.body;
+      const toggleBtn = document.getElementById("colorBlindToggle");
+      const isColorBlindMode = body.classList.contains("colorblind-mode");
 
-        if (isColorBlindMode) {
-          body.classList.remove("colorblind-mode");
-          toggleBtn.classList.remove("active");
-          localStorage.setItem("colorBlindMode", "false");
+      if (isColorBlindMode) {
+        body.classList.remove("colorblind-mode");
+        toggleBtn.classList.remove("active");
+        localStorage.setItem("colorBlindMode", "false");
+      } else {
+        body.classList.add("colorblind-mode");
+        toggleBtn.classList.add("active");
+        localStorage.setItem("colorBlindMode", "true");
+      }
+    }
+
+    // Initialize color blind mode from localStorage
+    window.addEventListener("DOMContentLoaded", function () {
+      const colorBlindMode = localStorage.getItem("colorBlindMode");
+      if (colorBlindMode === "true") {
+        document.body.classList.add("colorblind-mode");
+        document.getElementById("colorBlindToggle").classList.add("active");
+      }
+    });
+
+    // Profile Dropdown Toggle
+    function toggleProfileDropdown() {
+      const dropdown = document.getElementById("profileDropdownMenu");
+      dropdown.classList.toggle("hidden");
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("profileDropdownMenu");
+      const button = document.getElementById("profileDropdown");
+
+      if (
+        !button.contains(event.target) &&
+        !dropdown.contains(event.target)
+      ) {
+        dropdown.classList.add("hidden");
+      }
+    });
+
+    // Dark Mode Logic
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Check local storage or system preference
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      themeToggleLightIcon.classList.remove('hidden');
+      document.documentElement.classList.add('dark');
+    } else {
+      themeToggleDarkIcon.classList.remove('hidden');
+      document.documentElement.classList.remove('dark');
+    }
+
+    var themeToggleBtn = document.getElementById('theme-toggle');
+
+    themeToggleBtn.addEventListener('click', function () {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
         } else {
-          body.classList.add("colorblind-mode");
-          toggleBtn.classList.add("active");
-          localStorage.setItem("colorBlindMode", "true");
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        }
+      } else {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
         }
       }
+    });
+  </script>
+</body>
 
-      // Initialize color blind mode from localStorage
-      window.addEventListener("DOMContentLoaded", function () {
-        const colorBlindMode = localStorage.getItem("colorBlindMode");
-        if (colorBlindMode === "true") {
-          document.body.classList.add("colorblind-mode");
-          document.getElementById("colorBlindToggle").classList.add("active");
-        }
-      });
-
-      // Profile Dropdown Toggle
-      function toggleProfileDropdown() {
-        const dropdown = document.getElementById("profileDropdownMenu");
-        dropdown.classList.toggle("hidden");
-      }
-
-      // Close dropdown when clicking outside
-      document.addEventListener("click", function (event) {
-        const dropdown = document.getElementById("profileDropdownMenu");
-        const button = document.getElementById("profileDropdown");
-
-        if (
-          !button.contains(event.target) &&
-          !dropdown.contains(event.target)
-        ) {
-          dropdown.classList.add("hidden");
-        }
-      });
-    </script>
-  </body>
 </html>
